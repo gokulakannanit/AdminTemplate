@@ -1,0 +1,36 @@
+<ft-panel>                                   
+    <table class="table table-striped table-bordered table-hover no-margin">
+        <thead>
+            <tr>
+                <th>#ID</th>
+                <th> Company Name</th>
+                <th class="hidden-phone">Owner</th>
+                <th class="hidden-phone">Pan Number</th>
+                <th class="hidden-phone">Email</th>
+                <th class="hidden-phone">Address</th>
+                <th class="hidden-phone">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="danger" ng-if="companyList.length === 0">
+                <td colspan="7">No Records found</td>
+            </tr>
+            <tr ng-repeat="company in companyList | filter:search">
+                <td>{{::($index+1)}}</td>
+                <td>{{::company.companyName}}</td>
+                <td><span ng-repeat="item in company.owner.split(',')">{{ownerListData[item] | titleCase}}</span></td>
+                <td>{{::company.pan}}</td>
+                <td>{{::company.email}}</td>
+                <td>{{::company.address}}</td>
+                <td style="max-width:80px">
+                    <a ui-sref="companyDetail({ isEdit: 'update', editId: company.id })" class="btn btn-xs btn-info" data-original-title="">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+                    <a class="btn btn-xs btn-danger" ng-click="confirmDelete(company.id);">
+                        <i class="fa fa-trash-o"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</ft-panel>

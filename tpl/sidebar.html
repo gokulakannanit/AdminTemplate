@@ -1,0 +1,44 @@
+
+<div class="page-sidebar navbar-collapse collapse">
+	<!-- BEGIN SIDEBAR MENU -->
+	<!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
+	<!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
+	<!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
+	<!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
+	<!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
+	<!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+	<ul class="page-sidebar-menu page-sidebar-menu-hover-submenu" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" ng-class="{'page-sidebar-menu-closed': settings.layout.pageSidebarClosed}">
+		<li>
+			<a href="#/dashboard.html">
+			<i class="icon-home"></i>
+			<span class="title">Dashboard</span>
+			</a>
+		</li>
+		<li>
+			<a href="#/owner.html" data="#/owner.html,#/owner/add/,#/owner/update/">
+				<i class="icon-settings"></i><span class="title">Owner</span>
+			</a>
+		</li>
+		<li>
+			<a href="#/company.html" data="#/company.html,#/company/add/,#/company/update/">
+				<i class="icon-wrench"></i><span class="title">Company</span>
+			</a>
+		</li>
+		<li>
+			<a href="#/client.html" data="#/client.html,#/client/add/,#/client/update/">
+				<i class="icon-wrench"></i><span class="title">Client</span>
+			</a>
+		</li>
+		<li>
+			<a href="#/vendor.html" data="#/vendor.html,#/vendor/add/,#/vendor/update/">
+				<i class="icon-wrench"></i><span class="title">Vendor</span>
+			</a>
+		</li>
+		<li>
+			<a href="#/vehicle.html" data="#/vehicle.html,#/vehicle/add/,#/vehicle/update/">
+				<i class="icon-wrench"></i><span class="title">Vehicle</span>
+			</a>
+		</li>
+	</ul>
+	<!-- END SIDEBAR MENU -->
+</div>	

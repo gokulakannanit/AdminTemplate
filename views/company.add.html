@@ -1,0 +1,35 @@
+<ft-panel>
+    <ft-form>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            <ft-form-text type="radio" source="companyType" ng-model="model.typeOfCompany" name="typeOfCompany" labeltext="Type Of Company" required="true"></ft-form-text>
+
+            <ft-form-text ng-model="model.companyName" name="companyName" labeltext="Company Name" required="true"></ft-form-text> 
+
+            <ft-form-text ng-model="model.address" name="address" labeltext="Address" required="true"></ft-form-text>
+
+            <div ng-if="model.typeOfCompany == 'S'">
+                <ft-form-text type="select" ng-model="model.owner" source="ownerListData" name="owner" labeltext="Propriteship" required="true"></ft-form-text>
+            </div>
+
+            <div ng-if="model.typeOfCompany == 'P'">
+                <ft-tag-input name="owner" minlen="2" ng-model="selectedTags" source="ownerListData" labeltext="Add Partners"></ft-tag-input>
+            </div>
+
+            <ft-form-text type="email" ng-model="model.email" name="email" labeltext="Email"></ft-form-text>                
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+
+            <ft-form-text ng-model="model.ssi" name="ssi" labeltext="SSI NO"></ft-form-text>
+
+            <ft-form-text ng-model="model.pan" name="pan" labeltext="PAN NO" maxlen="10" pattern="[A-Za-z]{5}\d{4}[A-Za-z]{1}"></ft-form-text>
+
+            <ft-form-text ng-model="model.tan" name="tan" labeltext="TAN NO"></ft-form-text>
+
+            <ft-form-text ng-model="model.serviceTaxNumber" name="serviceTaxNumber" labeltext="Service Tax"></ft-form-text>
+            
+            <ft-form-text ng-model="model.phone" name="phone" labeltext="Phone Number" maxlen="10" pattern="\d{10}"></ft-form-text>
+            
+        </div> 
+    </ft-form>       
+</ft-panel>

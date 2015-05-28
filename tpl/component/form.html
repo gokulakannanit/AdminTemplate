@@ -1,0 +1,10 @@
+<form class="form-horizontal" role="form" name="form">
+        <div class="row" ng-transclude></div>
+        <div class="col-md-12 col-sm-12 col-xs-12 form-button">
+        <div class="form-group" align="center">
+            <button type="submit" class="btn btn-primary" ng-click="updateDetails();" ng-disabled="form.$invalid">Save</button>
+            <button type="button" class="btn btn-default" ng-click="reset();" ng-if="!editId">Reset</button>
+            <button type="button" class="btn btn-default" ui-sref="{{$state.current.data.back}}" ng-if="editId">Cancel</button>
+        </div>
+    </div>
+</form>

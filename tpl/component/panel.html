@@ -1,0 +1,33 @@
+<div class="portlet box yellow">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-gift"></i>{{$state.current.data.panelTitle}}
+        </div>
+        <button ng-if="!$state.current.data.form" ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'add' })" type="button" class="btn btn-sm btn-primary pull-right">
+            <i class="fa fa-plus"></i>&nbsp;<span class="hidden-sm hidden-xs">Add</span>
+        </button>
+        <a ng-if="$state.current.data.form" ui-sref="{{$state.current.data.back}}" class="caption pull-right">
+            <i class="fa fa-chevron-circle-left"></i>&nbsp;<span class="hidden-sm hidden-xs">Back</span>
+        </a>
+    </div>
+    <div class="portlet-body">
+        <div class="container-fluid" ng-if="!$state.current.data.form">
+            <div class="row">
+                <div class="input-group col-md-2 pull-right search-container">
+                    <input type="text" class="search-query form-control" placeholder="Search" ng-model="search.$">
+                    <span class="input-group-btn">
+                        <button class="btn btn-danger" type="button">
+                            <span class=" glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table-responsive" ng-transclude></div>
+            </div>
+        </div>
+        <div class="container-fluid" ng-if="$state.current.data.form">
+            <div class="row" ng-transclude></div>
+        </div>
+    </div>
+</div>
