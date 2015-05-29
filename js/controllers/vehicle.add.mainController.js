@@ -15,11 +15,6 @@ MetronicApp.controller('vehicle.add.mainController', ['$scope', '$state', '$stat
 
         $scope.selectTab = function(index){
             $scope.selectedTab = index;
-        }
-        
-        $scope.reset = function(){
-            $scope.form.$setPristine()
-        } 
-
+        }        
     }
 ]);

@@ -16,17 +16,7 @@
       </div>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">                 
          <ft-form-text type="select" ng-model="model.ownership" source="ownership" name="make" labeltext="Make"></ft-form-text>
-         <div class="form-group" ng-class="{ 'has-error' : vehicleInfoForm.ownership.$invalid && !vehicleInfoForm.ownership.$pristine }">
-            <label class="col-sm-3 control-label">Ownership</label>
-            <div class="col-sm-9">
-               <select class="form-control" name="ownership" ng-model="model.ownership" >
-                  <option value="">-- ownership --</option>
-                  <option value="own">own</option>
-                  <option value="hire/lease">hire/lease</option>
-               </select>
-               <p ng-show="vehicleInfoForm.ownership.$invalid && !vehicleInfoForm.ownership.$pristine" class="help-block">ownership is required.</p>
-            </div>
-         </div>
+         
          <div class="form-group" ng-class="{ 'has-error' : vehicleInfoForm.owner.$invalid && !vehicleInfoForm.owner.$pristine }">
             <label class="col-sm-3 control-label">Owner</label>
             <div class="col-sm-9">
