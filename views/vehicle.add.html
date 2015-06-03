@@ -1,3 +1,4 @@
-<ft-panel>
-	<div ng-include="'tpl/component/tab.html'"></div>
+<div ng-include="'tpl/component/tab.html'" ng-if="editId"></div>
+<ft-panel ng-if="!editId">
+	<div class="tab-content" ui-view="container"></div>
 </ft-panel>

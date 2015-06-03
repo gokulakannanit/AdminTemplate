@@ -17,6 +17,14 @@
           <label ng-repeat="itemObj in source" for="{{opts.name}}"><input type="radio" name="{{opts.name}}" value="{{itemObj.value}}" ng-model="$parent.model" />{{itemObj.label}}</label>
       </div>
 
+      <p class="input-group" ng-show="opts.type === 'date'">
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="model" is-open="opened" max-date="opts.maxDate" datepickerOptions="dateOptions" close-text="Close" show-button-bar="false" />
+            
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+        </span>
+      </p>
+
       <div ng-if='form.$invalid && form.$touched' class="help-block" role="alert">
         <p ng-if="form.$error.required">This field is mandatory</p>
         <p ng-if="form.$error.pattern">Pattern is not correct</p>

@@ -1946,6 +1946,11 @@ Custom Bootstrap Badges
 /***
 Dropdown Menu Badges
 ***/
+
+.dropdown-menu > li{
+  margin:5px;
+}
+
 .dropdown-menu > li > a > .badge {
   position: absolute;
   margin-top: 1px;
@@ -4673,7 +4678,7 @@ Portlets
 .portlet > .portlet-title > .nav-tabs {
   background: none;
   margin: 0;
-  float: right;
+  float: left;
   display: inline-block;
   border: 0;
 }
@@ -4684,15 +4689,25 @@ Portlets
 }
 .portlet > .portlet-title > .nav-tabs > li > a {
   background: none;
-  margin: 5px 0 0 1px;
+  margin: 10px 0 0 1px;
   border: 0;
-  padding: 8px 10px;
-  color: #fff;
+  padding: 6px 20px;
+  color: #333;
+  background:rgba(0,0,0,0.4);
+  -webkit-border-radius: 6px 6px 0 0 !important;
+  -moz-border-radius: 6px 6px 0 0 !important;
+  -ms-border-radius: 6px 6px 0 0 !important;
+  -o-border-radius: 6px 6px 0 0 !important;
+  border-radius: 6px 6px 0 0 !important;
 }
-.portlet > .portlet-title > .nav-tabs > li.active > a, .portlet > .portlet-title > .nav-tabs > li:hover > a {
+.portlet > .portlet-title > .nav-tabs > li.active > a, .portlet > .portlet-title > .nav-tabs > li.active:hover > a {
   color: #333;
   background: #fff;
   border: 0;
+}
+.portlet > .portlet-title > .nav-tabs > li:hover > a {
+  color: #fff;
+  background:rgba(0,0,0,0.2);
 }
 .portlet > .portlet-body {
   clear: both;
@@ -4781,7 +4796,7 @@ Portlets
 }
 .portlet.box > .portlet-body {
   background-color: #fff;
-  padding: 10px;
+  padding: 30px 10px 10px;
 }
 .portlet.box.portlet-fullscreen > .portlet-body {
   padding: 10px;

@@ -89,6 +89,26 @@ MetronicApp.directive("ftFormText", function($compile) {
         }
         scope.form = ctrl;
 
+        
+        scope.open = function($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            scope.opened = true;
+        };
+
+        if(scope.opts.type === 'date'){
+
+            scope.opts.maxDate = new Date();
+
+            scope.dateOptions = {
+                formatYear: 'yy',
+                startingDay: 1
+            };
+            scope.format = 'dd/MM/yyyy';
+
+        }
+
         $compile(elem.contents())(scope);
 
         if(scope.opts.type !== "select"){

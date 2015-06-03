@@ -1,29 +1,29 @@
 <div class="container-fluid">
    <ft-form>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
+
+         <ft-form-text type="radio" source="ownerShiptype" ng-model="model.typeOfOwnership" name="typeOfOwnership" labeltext="Ownership"></ft-form-text>
+
          <ft-form-text ng-model="model.vehicleNo" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
 
-         <ft-form-text ng-model="model.date" name="date" labeltext="Date"></ft-form-text>
+         <ft-form-text type="date" ng-model="model.date" name="date" labeltext="Purchased Date"></ft-form-text>
 
-         <ft-form-text ng-model="model.amtPurchased" name="amtPurchased" labeltext="Purchased Amount"></ft-form-text>
+         <ft-form-text ng-model="model.amtPurchased" name="amtPurchased" labeltext="Purchased Amt"></ft-form-text>
 
-         <ft-form-text ng-model="model.modelYear" name="modelYear" labeltext="Model"></ft-form-text> 
-
-         <ft-form-text ng-model="model.make" name="make" labeltext="Make"></ft-form-text>
-
-         <ft-form-text type="select" ng-model="model.make" source="makeList" name="make" labeltext="Make"></ft-form-text>
-
-      </div>
-      <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">                 
-         <ft-form-text type="select" ng-model="model.ownership" source="ownership" name="make" labeltext="Make"></ft-form-text>
+         <ft-form-text ng-model="model.modelYear" name="modelYear" labeltext="Model"></ft-form-text>
          
+      </div>
+      <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4"> 
          <div class="form-group" ng-class="{ 'has-error' : vehicleInfoForm.owner.$invalid && !vehicleInfoForm.owner.$pristine }">
             <label class="col-sm-3 control-label">Owner</label>
             <div class="col-sm-9">
                <input type="text" name="owner" placeholder="Enter owner" class="form-control" ng-model="model.owner">
                <p ng-show="vehicleInfoForm.owner.$invalid && !vehicleInfoForm.owner.$pristine" class="help-block">Enter valid owner name</p>
             </div>
-         </div>         
+         </div> 
+
+         <ft-form-text type="select" ng-model="model.make" source="makeList" name="make" labeltext="Make"></ft-form-text>
+                 
          <div class="form-group" ng-class="{ 'has-error' : vehicleInfoForm.fuelType.$invalid && !vehicleInfoForm.fuelType.$pristine }">
             <label class="col-sm-3 control-label">Fuel Type</label>
             <div class="col-sm-9">

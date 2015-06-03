@@ -1,10 +1,14 @@
-<div class="tabbable-panel">
-  <div class="tabbable-line">
-     <ul class="nav nav-tabs">
-        <li ng-repeat="item in links" ng-class="{'active':(selectedTab === $index)}">
-            <a ui-sref="{{item.view}}" ng-click="selectTab($index);">{{item.label}}</a>
-        </li>
-     </ul>
-     <div class="tab-content" ui-view="container"></div>
-  </div>
+<div class="portlet box yellow">
+    <div class="portlet-title">
+		<ul class="nav nav-tabs">
+			<li ng-repeat="item in links" ng-class="{'active':(selectedTab === $index)}">
+			    <a ui-sref="{{item.view}}" ng-click="selectTab($index);">{{item.label}}</a>
+			</li>
+		</ul>
+		<a ng-if="$state.current.data.form" ui-sref="{{$state.current.data.back}}" class="caption pull-right">
+            <i class="fa fa-chevron-circle-left"></i>&nbsp;<span class="hidden-sm hidden-xs">Back</span>
+        </a>
+	</div>
+    <div class="portlet-body" ui-view="container">
+ 	</div>
 </div>

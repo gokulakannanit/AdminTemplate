@@ -6,7 +6,8 @@ Metronic AngularJS App Main Script
 var MetronicApp = angular.module("MetronicApp", [
     "ui.router", 
     "ui.bootstrap", 
-    "oc.lazyLoad"
+    "oc.lazyLoad",
+    'ngTagsInput'
 ]); 
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
@@ -80,12 +81,6 @@ MetronicApp.controller('ThemePanelController', ['$scope', function($scope) {
     });
 }]);
 
-/* Setup Layout Part - Footer */
-MetronicApp.controller('FooterController', ['$scope', function($scope) {
-    $scope.$on('$includeContentLoaded', function() {
-        Layout.initFooter(); // init footer
-    });
-}]);
 
 /* Setup Rounting For All Pages */
 MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
@@ -299,7 +294,19 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
             views: {
                 url: '/basic',
                 "container": {
-                    templateUrl: "views/vehicle.basic.html"
+                    templateUrl: "views/vehicle.basic.html",
+                    controller: 'vehicle.basic.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/controllers/vehicle.basic.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
                 }
             }
         })

@@ -1979,3 +1979,7 @@ Rounded Portlets
   border-radius: 0px 0px 4px 4px !important;
 }
 */
+
+.radio label{
+  margin-right: 10px;
+}

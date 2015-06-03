@@ -20,10 +20,10 @@ MetronicApp.controller('vendor.add.mainController', ['$scope', '$stateParams', '
                             email:''
                         };
 
-             $scope.dataList =   [{label:'Battery', value:'Battery'}, 
-                            {label:'Electricals', value:'Electricals'}, 
-                            {label:'Spare Parts', value:'Spare Parts'}, 
-                            {label:'Tyre', value:'Tyre'}];
+             $scope.dataList =   [{id:'Battery', name:'Battery'}, 
+                            {id:'Electricals', name:'Electricals'}, 
+                            {id:'Spare Parts', name:'Spare Parts'}, 
+                            {id:'Tyre', name:'Tyre'}];
 
             if ($scope.editId) {
                 updateService.get($stateParams.editId).then(function(data) {

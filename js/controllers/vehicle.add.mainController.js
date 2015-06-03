@@ -7,6 +7,7 @@ MetronicApp.controller('vehicle.add.mainController', ['$scope', '$state', '$stat
             // initialize core components
             Metronic.initAjax();
             $scope.selectedTab = 0;
+            $scope.editId = $stateParams.editId;
         });
 
         $state.go('vehicleDetail.basic');
