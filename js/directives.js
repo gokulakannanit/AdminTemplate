@@ -88,7 +88,6 @@ MetronicApp.directive("ftFormText", function($compile) {
             scope.opts.type = "text";
         }
         scope.form = ctrl;
-
         
         scope.open = function($event) {
             $event.preventDefault();

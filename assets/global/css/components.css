@@ -5,27 +5,7 @@
 Rounded corners reset
 ***/
 /* Reset rounded corners for all elements */
-div,
-input,
-select,
-textarea,
-span,
-img,
-table,
-label,
-td,
-th,
-p,
-a,
-button,
-ul,
-code,
-pre,
-li {
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-}
+
 
 /* except below bootstrap elements */
 .img-circle {
@@ -3238,7 +3218,7 @@ Forms
 }
 
 /* Form inputs */
-.form-control {
+.form-control, tags-input .tags {
   font-size: 14px;
   font-weight: normal;
   color: #333;
@@ -4692,7 +4672,7 @@ Portlets
   margin: 10px 0 0 1px;
   border: 0;
   padding: 6px 20px;
-  color: #333;
+  color: #AAA;
   background:rgba(0,0,0,0.4);
   -webkit-border-radius: 6px 6px 0 0 !important;
   -moz-border-radius: 6px 6px 0 0 !important;

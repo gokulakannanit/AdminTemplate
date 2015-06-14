@@ -1,7 +1,7 @@
 <div class="portlet box yellow">
     <div class="portlet-title">
 		<ul class="nav nav-tabs">
-			<li ng-repeat="item in links" ng-class="{'active':(selectedTab === $index)}">
+			<li ng-repeat="item in links" ng-class="{'active':item.selected}">
 			    <a ui-sref="{{item.view}}" ng-click="selectTab($index);">{{item.label}}</a>
 			</li>
 		</ul>

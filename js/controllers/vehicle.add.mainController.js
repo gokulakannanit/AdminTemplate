@@ -6,16 +6,26 @@ MetronicApp.controller('vehicle.add.mainController', ['$scope', '$state', '$stat
         $scope.$on('$viewContentLoaded', function() {
             // initialize core components
             Metronic.initAjax();
-            $scope.selectedTab = 0;
             $scope.editId = $stateParams.editId;
         });
 
         $state.go('vehicleDetail.basic');
     
-        $scope.links = [{view:'vehicleDetail.basic', label:'Basic'},{view:'vehicleDetail.maintain', label:'Maintain'}];
+        $scope.links = [{view:'vehicleDetail.basic', label:'Basic', selected:true},
+                        {view:'vehicleDetail.insurance', label:'Insurance', selected:false},
+                        {view:'vehicleDetail.fc', label:'Fitness Certificate', selected:false},
+                        {view:'vehicleDetail.spare', label:'Spare Parts', selected:false},
+                        {view:'vehicleDetail.tyre', label:'Tyre', selected:false},
+                        {view:'vehicleDetail.battery', label:'Battery', selected:false},
+                        {view:'vehicleDetail.emission', label:'Emission', selected:false}
+                        ];
 
         $scope.selectTab = function(index){
-            $scope.selectedTab = index;
-        }        
+            angular.forEach($scope.links, function(item){
+                item.selected = false;
+            })
+            $scope.links[index].selected = true;
+            $state.go($scope.links[index].view);
+        };
     }
 ]);

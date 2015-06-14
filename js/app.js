@@ -4,10 +4,11 @@ Metronic AngularJS App Main Script
 
 /* Metronic App */
 var MetronicApp = angular.module("MetronicApp", [
-    "ui.router", 
-    "ui.bootstrap", 
-    "oc.lazyLoad",
-    'ngTagsInput'
+    'ui.router', 
+    'ui.bootstrap', 
+    'oc.lazyLoad',
+    'ngTagsInput',
+    'selectSearch'
 ]); 
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
@@ -303,6 +304,132 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                                 insertBefore: '#ng_load_plugins_before',
                                 files: [
                                     'js/controllers/vehicle.basic.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.insurance', {
+            views: {
+                url: '/maintain',
+                "container": {
+                    templateUrl: "views/vehicle.insurance.html",
+                    controller: 'vehicle.insurance.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.insurance.service.js',
+                                    'js/controllers/vehicle.insurance.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.fc', {
+            views: {
+                url: '/fc',
+                "container": {
+                    templateUrl: "views/vehicle.fc.html",
+                    controller: 'vehicle.fc.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.fc.service.js',
+                                    'js/controllers/vehicle.fc.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.spare', {
+            views: {
+                url: '/spare',
+                "container": {
+                    templateUrl: "views/vehicle.spare.html",
+                    controller: 'vehicle.spare.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.spare.service.js',
+                                    'js/controllers/vehicle.spare.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.tyre', {
+            views: {
+                url: '/tyre',
+                "container": {
+                    templateUrl: "views/vehicle.tyre.html",
+                    controller: 'vehicle.tyre.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.tyre.service.js',
+                                    'js/controllers/vehicle.tyre.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.battery', {
+            views: {
+                url: '/battery',
+                "container": {
+                    templateUrl: "views/vehicle.battery.html",
+                    controller: 'vehicle.battery.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.battery.service.js',
+                                    'js/controllers/vehicle.battery.mainController.js'
+                                ] 
+                            });
+                        }]
+                    }
+                }
+            }
+        })
+        .state('vehicleDetail.emission', {
+            views: {
+                url: '/emission',
+                "container": {
+                    templateUrl: "views/vehicle.emission.html",
+                    controller: 'vehicle.emission.mainController',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {                    
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.emission.service.js',
+                                    'js/controllers/vehicle.emission.mainController.js'
                                 ] 
                             });
                         }]

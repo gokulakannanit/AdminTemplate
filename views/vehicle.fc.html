@@ -1,0 +1,54 @@
+<div class="container-fluid">
+   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
+      <div class="panel panel-default">
+         <div class="panel-title">Add FC</div>
+         <div class="panel-body">
+            <ft-form>
+               <ft-form-text type="radio" source="paymentList" ng-model="model.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
+
+               <ft-form-text type="date" ng-model="model.date" name="date" labeltext="Date"></ft-form-text>
+
+               <ft-form-text ng-model="model.rto" name="rto" labeltext="RTO Name"></ft-form-text>
+
+               <ft-form-text ng-model="model.fcNo" name="fcNo" labeltext="FC No"></ft-form-text>
+
+               <ft-form-text ng-model="model.amount" name="amount" labeltext="Amount"></ft-form-text>
+
+               <ft-form-text type="date" ng-model="model.renewalDate" name="renewalDate" labeltext="Renewal Date"></ft-form-text>             
+            </ft-form>
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
+         <table class="table table-striped table-bordered table-hover no-margin">
+           <thead>
+               <tr>
+                   <th>#ID</th>
+                   <th class="hidden-phone">RTO</th>
+                   <th class="hidden-phone">Renewal Date</th>
+                   <th class="hidden-phone">Amount</th>
+                   <th class="hidden-phone"></th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr class="danger" ng-if="fcList.length === 0">
+                   <td colspan="6">No Records found</td>
+               </tr>
+               <tr ng-repeat="fc in fcList | filter:search">
+                   <td>{{$index+1}}</td>
+                   <td>{{fc.rto}}</td>
+                   <td>{{fc.renewalDate}}</td>
+                   <td>{{fc.amount}}</td>
+                   <td>
+                       <a class="btn btn-xs btn-info" ng-click="edit(fc.id)">
+                           <i class="fa fa-edit"></i> Edit
+                       </a>
+                       <a class="btn btn-xs btn-danger" ng-click="confirmDelete(fc.id);">
+                           <i class="fa fa-trash-o"></i> Delete
+                       </a>
+                   </td>
+               </tr>
+           </tbody>
+       </table>
+      </div>
+</div>

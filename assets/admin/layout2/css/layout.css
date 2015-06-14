@@ -1983,3 +1983,8 @@ Rounded Portlets
 .radio label{
   margin-right: 10px;
 }
+
+.panel-title{
+  padding: 10px;
+  border-bottom: 1px solid #CCC;
+}
