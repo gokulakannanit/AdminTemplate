@@ -1,35 +1,30 @@
-'use strict';
-MetronicApp.factory('client.service', ['$http', '$q', '$state', 'alertService', function($http, $q, $state, alertService){
-	return {
-		get: function(editId){
-			var deferred = $q.defer();
-			$http.get('api/client/getDetails.php?id='+editId).success(function(data){
-				deferred.resolve(data);
-			})
-			return deferred.promise;
-		},
-		add: function(data){
-			var deferred = $q.defer();
-			$http.post('api/client/addDetails.php', data).success(function(data){
-				alertService.add("success", "Record added Successfully..");				
-				$state.go('client');
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not added, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		},
-		delete: function(data){
-			var deferred = $q.defer();
-			$http.post('api/client/deleteRecord.php', data).success(function(data){
-				alertService.add("success", "Record deleted Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not deleted, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		}
-	}
-}]);
+(function() {
+    'use strict';
+    function myFactory($http, $state, alertService) {
+        var myService = function() {
+        	this.model = {
+        		dataList:[],
+        		dataModel:{
+	                address:'',	                
+	                email:'',
+	                phone:'',
+	                companyName:'',
+	                contactPerson:''               
+	            }
+        	};
+            this.$http = $http;
+            this.$state = $state;
+            this.alertService = alertService;
+            this.REDIRECT_STATE = 'client';
+            this.SERVICE_URL = {
+                GET_URL: 'api/client/getDetails.php',
+                ADD_URL: 'api/client/addDetails.php',
+                DELETE_URL: 'api/client/deleteRecord.php'
+            };
+        }
+        myService.prototype = baseService;
+        return (new myService());
+    }
+    myFactory.$inject = ['$http', '$state', 'alertService'];
+    MetronicApp.factory('client.service', myFactory);
+}());
