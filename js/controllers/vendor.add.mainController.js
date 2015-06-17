@@ -1,44 +1,29 @@
-'use strict';
-
-MetronicApp.controller('vendor.add.mainController', ['$scope', '$stateParams', 'vendor.service',
-    function($scope, $stateParams, updateService) {
-        
-        $scope.$on('$viewContentLoaded', function() {
-            // initialize core components
-            Metronic.initAjax();
-            init();
-        });
-
-        function init() {
-            $scope.editId = $stateParams.editId;
-            $scope.model = {
-                            companyName:'',
-                            typeOfGoods:'',
-                            contactPerson:'',
-                            phone:'',           
-                            address:'', 
-                            email:''
-                        };
-
-             $scope.dataList =   [{id:'Battery', name:'Battery'}, 
-                            {id:'Electricals', name:'Electricals'}, 
-                            {id:'Spare Parts', name:'Spare Parts'}, 
-                            {id:'Tyre', name:'Tyre'}];
-
-            if ($scope.editId) {
-                updateService.get($stateParams.editId).then(function(data) {
-                    $scope.model = data[0];
-                });
-            }
+(function(){
+    'use strict';
+    function controller($scope, updateService, $stateParams){
+        this.$scope = $scope;
+        this.$stateParams = $stateParams;
+        this.updateService = updateService;
+        this.init = function(){
+            this.super('init');
+            this.$scope.dataList = [{
+                id: 'Battery',
+                name: 'Battery'
+            }, {
+                id: 'Electricals',
+                name: 'Electricals'
+            }, {
+                id: 'Spare Parts',
+                name: 'Spare Parts'
+            }, {
+                id: 'Tyre',
+                name: 'Tyre'
+            }];
         }
-        $scope.updateDetails = function(){
-            updateService.add($scope.model);
-        }
-
-        $scope.reset = function(){
-            init();
-            $scope.form.$setPristine()
-        } 
-
+        this.init();
     }
-]);
+    controller.prototype = baseController;
+
+    controller.$inject = ['$scope', 'vendor.service', '$stateParams'];
+    MetronicApp.controller('vendor.add.mainController', controller);
+}());

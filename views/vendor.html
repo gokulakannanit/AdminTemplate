@@ -10,10 +10,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="danger" ng-if="vendorList.length === 0">
+            <tr class="danger" ng-if="model.dataList.length === 0">
                 <td colspan="6">No Records found</td>
             </tr>
-            <tr ng-repeat="vendor in vendorList | filter:search">
+            <tr ng-repeat="vendor in model.dataList | filter:search">
                 <td>{{::($index+1)}}</td>
                 <td>{{::vendor.companyName}}</td>
                 <td class="hidden-phone">

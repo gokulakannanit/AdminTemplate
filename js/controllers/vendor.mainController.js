@@ -1,31 +1,13 @@
-'use strict';
-
-MetronicApp.controller('vendor.mainController',['$scope', 'vendor.service', 'modalService',
-	function($scope, updateService, modalService) {
-    $scope.$on('$viewContentLoaded', function() {   
-        // initialize core components
-        Metronic.initAjax();
-        init();
-    });
-
-    function deleteRecord(id){
-		updateService.delete({id:id}).then(init);
+(function(){
+	'use strict';
+	function controller($scope, updateService, modalService){
+		this.$scope = $scope;
+		this.updateService = updateService;
+		this.modalService = modalService;
+		this.init();
 	}
+	controller.prototype = baseController;
 
-    $scope.confirmDelete = function(id){
-		var promise = modalService.show({type:'confirm', action:'delete', heading:'Are you sure want to delete ?', message:'Record will be deleted from Database'});
-		promise.then(function(data){
-			if(data.confirmed){
-				deleteRecord(id);
-			}
-		});
-	};
-
-    function init(){
-		$scope.vendorList = [];
-		updateService.get('all').then(function(data){
-			$scope.vendorList = data;
-		});
-	}
-
-}]);
+	controller.$inject = ['$scope', 'vendor.service', 'modalService'];
+	MetronicApp.controller('vendor.mainController', controller);
+}());

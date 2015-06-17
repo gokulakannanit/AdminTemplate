@@ -1,35 +1,38 @@
-'use strict';
-MetronicApp.factory('vehicle.service', ['$http', '$q', '$state', 'alertService', function($http, $q, $state, alertService){
-	return {
-		get: function(editId){
-			var deferred = $q.defer();
-			$http.get('api/vehicleInfo/getDetails.php?id='+editId).success(function(data){
-				deferred.resolve(data);
-			})
-			return deferred.promise;
-		},
-		add: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/addDetails.php', data).success(function(data){
-				alertService.add("success", "Record added Successfully..");
-				$state.go('vehicle');
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not added, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		},
-		delete: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/deleteRecord.php', data).success(function(data){
-				alertService.add("success", "Record deleted Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not deleted, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		}
-	}
-}]);
+(function() {
+    'use strict';
+    function myFactory($http, $state, alertService) {
+        var myService = function() {
+        	this.model = {
+        		dataList:[],
+        		dataModel:{
+	                ownershipType:'own',
+                    vehicleNo: '',
+                    date:new Date(),
+                    amtPurchased:'',
+                    modelYear:'',
+                    make:'',
+                    modelYear:'',
+                    owner:'',
+                    fuelType:'',
+                    type:'',
+                    chasisNo:'',
+                    engineNo:'',
+                    odometer:''               
+	            }
+        	};
+            this.$http = $http;
+            this.$state = $state;
+            this.alertService = alertService;
+            this.REDIRECT_STATE = 'vehicle';
+            this.SERVICE_URL = {
+                GET_URL: 'api/vehicleInfo/getDetails.php',
+                ADD_URL: 'api/vehicleInfo/addDetails.php',
+                DELETE_URL: 'api/vehicleInfo/deleteRecord.php'
+            };
+        }
+        myService.prototype = baseService;
+        return (new myService());
+    }
+    myFactory.$inject = ['$http', '$state', 'alertService'];
+    MetronicApp.factory('vehicle.service', myFactory);
+}());

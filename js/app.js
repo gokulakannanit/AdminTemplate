@@ -652,11 +652,17 @@ MetronicApp.filter('titleCase', function() {
 
 var baseService = {
     isLoadedFromService: false,
+    getArrayById: function(){
+        var itemObj = [];
+        angular.forEach(this.model.dataList, function(item){            
+            itemObj[item.id] = item.name;
+        });
+        return itemObj;
+    },
     getById: function(editId){
         var itemObj = {};
         angular.forEach(this.model.dataList, function(item){            
-            if(item.id === editId){   
-                console.log(item);             
+            if(item.id === editId){          
                 itemObj = item;
             }
         });
@@ -674,13 +680,14 @@ var baseService = {
                 self.isLoadedFromService = true;
                 self.model.dataList = data;
                 self.model.dataModel = self.getById(editId);
-                console.log(self.model.dataModel);
+                if(self.model.dataItemById){                    
+                    self.model.dataItemById = self.getArrayById();
+                }
             }).error(function() {
 
             });
-            return httpCall;
-        } else if(this.isLoadedFromService && editId !== 'all') {
-            this.model.dataModel = this.getById(editId);
+        }else{
+            self.model.dataModel = self.getById(editId);
         }
     },
     delete: function(data) {
@@ -769,5 +776,8 @@ var baseController = {
         this.updateService.delete({
             id: id
         });
+    },
+    super: function(str){
+       baseController[str].call(this);
     }
 }

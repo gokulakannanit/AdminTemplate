@@ -12,10 +12,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="danger" ng-if="ownerList.length === 0">
+            <tr class="danger" ng-if="model.dataList.length === 0">
                 <td colspan="7">No Records found</td>
             </tr>
-            <tr ng-repeat="owner in ownerList | filter:search">
+            <tr ng-repeat="owner in model.dataList | filter:search">
                 <td>{{::($index+1)}}</td>
                 <td>{{::owner.name}}</td>
                 <td>{{::owner.email}}</td>

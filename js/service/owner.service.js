@@ -1,46 +1,39 @@
-'use strict';
-MetronicApp.factory('owner.service', ['$http', '$q', '$state', 'alertService', function($http, $q, $state, alertService){
-	return {
-		get: function(editId){
-			var deferred = $q.defer();
-			$http.get('api/owner/getDetails.php?id='+editId).success(function(data){
-				deferred.resolve(data);
-			})
-			return deferred.promise;
-		},
-		getOwnerList:function(data){
-			var deferred = $q.defer();
-			this.get("all").then(function(data){
-				var arr = [];
-				angular.forEach(data, function(item) {
-		            this.push({"id":item.id,"name":item.name});
-		        }, arr);
-		        deferred.resolve(arr);
-			})
-	        return deferred.promise;
-		},
-		add: function(data){
-			var deferred = $q.defer();
-			$http.post('api/owner/addDetails.php', data).success(function(data){
-				alertService.add("success", "Record added Successfully..");				
-				$state.go('owner');
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not added, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		},
-		delete: function(data){
-			var deferred = $q.defer();
-			$http.post('api/owner/deleteRecord.php', data).success(function(data){
-				alertService.add("success", "Record deleted Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not deleted, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		}
-	}
-}]);
+(function() {
+    'use strict';
+    function myFactory($http, $state, alertService) {
+        var myService = function() {
+        	this.model = {
+        		dataList:[],
+        		dataModel:{
+	                ownershipType:'own',
+	        		vehicleNo: '',
+	        		date:new Date(),
+	        		amtPurchased:'',
+	        		modelYear:'',
+	        		make:'',
+	        		modelYear:'',
+	        		owner:'',
+	        		fuelType:'',
+	        		type:'',
+	        		chasisNo:'',
+	        		engineNo:'',
+	        		odometer:''              
+	            },
+                dataItemById:[]
+        	};
+            this.$http = $http;
+            this.$state = $state;
+            this.alertService = alertService;
+            this.REDIRECT_STATE = 'owner';
+            this.SERVICE_URL = {
+                GET_URL: 'api/owner/getDetails.php',
+                ADD_URL: 'api/owner/addDetails.php',
+                DELETE_URL: 'api/owner/deleteRecord.php'
+            };
+        }
+        myService.prototype = baseService;
+        return (new myService());
+    }
+    myFactory.$inject = ['$http', '$state', 'alertService'];
+    MetronicApp.factory('owner.service', myFactory);
+}());
