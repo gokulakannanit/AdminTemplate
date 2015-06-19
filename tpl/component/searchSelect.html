@@ -1,0 +1,15 @@
+<div class="form-group" ng-class="{ 'has-error' : form.$invalid && form.$touched}" style="margin:3px 10px;">
+    <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}</label>
+    <div>
+        <div class="bootstrap-select">
+            <input type="text" class="form-control" ng-model="model" name="{{opts.name}}" placeholder="Select {{opts.name}}" />
+            <i class="fa fa-chevron-down"></i>
+            <ul class="dropdown-menu inner {{opened}}">
+                <li ng-repeat="item in source | filter: model" ng-class="{ active: (index == $index) }">            
+                    <a ng-click="selectItem($event, $index)">{{item.title}}</a>
+                </li>
+            </ul>
+        </div>
+        <div ng-include="'tpl/component/errorBlock.html'"></div>
+    </div>
+</div>

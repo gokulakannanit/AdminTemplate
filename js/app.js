@@ -7,8 +7,7 @@ var MetronicApp = angular.module("MetronicApp", [
     'ui.router',
     'ui.bootstrap',
     'oc.lazyLoad',
-    'ngTagsInput',
-    'selectSearch'
+    'ngTagsInput'
 ]);
 
 /* Configure ocLazyLoader(refer: https://github.com/ocombe/ocLazyLoad) */
@@ -91,7 +90,7 @@ MetronicApp.controller('SidebarController', ['$scope',
 MetronicApp.controller('ThemePanelController', ['$scope',
     function($scope) {
         $scope.$on('$includeContentLoaded', function() {
-            Demo.init(); // init theme panel
+            
         });
     }
 ]);

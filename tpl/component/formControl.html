@@ -31,20 +31,6 @@
         </span>
       </p>
 
-      <div ng-if="opts.type === 'search'">
-        <div  select-search="source"
-              ss-class="form-control"
-              ss-height="300"
-              ss-name="{{opts.name}}"
-              ng-model="model" ></div>
-      </div>
-
-      <div ng-if='form.$invalid && form.$touched' class="help-block" role="alert">
-        <p ng-if="form.$error.required">This field is mandatory</p>
-        <p ng-if="form.$error.pattern">Pattern is not correct</p>
-        <p ng-if="form.$error.minlen">Atleast you have to enter minimum {{opts.minlen}} {{opts.name}}</p>
-        <p ng-if="form.$error.maxlen">Maximum Length is not met</p>
-        <p ng-if="form.$error.email">Invalid email address</p>
-      </div>
+      <div ng-include="'tpl/component/errorBlock.html'"></div>
     </div>
 </div>

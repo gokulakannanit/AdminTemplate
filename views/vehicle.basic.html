@@ -14,12 +14,12 @@
 
          <ft-form-text ng-model="model.owner" name="owner" labeltext="Owner" required="true"></ft-form-text>
 
-         <ft-form-text type="search" ng-model="model.make" source="makeList" name="make" labeltext="Make"></ft-form-text>
+         <search-dropdown ng-model="model.make" source="makeList" name="make" labeltext="Make" required="true"></search-dropdown>
 
-         <ft-form-text type="select" ng-model="model.fuelType" source="fuelList" name="fuelType" labeltext="Fuel Type"></ft-form-text>              
+         <search-dropdown ng-model="model.fuelType" source="fuelList" name="fuelType" labeltext="Fuel Type" required="true"></search-dropdown>
       </div>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
-         <ft-form-text type="select" ng-model="model.type" source="typeList" name="type" labeltext="Vehicle Type"></ft-form-text>
+         <search-dropdown ng-model="model.type" source="typeList" name="type" labeltext="Vehicle Type" required="true"></search-dropdown>
 
          <ft-form-text ng-model="model.chasisNo" name="chasisNo" labeltext="chasisNo"></ft-form-text>
 

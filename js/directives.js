@@ -41,29 +41,14 @@ MetronicApp.directive('ngSpinnerBar', ['$rootScope',
     }
 ])
 
-// Handle global LINK click
-MetronicApp.directive('a',
-    function() {
-        return {
-            restrict: 'E',
-            link: function(scope, elem, attrs) {
-                if (attrs.ngClick || attrs.href === '' || attrs.href === '#') {
-                    elem.on('click', function(e) {
-                        e.preventDefault(); // prevent link click for above criteria
-                    });
-                }
-            }
-        };
-    });
-
 // Handle Dropdown Hover Plugin Integration
-MetronicApp.directive('dropdownMenuHover', function () {
+/*MetronicApp.directive('dropdownMenuHover', function () {
   return {
     link: function (scope, elem) {
       elem.dropdownHover();
     }
   };  
-});
+});*/
 
 MetronicApp.directive("ftPanel", function() {
     return {
@@ -92,7 +77,6 @@ MetronicApp.directive("ftFormText", function($compile) {
         scope.open = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
             scope.opened = true;
         };
 
@@ -176,6 +160,49 @@ MetronicApp.directive("ftFormText", function($compile) {
     }
 });
 
+MetronicApp.directive("searchDropdown", function($compile){
+    function link(scope, elem, attr, ctrl) {
+        scope.opts = attr;
+        scope.form = ctrl;
+        scope.opened = '';
+
+        scope.select = function($event){
+            console.log($event.target);
+        }
+
+        function checkValidity(){
+            ctrl.$setTouched(true);
+            if(scope.opts.required){
+                ctrl.$setValidity('required', !(scope.model === ''));
+            }
+        }
+
+        var input = $(elem).find("input");        
+        input.on("click", function(){
+            scope.opened = 'opened';
+            scope.$apply();
+        })
+        input.on("blur", function(){
+            scope.opened = '';
+            scope.$apply();
+            checkValidity();
+        })
+
+
+    }
+    return {
+        restrict: 'AE',
+        replace: true,
+        require: 'ngModel',
+        scope: {
+            model: '=ngModel',
+            source: '='
+        },
+        link: link,
+        templateUrl: 'tpl/component/searchSelect.html'
+    }
+});
+
 MetronicApp.directive("ftModal", function() {
     function link(scope, element, attrs) {
         scope.close = function(val) {
@@ -240,3 +267,4 @@ MetronicApp.directive("ftTagInput", function() {
         templateUrl: 'tpl/component/tags.html'
     }
 });
+

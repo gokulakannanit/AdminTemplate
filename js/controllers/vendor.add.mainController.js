@@ -7,17 +7,17 @@
         this.init = function(){
             this.super('init');
             this.$scope.dataList = [{
-                id: 'Battery',
-                name: 'Battery'
+                title: 'Battery',
+                value: 'Battery'
             }, {
-                id: 'Electricals',
-                name: 'Electricals'
+                title: 'Electricals',
+                value: 'Electricals'
             }, {
-                id: 'Spare Parts',
-                name: 'Spare Parts'
+                title: 'Spare Parts',
+                value: 'Spare Parts'
             }, {
-                id: 'Tyre',
-                name: 'Tyre'
+                title: 'Tyre',
+                value: 'Tyre'
             }];
         }
         this.init();

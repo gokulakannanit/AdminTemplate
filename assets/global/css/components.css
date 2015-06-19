@@ -2003,12 +2003,12 @@ Customized Bootstrap Buttons
 }
 .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
   color: #333;
-  background-color: #ededed;
+  background-color: #fff;
   border-color: #b3b3b3;
 }
 .open .btn-default.dropdown-toggle {
   color: #333;
-  background-color: #ededed;
+  background-color: #fff;
   border-color: #b3b3b3;
 }
 .btn-default:active, .btn-default.active {
@@ -2629,6 +2629,22 @@ Dropdown Menu
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
+}
+.bootstrap-select .dropdown-menu{
+  width: 100%;
+}
+.bootstrap-select .dropdown-menu.opened{
+  display: block;  
+}
+
+.bootstrap-select i.fa-chevron-down{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #999;
+}
+.bootstrap-select{
+  position: relative;
 }
 .dropdown-menu li.divider {
   background: #f1f3f6;
