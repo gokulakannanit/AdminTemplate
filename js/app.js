@@ -90,7 +90,7 @@ MetronicApp.controller('SidebarController', ['$scope',
 MetronicApp.controller('ThemePanelController', ['$scope',
     function($scope) {
         $scope.$on('$includeContentLoaded', function() {
-            
+
         });
     }
 ]);

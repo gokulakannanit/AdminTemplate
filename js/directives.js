@@ -1,28 +1,28 @@
-(function(){
+(function() {
     'use strict';
 
-    var validators = function (scope){
+    var validators = function(scope) {
         var validationEngine = {
-            minlen : function(modelValue, viewValue) {
+            minlen: function(modelValue, viewValue) {
                 if (scope.opts.minlength && viewValue !== '') {
                     return (viewValue.length >= scope.opts.minlength);
                 }
                 return true;
             },
-            maxlen : function(modelValue, viewValue) {
+            maxlen: function(modelValue, viewValue) {
                 if (scope.opts.maxlength && viewValue !== '') {
                     return (viewValue.length <= scope.opts.maxlength);
                 }
                 return true;
             },
-            pattern : function(modelValue, viewValue) {
+            pattern: function(modelValue, viewValue) {
                 if (scope.opts.pattern && viewValue !== '') {
                     var pattern = new RegExp(scope.opts.pattern);
                     return (pattern).test(viewValue);
                 }
                 return true;
             },
-            email : function(modelValue, viewValue) {
+            email: function(modelValue, viewValue) {
                 if (scope.opts.type === 'email' && viewValue !== '') {
                     var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
                     return expr.test(viewValue);
@@ -35,7 +35,7 @@
 
 
     var directiveObject = {
-        ftModal: function () {
+        ftModal: function() {
             function link(scope, element, attrs) {
                 scope.close = function(val) {
                     scope.ftModal.confirmed = val;
@@ -66,7 +66,7 @@
                 templateUrl: 'tpl/component/alert.html'
             };
         },
-        ftTagInput:function() {
+        ftTagInput: function() {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
 
@@ -74,10 +74,10 @@
 
                 scope.onTagAdded = function() {
                     ctrl.$setValidity('minlen', (scope.selectedTags.length >= scope.opts.minlen));
-                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));            
+                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
                 }
 
-                angular.element(elem).find("input").on("blur keydown", function () {            
+                angular.element(elem).find("input").on("blur keydown", function() {
                     ctrl.$setTouched(true);
                     ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
                 })
@@ -93,30 +93,30 @@
                 templateUrl: 'tpl/component/tags.html'
             }
         },
-        searchDropdown : function($compile){
+        searchDropdown: function($compile) {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
                 scope.form = ctrl;
                 scope.opened = 'opened';
 
-                scope.selectItem = function(index){
+                scope.selectItem = function(index) {
                     scope.index = index;
                     scope.model = scope.source[index].title;
                 }
 
-                function checkValidity(){
+                function checkValidity() {
                     ctrl.$setTouched(true);
-                    if(scope.opts.required){
+                    if (scope.opts.required) {
                         ctrl.$setValidity('required', !(scope.model === ''));
                     }
                 }
 
-                var input = $(elem).find("input");        
-                input.on("click", function(){
+                var input = $(elem).find("input");
+                input.on("click", function() {
                     scope.opened = '';
                     scope.$apply();
                 })
-                input.on("blur", function(){
+                input.on("blur", function() {
                     scope.opened = 'opened';
                     scope.$apply();
                     checkValidity();
@@ -134,21 +134,21 @@
                 templateUrl: 'tpl/component/searchSelect.html'
             }
         },
-        ftFormText :function() {
+        ftFormText: function() {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
                 if (!scope.opts.type) {
                     scope.opts.type = "text";
                 }
                 scope.form = ctrl;
-                
+
                 scope.open = function($event) {
                     $event.preventDefault();
                     $event.stopPropagation();
                     scope.opened = true;
                 };
 
-                if(scope.opts.type === 'date'){
+                if (scope.opts.type === 'date') {
 
                     scope.opts.maxDate = new Date();
 
@@ -161,7 +161,7 @@
                 }
                 var input = $(elem).find("input");
 
-                (scope.opts.required) ? input.attr('required', 'true'): '';
+                (scope.opts.required) ? input.attr('required', 'true') : '';
 
                 ctrl.$validators = new validators(scope);
 
@@ -206,11 +206,11 @@ MetronicApp.directive('ngSpinnerBar', ['$rootScope',
                     element.addClass('hide'); // hide spinner bar
                     $('body').removeClass('page-on-load'); // remove page loading indicator
                     Layout.setSidebarMenuActiveLink('match'); // activate selected link in the main menu
-                    
+
                     // auto scorll to page top
-                    setTimeout(function () {
+                    setTimeout(function() {
                         Metronic.scrollTop(); // scroll to the top on content load
-                    }, $rootScope.settings.layout.pageAutoScrollOnLoad);     
+                    }, $rootScope.settings.layout.pageAutoScrollOnLoad);
                 });
 
                 // handle errors
