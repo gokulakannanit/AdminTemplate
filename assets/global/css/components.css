@@ -1927,11 +1927,11 @@ Custom Bootstrap Badges
 Dropdown Menu Badges
 ***/
 
-.dropdown-menu > li{
+.dropdown-custom > li{
   margin:5px;
 }
 
-.dropdown-menu > li > a > .badge {
+.dropdown-custom > li > a > .badge {
   position: absolute;
   margin-top: 1px;
   right: 3px;
@@ -1947,7 +1947,7 @@ Dropdown Menu Badges
   -moz-border-radius: 12px !important;
   border-radius: 12px !important;
 }
-.dropdown-menu.badge-roundless {
+.dropdown-custom.badge-roundless {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
@@ -2608,13 +2608,12 @@ Dropdowns
 /***
 Dropdown Menu
 ***/
-.dropdown-menu {
+.dropdown-custom {
   min-width: 175px;
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 1000;
-  display: none;
   float: left;
   list-style: none;
   text-shadow: none;
@@ -2630,11 +2629,11 @@ Dropdown Menu
   -o-border-radius: 4px;
   border-radius: 4px;
 }
-.bootstrap-select .dropdown-menu{
+.bootstrap-select .dropdown-custom{
   width: 100%;
 }
-.bootstrap-select .dropdown-menu.opened{
-  display: block;  
+.bootstrap-select .dropdown-custom.opened{
+  opacity: 0;  
 }
 
 .bootstrap-select i.fa-chevron-down{
@@ -2646,13 +2645,13 @@ Dropdown Menu
 .bootstrap-select{
   position: relative;
 }
-.dropdown-menu li.divider {
+.dropdown-custom li.divider {
   background: #f1f3f6;
 }
-.dropdown-menu li.dropdown-header {
+.dropdown-custom li.dropdown-header {
   padding: 8px 14px 2px 14px;
 }
-.dropdown-menu li > a {
+.dropdown-custom li > a {
   padding: 8px 14px;
   color: #555;
   text-decoration: none;
@@ -2662,47 +2661,47 @@ Dropdown Menu
   line-height: 18px;
   white-space: nowrap;
 }
-.dropdown-menu li > a > [class^="fa-"],
-.dropdown-menu li > a > [class*=" fa-"] {
+.dropdown-custom li > a > [class^="fa-"],
+.dropdown-custom li > a > [class*=" fa-"] {
   color: #888;
 }
-.dropdown-menu li > a > [class^="icon-"],
-.dropdown-menu li > a > [class*=" icon-"] {
+.dropdown-custom li > a > [class^="icon-"],
+.dropdown-custom li > a > [class*=" icon-"] {
   color: #666;
 }
-.dropdown-menu li > a > [class^="glyphicon-"],
-.dropdown-menu li > a > [class*=" glyphicon-"] {
+.dropdown-custom li > a > [class^="glyphicon-"],
+.dropdown-custom li > a > [class*=" glyphicon-"] {
   color: #888;
 }
-.dropdown-menu li > a:hover,
-.dropdown-menu .active > a,
-.dropdown-menu .active > a:hover {
+.dropdown-custom li > a:hover,
+.dropdown-custom .active > a,
+.dropdown-custom .active > a:hover {
   text-decoration: none;
   background-image: none;
   background-color: #f6f6f6;
   color: #555;
   filter: none;
 }
-.dropdown-menu.bottom-up {
+.dropdown-custom.bottom-up {
   top: auto;
   bottom: 100%;
   margin-bottom: 2px;
 }
-.dropdown-menu > li:first-child:hover > a {
+.dropdown-custom > li:first-child:hover > a {
   border-radius: 4px 4px 0px 0px;
 }
-.dropdown-menu > li:last-child:hover > a {
+.dropdown-custom > li:last-child:hover > a {
   border-radius: 0px 0px 4px 4px;
 }
 
-.dropdown > .dropdown-menu,
-.dropdown-toggle > .dropdown-menu,
-.btn-group > .dropdown-menu {
+.dropdown > .dropdown-custom,
+.dropdown-toggle > .dropdown-custom,
+.btn-group > .dropdown-custom {
   margin-top: 10px;
 }
-.dropdown > .dropdown-menu:before,
-.dropdown-toggle > .dropdown-menu:before,
-.btn-group > .dropdown-menu:before {
+.dropdown > .dropdown-custom:before,
+.dropdown-toggle > .dropdown-custom:before,
+.btn-group > .dropdown-custom:before {
   position: absolute;
   top: -8px;
   left: 9px;
@@ -2713,9 +2712,9 @@ Dropdown Menu
   border-left: 8px solid transparent;
   content: '';
 }
-.dropdown > .dropdown-menu:after,
-.dropdown-toggle > .dropdown-menu:after,
-.btn-group > .dropdown-menu:after {
+.dropdown > .dropdown-custom:after,
+.dropdown-toggle > .dropdown-custom:after,
+.btn-group > .dropdown-custom:after {
   position: absolute;
   top: -7px;
   left: 10px;
@@ -2726,41 +2725,41 @@ Dropdown Menu
   border-left: 7px solid transparent;
   content: '';
 }
-.dropdown > .dropdown-menu.pull-left:before,
-.dropdown-toggle > .dropdown-menu.pull-left:before,
-.btn-group > .dropdown-menu.pull-left:before {
+.dropdown > .dropdown-custom.pull-left:before,
+.dropdown-toggle > .dropdown-custom.pull-left:before,
+.btn-group > .dropdown-custom.pull-left:before {
   left: auto;
   right: 9px;
 }
-.dropdown > .dropdown-menu.pull-left:after,
-.dropdown-toggle > .dropdown-menu.pull-left:after,
-.btn-group > .dropdown-menu.pull-left:after {
+.dropdown > .dropdown-custom.pull-left:after,
+.dropdown-toggle > .dropdown-custom.pull-left:after,
+.btn-group > .dropdown-custom.pull-left:after {
   left: auto;
   right: 10px;
 }
-.dropdown > .dropdown-menu.pull-right:before,
-.dropdown-toggle > .dropdown-menu.pull-right:before,
-.btn-group > .dropdown-menu.pull-right:before {
+.dropdown > .dropdown-custom.pull-right:before,
+.dropdown-toggle > .dropdown-custom.pull-right:before,
+.btn-group > .dropdown-custom.pull-right:before {
   left: auto;
   right: 9px;
 }
-.dropdown > .dropdown-menu.pull-right:after,
-.dropdown-toggle > .dropdown-menu.pull-right:after,
-.btn-group > .dropdown-menu.pull-right:after {
+.dropdown > .dropdown-custom.pull-right:after,
+.dropdown-toggle > .dropdown-custom.pull-right:after,
+.btn-group > .dropdown-custom.pull-right:after {
   left: auto;
   right: 10px;
 }
-.dropdown.dropup > .dropdown-menu,
-.dropdown-toggle.dropup > .dropdown-menu,
-.btn-group.dropup > .dropdown-menu {
+.dropdown.dropup > .dropdown-custom,
+.dropdown-toggle.dropup > .dropdown-custom,
+.btn-group.dropup > .dropdown-custom {
   margin-top: 0px;
   margin-bottom: 10px;
 }
-.dropdown.dropup > .dropdown-menu:after, .dropdown.dropup > .dropdown-menu:before,
-.dropdown-toggle.dropup > .dropdown-menu:after,
-.dropdown-toggle.dropup > .dropdown-menu:before,
-.btn-group.dropup > .dropdown-menu:after,
-.btn-group.dropup > .dropdown-menu:before {
+.dropdown.dropup > .dropdown-custom:after, .dropdown.dropup > .dropdown-custom:before,
+.dropdown-toggle.dropup > .dropdown-custom:after,
+.dropdown-toggle.dropup > .dropdown-custom:before,
+.btn-group.dropup > .dropdown-custom:after,
+.btn-group.dropup > .dropdown-custom:before {
   display: none !important;
 }
 
@@ -2768,7 +2767,7 @@ Dropdown Menu
 .dropdown-submenu {
   position: relative;
 }
-.dropdown-submenu > .dropdown-menu {
+.dropdown-submenu > .dropdown-custom {
   top: 5px;
   left: 100%;
   margin-top: -6px;
@@ -2785,7 +2784,7 @@ Dropdown Menu
   content: "\f105";
   font-weight: 300;
 }
-.dropdown-submenu:hover > .dropdown-menu {
+.dropdown-submenu:hover > .dropdown-custom {
   display: block;
 }
 .dropdown-submenu:hover > a:after {
@@ -2794,34 +2793,34 @@ Dropdown Menu
 .dropdown-submenu.pull-left {
   float: none;
 }
-.dropdown-submenu.pull-left > .dropdown-menu {
+.dropdown-submenu.pull-left > .dropdown-custom {
   left: -100%;
   margin-left: 10px;
 }
-.dropup .dropdown-submenu > .dropdown-menu {
+.dropup .dropdown-submenu > .dropdown-custom {
   top: auto;
   bottom: 0;
   margin-top: 0;
   margin-bottom: -2px;
 }
 
-.nav.pull-right > li > .dropdown-menu,
-.nav > li > .dropdown-menu.pull-right {
+.nav.pull-right > li > .dropdown-custom,
+.nav > li > .dropdown-custom.pull-right {
   right: 0;
   left: auto;
 }
-.nav.pull-right > li > .dropdown-menu:before,
-.nav > li > .dropdown-menu.pull-right:before {
+.nav.pull-right > li > .dropdown-custom:before,
+.nav > li > .dropdown-custom.pull-right:before {
   right: 12px;
   left: auto;
 }
-.nav.pull-right > li > .dropdown-menu:after,
-.nav > li > .dropdown-menu.pull-right:after {
+.nav.pull-right > li > .dropdown-custom:after,
+.nav > li > .dropdown-custom.pull-right:after {
   right: 13px;
   left: auto;
 }
-.nav.pull-right > li > .dropdown-menu .dropdown-menu,
-.nav > li > .dropdown-menu.pull-right .dropdown-menu {
+.nav.pull-right > li > .dropdown-custom .dropdown-custom,
+.nav > li > .dropdown-custom.pull-right .dropdown-custom {
   right: 100%;
   left: auto;
   margin-right: -1px;
@@ -2830,7 +2829,7 @@ Dropdown Menu
 
 @media (max-width: 767px) {
   /* 767px */
-  .navbar-nav .open .dropdown-menu {
+  .navbar-nav .open .dropdown-custom {
     position: absolute;
     float: left;
     width: auto;
@@ -2839,12 +2838,12 @@ Dropdown Menu
     border: 1px solid #efefef;
     box-shadow: 5px 5px rgba(102, 102, 102, 0.1);
   }
-  .navbar-nav .open .dropdown-menu > li > a {
+  .navbar-nav .open .dropdown-custom > li > a {
     padding: 6px 0 6px 13px;
     color: #333;
   }
-  .navbar-nav .open .dropdown-menu > li > a:hover,
-  .navbar-nav .open .dropdown-menu > li > a:active {
+  .navbar-nav .open .dropdown-custom > li > a:hover,
+  .navbar-nav .open .dropdown-custom > li > a:active {
     background-color: #eee;
   }
 }
@@ -2858,7 +2857,7 @@ Dropdown Checkboxes
   margin: 0;
 }
 
-.dropdown.inline .dropdown-menu {
+.dropdown.inline .dropdown-custom {
   display: inline-block;
   position: relative;
 }
@@ -4556,7 +4555,7 @@ Portlets
   display: inline-block;
   padding: 6px 0;
 }
-.portlet > .portlet-title > .actions > .dropdown-menu i {
+.portlet > .portlet-title > .actions > .dropdown-custom i {
   color: #555555;
 }
 .portlet > .portlet-title > .actions > .btn,
@@ -4845,7 +4844,7 @@ Portlets
   height: 27px;
   width: 27px;
 }
-.portlet.light > .portlet-title > .actions .dropdown-menu li > a {
+.portlet.light > .portlet-title > .actions .dropdown-custom li > a {
   color: #555;
 }
 .portlet.light > .portlet-title > .inputs {
@@ -5927,9 +5926,9 @@ Customized Bootstrap Tabs
 .nav-pills > li > a > .badge {
   margin-top: -6px;
 }
-.nav-tabs > li .dropdown-menu:before, .nav-tabs > li .dropdown-menu:after,
-.nav-pills > li .dropdown-menu:before,
-.nav-pills > li .dropdown-menu:after {
+.nav-tabs > li .dropdown-custom:before, .nav-tabs > li .dropdown-custom:after,
+.nav-pills > li .dropdown-custom:before,
+.nav-pills > li .dropdown-custom:after {
   display: none;
 }
 .nav-tabs.nav-tabs-sm > li > a, .nav-tabs.nav-pills-sm > li > a,
@@ -6036,7 +6035,7 @@ Customized Bootstrap Tabs
   border-top-color: #ddd;
   border-bottom-color: transparent;
 }
-.tabs-below > .nav-tabs > li > a .dropdown-menu {
+.tabs-below > .nav-tabs > li > a .dropdown-custom {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -6211,7 +6210,7 @@ Custom tabs
 .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
   color: #a6a6a6;
 }
-.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+.tabbable-line > .nav-tabs > li.open .dropdown-custom, .tabbable-line > .nav-tabs > li:hover .dropdown-custom {
   margin-top: 0px;
 }
 .tabbable-line > .nav-tabs > li.active {

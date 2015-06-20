@@ -1,8 +1,194 @@
-/***
-GLobal Directives
-***/
+(function(){
+    'use strict';
 
-// Route State Load Spinner(used on page or content load)
+    var validators = function (scope){
+        var validationEngine = {
+            minlen : function(modelValue, viewValue) {
+                if (scope.opts.minlength && viewValue !== '') {
+                    return (viewValue.length >= scope.opts.minlength);
+                }
+                return true;
+            },
+            maxlen : function(modelValue, viewValue) {
+                if (scope.opts.maxlength && viewValue !== '') {
+                    return (viewValue.length <= scope.opts.maxlength);
+                }
+                return true;
+            },
+            pattern : function(modelValue, viewValue) {
+                if (scope.opts.pattern && viewValue !== '') {
+                    var pattern = new RegExp(scope.opts.pattern);
+                    return (pattern).test(viewValue);
+                }
+                return true;
+            },
+            email : function(modelValue, viewValue) {
+                if (scope.opts.type === 'email' && viewValue !== '') {
+                    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                    return expr.test(viewValue);
+                }
+                return true;
+            }
+        };
+        return validationEngine;
+    }
+
+
+    var directiveObject = {
+        ftModal: function () {
+            function link(scope, element, attrs) {
+                scope.close = function(val) {
+                    scope.ftModal.confirmed = val;
+                    scope.ftModal.show = false;
+                }
+            }
+            return {
+                restrict: "AE",
+                replace: true,
+                link: link,
+                templateUrl: 'tpl/component/modal.html'
+            };
+        },
+        ftAlert: function($timeout, alertService) {
+            function link(scope, element, attrs) {
+                var selectedAlert;
+                scope.close = function(val) {
+                    selectedAlert = val;
+                    $timeout(function() {
+                        alertService.close(selectedAlert);
+                    }, 500);
+                }
+            }
+            return {
+                restrict: "AE",
+                replace: true,
+                link: link,
+                templateUrl: 'tpl/component/alert.html'
+            };
+        },
+        ftTagInput:function() {
+            function link(scope, elem, attr, ctrl) {
+                scope.opts = attr;
+
+                scope.form = ctrl;
+
+                scope.onTagAdded = function() {
+                    ctrl.$setValidity('minlen', (scope.selectedTags.length >= scope.opts.minlen));
+                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));            
+                }
+
+                angular.element(elem).find("input").on("blur keydown", function () {            
+                    ctrl.$setTouched(true);
+                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
+                })
+            }
+            return {
+                restrict: 'AE',
+                require: 'ngModel',
+                scope: {
+                    selectedTags: '=ngModel',
+                    source: '='
+                },
+                link: link,
+                templateUrl: 'tpl/component/tags.html'
+            }
+        },
+        searchDropdown : function($compile){
+            function link(scope, elem, attr, ctrl) {
+                scope.opts = attr;
+                scope.form = ctrl;
+                scope.opened = 'opened';
+
+                scope.selectItem = function(index){
+                    scope.index = index;
+                    scope.model = scope.source[index].title;
+                }
+
+                function checkValidity(){
+                    ctrl.$setTouched(true);
+                    if(scope.opts.required){
+                        ctrl.$setValidity('required', !(scope.model === ''));
+                    }
+                }
+
+                var input = $(elem).find("input");        
+                input.on("click", function(){
+                    scope.opened = '';
+                    scope.$apply();
+                })
+                input.on("blur", function(){
+                    scope.opened = 'opened';
+                    scope.$apply();
+                    checkValidity();
+                })
+            }
+            return {
+                restrict: 'AE',
+                replace: true,
+                require: 'ngModel',
+                scope: {
+                    model: '=ngModel',
+                    source: '='
+                },
+                link: link,
+                templateUrl: 'tpl/component/searchSelect.html'
+            }
+        },
+        ftFormText :function() {
+            function link(scope, elem, attr, ctrl) {
+                scope.opts = attr;
+                if (!scope.opts.type) {
+                    scope.opts.type = "text";
+                }
+                scope.form = ctrl;
+                
+                scope.open = function($event) {
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    scope.opened = true;
+                };
+
+                if(scope.opts.type === 'date'){
+
+                    scope.opts.maxDate = new Date();
+
+                    scope.dateOptions = {
+                        formatYear: 'yy',
+                        startingDay: 1
+                    };
+                    scope.format = 'dd/MM/yyyy';
+
+                }
+                var input = $(elem).find("input");
+
+                (scope.opts.required) ? input.attr('required', 'true'): '';
+
+                ctrl.$validators = new validators(scope);
+
+                input.on("blur keydown", function(e) {
+                    ctrl.$setTouched(true);
+                });
+            }
+            return {
+                restrict: 'AE',
+                require: 'ngModel',
+                scope: {
+                    model: '=ngModel',
+                    source: '='
+                },
+                link: link,
+                templateUrl: 'tpl/component/formControl.html'
+            }
+        }
+    }
+    MetronicApp.directive("ftModal", directiveObject.ftModal);
+    MetronicApp.directive("ftAlert", directiveObject.ftAlert);
+    MetronicApp.directive("ftTagInput", directiveObject.ftTagInput);
+    MetronicApp.directive("searchDropdown", directiveObject.searchDropdown);
+    MetronicApp.directive("ftFormText", directiveObject.ftFormText);
+}());
+
+
 MetronicApp.directive('ngSpinnerBar', ['$rootScope',
     function($rootScope) {
         return {
@@ -41,15 +227,6 @@ MetronicApp.directive('ngSpinnerBar', ['$rootScope',
     }
 ])
 
-// Handle Dropdown Hover Plugin Integration
-/*MetronicApp.directive('dropdownMenuHover', function () {
-  return {
-    link: function (scope, elem) {
-      elem.dropdownHover();
-    }
-  };  
-});*/
-
 MetronicApp.directive("ftPanel", function() {
     return {
         restrict: "E",
@@ -65,206 +242,3 @@ MetronicApp.directive("ftForm", function() {
         templateUrl: 'tpl/component/form.html'
     }
 });
-
-MetronicApp.directive("ftFormText", function($compile) {
-    function link(scope, elem, attr, ctrl) {
-        scope.opts = attr;
-        if (!scope.opts.type) {
-            scope.opts.type = "text";
-        }
-        scope.form = ctrl;
-        
-        scope.open = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            scope.opened = true;
-        };
-
-        if(scope.opts.type === 'date'){
-
-            scope.opts.maxDate = new Date();
-
-            scope.dateOptions = {
-                formatYear: 'yy',
-                startingDay: 1
-            };
-            scope.format = 'dd/MM/yyyy';
-
-        }
-
-        $compile(elem.contents())(scope);
-
-        if(scope.opts.type !== "select"){
-
-            var input = $(elem).find("input");
-
-            if (scope.opts.required) {
-                input.attr('required', 'true');
-            }
-
-            ctrl.$validators.minlen = function(modelValue, viewValue) {
-                if (scope.opts.minlen && viewValue !== '') {
-                    return (viewValue.length >= scope.opts.minlen);
-                }
-                return true;
-            }
-
-            ctrl.$validators.maxlen = function(modelValue, viewValue) {
-                if (scope.opts.maxlen && viewValue !== '') {
-                    return (viewValue.length <= scope.opts.maxlen);
-                }
-                return true;
-            }
-
-            ctrl.$validators.pattern = function(modelValue, viewValue) {
-                if (scope.opts.pattern && viewValue !== '') {
-                    var pattern = new RegExp(scope.opts.pattern);
-                    return (pattern).test(viewValue);
-                }
-                return true;
-            }
-
-            ctrl.$validators.email = function(modelValue, viewValue) {
-                if (scope.opts.type === 'email' && viewValue !== '') {
-                    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-                    return expr.test(viewValue);
-                }
-                return true;
-            }
-
-            input.on("blur keydown", function(e) {
-                ctrl.$setTouched(true);
-            });
-
-        }else if(scope.opts.type === 'select'){
-            var select = $(elem).find("select");
-
-            if (scope.opts.required) {
-                select.attr('required', 'true');
-            }
-
-            select.on("click change", function(){
-                ctrl.$setTouched(true);
-            })
-        }
-    }
-    return {
-        restrict: 'AE',
-        require: 'ngModel',
-        scope: {
-            model: '=ngModel',
-            source: '='
-        },
-        link: link,
-        templateUrl: 'tpl/component/formControl.html'
-    }
-});
-
-MetronicApp.directive("searchDropdown", function($compile){
-    function link(scope, elem, attr, ctrl) {
-        scope.opts = attr;
-        scope.form = ctrl;
-        scope.opened = '';
-
-        scope.select = function($event){
-            console.log($event.target);
-        }
-
-        function checkValidity(){
-            ctrl.$setTouched(true);
-            if(scope.opts.required){
-                ctrl.$setValidity('required', !(scope.model === ''));
-            }
-        }
-
-        var input = $(elem).find("input");        
-        input.on("click", function(){
-            scope.opened = 'opened';
-            scope.$apply();
-        })
-        input.on("blur", function(){
-            scope.opened = '';
-            scope.$apply();
-            checkValidity();
-        })
-
-
-    }
-    return {
-        restrict: 'AE',
-        replace: true,
-        require: 'ngModel',
-        scope: {
-            model: '=ngModel',
-            source: '='
-        },
-        link: link,
-        templateUrl: 'tpl/component/searchSelect.html'
-    }
-});
-
-MetronicApp.directive("ftModal", function() {
-    function link(scope, element, attrs) {
-        scope.close = function(val) {
-            scope.ftModal.confirmed = val;
-            scope.ftModal.show = false;
-        }
-    }
-    return {
-        restrict: "AE",
-        replace: true,
-        link: link,
-        templateUrl: 'tpl/component/modal.html'
-    };
-
-});
-
-MetronicApp.directive("ftAlert", function($timeout, alertService) {
-    function link(scope, element, attrs) {
-        var selectedAlert;
-        scope.close = function(val) {
-            selectedAlert = val;
-            $timeout(function() {
-                alertService.close(selectedAlert);
-            }, 500);
-        }
-    }
-    return {
-        restrict: "AE",
-        replace: true,
-        link: link,
-        templateUrl: 'tpl/component/alert.html'
-    };
-
-});
-
-MetronicApp.directive("ftTagInput", function() {
-
-    function link(scope, elem, attr, ctrl) {
-        scope.opts = attr;
-
-        scope.form = ctrl;
-
-        scope.onTagAdded = function() {
-            ctrl.$setValidity('minlen', (scope.selectedTags.length >= scope.opts.minlen));
-            ctrl.$setValidity('required', (scope.selectedTags.length >= 1));            
-        }
-
-        angular.element(elem).find("input").on("blur keydown", function () {            
-            ctrl.$setTouched(true);
-            ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
-        })
-
-    }
-    return {
-        restrict: 'AE',
-        require: 'ngModel',
-        scope: {
-            selectedTags: '=ngModel',
-            source: '='
-        },
-        link: link,
-        templateUrl: 'tpl/component/tags.html'
-    }
-});
-
