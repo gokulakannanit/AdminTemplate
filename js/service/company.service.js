@@ -2,21 +2,20 @@
     'use strict';
     function myFactory($http, $state, alertService) {
         var myService = function() {
-        	this.model = {
-        		dataList:[],
-        		dataModel:{
-	                companyName:'',
-	                ssi:'',
-	                tan:'',
-	                serviceTax:'',
-	                pan:'',
-	                address:'',
-	                owner:'',
-	                email:'',
-	                phone:'',
-	                typeOfCompany:'S'               
-	            }
-        	};
+            this.getScope = function(){
+                return {
+                    companyName:'',
+                    ssi:'',
+                    tan:'',
+                    serviceTax:'',
+                    pan:'',
+                    address:'',
+                    owner:'',
+                    email:'',
+                    phone:'',
+                    typeOfCompany:'S'               
+                };
+            };
             this.$http = $http;
             this.$state = $state;
             this.alertService = alertService;
@@ -26,6 +25,7 @@
                 ADD_URL: 'api/company/addDetails.php',
                 DELETE_URL: 'api/company/deleteRecord.php'
             };
+            this.init();
         }
         myService.prototype = baseService;
         return (new myService());

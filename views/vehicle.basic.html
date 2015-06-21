@@ -1,31 +1,31 @@
 <div class="container-fluid">
    <ft-form>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
-         <ft-form-text type="radio" source="ownerShiptype" ng-model="model.ownershipType" name="typeOfOwnership" labeltext="Ownership"></ft-form-text>
+         <ft-form-text type="radio" source="ownerShiptype" ng-model="model.dataModel.ownershipType" name="typeOfOwnership" labeltext="Ownership"></ft-form-text>
          
-         <ft-form-text ng-model="model.vehicleNo" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
+         <ft-form-text ng-model="model.dataModel.vehicleNo" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
 
-         <ft-form-text type="date" ng-model="model.date" name="date" labeltext="Purchased Date"></ft-form-text>
+         <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Purchased Date"></ft-form-text>
 
-         <ft-form-text ng-model="model.amtPurchased" name="amtPurchased" labeltext="Purchased Amt"></ft-form-text>         
+         <ft-form-text ng-model="model.dataModel.amtPurchased" name="amtPurchased" labeltext="Purchased Amt"></ft-form-text>         
       </div>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
-         <ft-form-text ng-model="model.modelYear" name="modelYear" labeltext="Model"></ft-form-text>
+         <ft-form-text ng-model="model.dataModel.modelYear" name="modelYear" labeltext="Model"></ft-form-text>
 
-         <ft-form-text ng-model="model.owner" name="owner" labeltext="Owner" required="true"></ft-form-text>
+         <ft-form-text ng-model="model.dataModel.owner" name="owner" labeltext="Owner" required="true"></ft-form-text>
 
-         <search-dropdown ng-model="model.make" source="makeList" name="make" labeltext="Make" required="true"></search-dropdown>
+         <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make" required="true"></search-dropdown>
 
-         <search-dropdown ng-model="model.fuelType" source="fuelList" name="fuelType" labeltext="Fuel Type" required="true"></search-dropdown>
+         <search-dropdown ng-model="model.dataModel.fuelType" source="fuelList" name="fuelType" labeltext="Fuel Type" required="true"></search-dropdown>
       </div>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
-         <search-dropdown ng-model="model.type" source="typeList" name="type" labeltext="Vehicle Type" required="true"></search-dropdown>
+         <search-dropdown ng-model="model.dataModel.type" source="typeList" name="type" labeltext="Vehicle Type" required="true"></search-dropdown>
 
-         <ft-form-text ng-model="model.chasisNo" name="chasisNo" labeltext="chasisNo"></ft-form-text>
+         <ft-form-text ng-model="model.dataModel.chasisNo" name="chasisNo" labeltext="chasisNo"></ft-form-text>
 
-         <ft-form-text ng-model="model.engineNo" name="engineNo" labeltext="engineNo"></ft-form-text>
+         <ft-form-text ng-model="model.dataModel.engineNo" name="engineNo" labeltext="engineNo"></ft-form-text>
 
-         <ft-form-text ng-model="model.odometer" name="odometer" labeltext="odometer"></ft-form-text>
+         <ft-form-text ng-model="model.dataModel.odometer" name="odometer" labeltext="odometer"></ft-form-text>
       </div>
    </ft-form>
 </div>

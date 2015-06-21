@@ -1,5 +1,12 @@
 var baseService = {
-    isLoadedFromService: false,
+    isLoadedFromService: false,    
+    init:function(){
+        this.model = {
+            dataList:[],
+            dataModel:this.getScope(),
+            dataItemById:[]
+        }
+    },
     getArrayById: function() {
         var itemObj = [];
         angular.forEach(this.model.dataList, function(item) {
@@ -16,26 +23,31 @@ var baseService = {
         });
         return itemObj;
     },
-    get: function(editId) {
-        var self = this;
-        if (editId === 'all' || !this.isLoadedFromService) {
+    get: function() {
+        var self = this, URL;
+        if (!this.isLoadedFromService) {
+            URL = this.SERVICE_URL.GET_URL;
+            console.log('arguments.length : ', arguments.length);
+            if(arguments.length > 1){
+               URL = URL +'?' + this.filter + '='+ arguments[0];
+            }/**/
             var setting = {
                 method: 'GET',
-                url: this.SERVICE_URL.GET_URL + "?id=all"
+                url: URL
             }
             var httpCall = this.$http(setting);
             httpCall.success(function(data) {
                 self.isLoadedFromService = true;
                 self.model.dataList = data;
-                self.model.dataModel = self.getById(editId);
-                if (self.model.dataItemById) {
-                    self.model.dataItemById = self.getArrayById();
+                if(arguments.length === 1){
+                    self.model.dataModel = self.getById(arguments[0]);
                 }
+                self.model.dataItemById = self.getArrayById();                
             }).error(function() {
 
             });
         } else {
-            self.model.dataModel = self.getById(editId);
+            self.model.dataModel = self.getById(arguments[0]);
         }
     },
     delete: function(data) {
@@ -67,6 +79,8 @@ var baseService = {
             self.alertService.add("success", "Record added Successfully..");
             if (self.$state) {
                 self.$state.go(self.REDIRECT_STATE);
+            }else{
+                this.model.dataModel = this.getScope();
             }
         }).error(function() {
             self.alertService.add("danger", "Record not added, please try again later");
@@ -77,21 +91,23 @@ var baseService = {
 
 
 var baseController = {
+    isForeignKey: false,
     init: function() {
         this.defineListeners();
         this.defineScope();
         this.loadData();
     },
     loadData: function() {
-        if (this.$scope.editId) {
+        if (this.$scope.editId && !this.isForeignKey) {
             this.updateService.get(this.$scope.editId);
-        } else {
-            this.updateService.get('all');
+        } else if(this.isForeignKey) {
+            this.updateService.get(this.$scope.editId, 'filter');
+        }else{
+            this.updateService.get();
         }
     },
     defineListeners: function() {
         this.$scope.$on('$viewContentLoaded', function() {
-            Metronic.initAjax();
         });
     },
     defineScope: function() {

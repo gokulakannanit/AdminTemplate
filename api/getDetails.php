@@ -3,10 +3,14 @@
 include 'configFunction.php';
 
 $connQuery = '';
-if($_REQUEST['id'] !== 'all'){
-	$connQuery = " WHERE id=".$_REQUEST['id'];
+
+if(isset($_REQUEST['vehicleId'])){
+	$connQuery = " WHERE vehicleId=".$_REQUEST['vehicleId'];
 }
-$result = mysqli_query($con,"SELECT * FROM $tableName".$connQuery) or die(mysql_errno()."error in query execution");
+$query  = "SELECT * FROM $tableName".$connQuery;
+$result = mysqli_query($con, $query) or die(mysql_errno()."error in query execution");
+
+/*echo $query;*/
 
 $json_response  = array();
 

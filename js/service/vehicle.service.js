@@ -2,10 +2,9 @@
     'use strict';
     function myFactory($http, $state, alertService) {
         var myService = function() {
-        	this.model = {
-        		dataList:[],
-        		dataModel:{
-	                ownershipType:'own',
+            this.getScope = function(){
+                return {
+                    ownershipType:'own',
                     vehicleNo: '',
                     date:new Date(),
                     amtPurchased:'',
@@ -18,8 +17,8 @@
                     chasisNo:'',
                     engineNo:'',
                     odometer:''               
-	            }
-        	};
+                };
+            };
             this.$http = $http;
             this.$state = $state;
             this.alertService = alertService;
@@ -29,6 +28,7 @@
                 ADD_URL: 'api/vehicleInfo/addDetails.php',
                 DELETE_URL: 'api/vehicleInfo/deleteRecord.php'
             };
+            this.init();
         }
         myService.prototype = baseService;
         return (new myService());

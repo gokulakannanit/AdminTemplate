@@ -102,7 +102,8 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
 
         // Redirect any unmatched url
         $urlRouterProvider.otherwise("/dashboard.html");
-        // Dashboard
+
+        $stateProvider
         .state('dashboard', {
             url: "/dashboard.html",
             templateUrl: "views/dashboard.html",

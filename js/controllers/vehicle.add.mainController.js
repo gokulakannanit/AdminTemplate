@@ -4,8 +4,6 @@ MetronicApp.controller('vehicle.add.mainController', ['$scope', '$state', '$stat
     function($scope, $state, $stateParams, updateService) {
         
         $scope.$on('$viewContentLoaded', function() {
-            // initialize core components
-            Metronic.initAjax();
             $scope.editId = $stateParams.editId;
         });
 
