@@ -28,7 +28,15 @@
                     return expr.test(viewValue);
                 }
                 return true;
+            },
+            required: function(modelValue, viewValue){
+                if(scope.opts.required && viewValue === ''){
+                    console.log(scope.opts.required);
+                    return false;
+                }
+                return true;
             }
+
         };
         return validationEngine;
     }
@@ -93,7 +101,7 @@
                 templateUrl: 'tpl/component/tags.html'
             }
         },
-        searchDropdown: function($compile) {
+        searchDropdown: function() {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
                 scope.form = ctrl;
@@ -134,7 +142,7 @@
                 templateUrl: 'tpl/component/searchSelect.html'
             }
         },
-        ftFormText: function() {
+        ftFormText: function($compile) {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
                 if (!scope.opts.type) {
@@ -149,24 +157,27 @@
                 };
 
                 if (scope.opts.type === 'date') {
-
                     scope.opts.maxDate = new Date();
-
                     scope.dateOptions = {
                         formatYear: 'yy',
                         startingDay: 1
                     };
                     scope.format = 'dd/MM/yyyy';
-
                 }
-                var input = $(elem).find("input");
 
-                (scope.opts.required) ? input.attr('required', 'true') : '';
+                $compile(elem.contents())(scope);
+
+                var input = $(elem).find("input");
 
                 ctrl.$validators = new validators(scope);
 
-                input.on("blur keydown", function(e) {
+                input.on("blur focus", function(e) {
+                    console.log('here >>>');
+                    if(scope.opts.required && input.val() === ''){
+                        ctrl.$setValidity("required", false);
+                    }
                     ctrl.$setTouched(true);
+                    
                 });
             }
             return {

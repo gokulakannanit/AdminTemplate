@@ -5,7 +5,7 @@
         this.$stateParams = $stateParams;
         this.updateService = updateService;
         this.init = function(){
-            this.super();
+            this.super('init');
             this.$scope.selectedTags = [];
             this.$scope.companyType = [{label:"Sole Propriteship", value:"S"}, {label:"Partnership", value:"P"}];
         }
