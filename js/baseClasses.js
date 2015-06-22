@@ -61,6 +61,7 @@ var baseService = {
             self.isLoadedFromService = false;
             self.get();
             self.alertService.add("success", "Record deleted Successfully..");
+            this.model.dataModel = this.getScope();
         }).error(function() {
             self.alertService.add("danger", "Record not deleted, please try again later");
         });
@@ -96,7 +97,6 @@ var baseController = {
     init: function() {
         this.defineListeners();
         this.defineScope();
-        console.log('here', (this.$scope.$parent.editId && this.isForeignKey));
         this.loadData((this.$scope.$parent.editId && this.isForeignKey));
     },
     loadData: function() {
