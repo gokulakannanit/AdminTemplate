@@ -1,7 +1,9 @@
 var baseService = {
-    isLoadedFromService: false,    
+    isLoadedFromService: false,
+    parentId:'',  
     init:function(){
         this.model = {
+        	mainList:[],
             dataList:[],
             dataModel:this.getScope(),
             dataItemById:[]
@@ -23,30 +25,55 @@ var baseService = {
         });
         return itemObj;
     },
-    get: function() {
-        var self = this, URL;
-        if (!this.isLoadedFromService) {
-            URL = this.SERVICE_URL.GET_URL;
-            if(arguments.length > 1){
-               URL = URL +'?' + this.filter + '='+ arguments[0];
-            }/**/
-            var setting = {
+    getByForeignKey: function(){
+    	var self = this, setting, httpCall;    	
+    	if(!this.model.mainList[self.parentId]){
+    		setting = {
                 method: 'GET',
-                url: URL
-            }
-            var httpCall = this.$http(setting);
+                url: this.SERVICE_URL.GET_URL+'?' + this.filter + '='+ self.parentId
+            };
+            httpCall = this.$http(setting);
             httpCall.success(function(data) {
-                self.isLoadedFromService = true;
-                self.model.dataList = data;
-                if(arguments.length === 1){
-                    self.model.dataModel = self.getById(arguments[0]);
-                }
-                self.model.dataItemById = self.getArrayById();                
-            }).error(function() {
-
+            	self.model.mainList[self.parentId] = data;
+                self.model.dataList = data;               
             });
-        } else {
-            self.model.dataModel = self.getById(arguments[0]);
+    	}else{
+    		if(!self.editId){
+    			self.model.dataList = self.model.mainList[self.parentId];	
+    		}else{
+    			self.model.dataModel = self.getById(self.editId);
+    		}    		
+    	}
+    },
+    get: function() {
+        var self = this, setting, httpCall;        
+        if(this.filter){
+        	self.parentId = arguments[0];
+            if(arguments.length>1){
+                self.editId = arguments[1];
+            }
+        	self.getByForeignKey();
+        }else{
+        	if (!this.isLoadedFromService) {
+                self.editId = arguments[0];
+        		setting = {
+	                method: 'GET',
+	                url: this.SERVICE_URL.GET_URL
+	            };
+	            httpCall = this.$http(setting);
+	            httpCall.success(function(data) {
+	                self.isLoadedFromService = true;
+	                self.model.dataList = data;	                
+	                self.model.dataItemById = self.getArrayById();
+                    if(self.editId){
+                        self.model.dataModel = self.getById(self.editId);
+                        console.log(self.editId,' : ', self.model.dataModel);
+                    }
+	            });
+        	}else{                
+        		self.model.dataModel = self.getById(self.editId);
+                console.log('75 : ',self.editId,' : ', self.model.dataModel);
+        	}
         }
     },
     delete: function(data) {
@@ -58,8 +85,7 @@ var baseService = {
             }
         var httpCall = this.$http(setting);
         httpCall.success(function() {
-            self.isLoadedFromService = false;
-            self.get();
+            self.reloadData();         
             self.alertService.add("success", "Record deleted Successfully..");
             this.model.dataModel = this.getScope();
         }).error(function() {
@@ -68,6 +94,9 @@ var baseService = {
         return httpCall;
     },
     add: function(data) {
+    	if(data[this.filter]){
+    		data[this.filter] = self.parentId;
+    	}
         var self = this,
             setting = {
                 method: 'POST',
@@ -76,8 +105,7 @@ var baseService = {
             }
         var httpCall = this.$http(setting);
         httpCall.success(function() {
-            self.isLoadedFromService = false;
-            self.get();
+            self.reloadData();
             self.alertService.add("success", "Record added Successfully..");
             if (self.$state) {
                 self.$state.go(self.REDIRECT_STATE);
@@ -88,6 +116,15 @@ var baseService = {
             self.alertService.add("danger", "Record not added, please try again later");
         });
         return httpCall;
+    },
+    reloadData: function(){    	
+        if(this.parentId !== ''){
+        	this.model.mainList[this.parentId] = null;
+			this.get(this.parentId);
+        }else{
+        	this.isLoadedFromService = false;
+        	this.get();
+        } 
     }
 };
 
@@ -95,20 +132,27 @@ var baseService = {
 var baseController = {
     isForeignKey: false,
     init: function() {
-        this.defineListeners();
         this.defineScope();
-        this.loadData((this.$scope.$parent.editId && this.isForeignKey));
+        this.loadData();
     },
     loadData: function() {
-        if (arguments[0]) {
-            this.updateService.get(this.$scope.$parent.editId, 'filter');
-        } else if(this.$scope.editId && arguments.length == 0) {
-            this.updateService.get(this.$scope.editId);
-        } else{
-            this.updateService.get();
+        if ((this.$scope.$parent.editId && this.isForeignKey)) {
+        	if(this.$scope.editId){
+                console.log('here in 138');
+        		this.updateService.get(this.$scope.$parent.editId, this.$scope.editId);
+        	}else{
+                console.log('here in 141');
+        		this.updateService.get(this.$scope.$parent.editId);
+        	}            
+        } else{            
+            if(this.$scope.editId){
+                console.log('here in 147', this.$scope.editId);
+                this.updateService.get(this.$scope.editId);
+            }else{
+                console.log('here in 150');
+                this.updateService.get();  
+            }            
         }
-    },
-    defineListeners: function() {
     },
     defineScope: function() {
         var self = this;
@@ -131,10 +175,10 @@ var baseController = {
             });
         };
         this.$scope.updateDetails = function() {
+            self.$scope.editId = null;
             self.updateService.add(self.$scope.model.dataModel);
         };
         this.$scope.edit = function(editId){
-            console.log('editId',editId);
             self.$scope.editId = editId;
             self.loadData();
         };
