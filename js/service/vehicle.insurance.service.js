@@ -10,7 +10,7 @@
 	                amount:'',
 	                coverageLimit:'',
 	                paymentMode:'Cash',
-	                vehicleId:''      
+	                vehicleId:''
 	            };
         	};
         	this.filter = 'vehicleId';

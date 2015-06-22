@@ -1,9 +1,9 @@
 (function(){
     'use strict';
-    function controller($scope, updateService, $stateParams){
+    function controller($scope, updateService){
         this.$scope = $scope;
-        this.$stateParams = $stateParams;
         this.updateService = updateService;
+        this.isForeignKey = true;
         this.init = function(){
             this.super('init');
 
@@ -15,6 +15,6 @@
     }
     controller.prototype = baseController;
 
-    controller.$inject = ['$scope', 'vehicle.service', '$stateParams'];
+    controller.$inject = ['$scope', 'vehicle.service'];
     MetronicApp.controller('vehicle.basic.mainController', controller);
 }());
