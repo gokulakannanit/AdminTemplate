@@ -4,17 +4,17 @@
          <div class="panel-title">Add FC</div>
          <div class="panel-body">
             <ft-form>
-               <ft-form-text type="radio" source="paymentList" ng-model="model.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
+               <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
 
-               <ft-form-text type="date" ng-model="model.date" name="date" labeltext="Date"></ft-form-text>
+               <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
 
-               <ft-form-text ng-model="model.rto" name="rto" labeltext="RTO Name"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.rto" name="rto" labeltext="RTO Name"></ft-form-text>
 
-               <ft-form-text ng-model="model.fcNo" name="fcNo" labeltext="FC No"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.fcNo" name="fcNo" labeltext="FC No"></ft-form-text>
 
-               <ft-form-text ng-model="model.amount" name="amount" labeltext="Amount"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-form-text>
 
-               <ft-form-text type="date" ng-model="model.renewalDate" name="renewalDate" labeltext="Renewal Date"></ft-form-text>             
+               <ft-form-text type="date" ng-model="model.dataModel.renewalDate" name="renewalDate" labeltext="Renewal Date"></ft-form-text>             
             </ft-form>
          </div>
       </div>
@@ -31,10 +31,10 @@
                </tr>
            </thead>
            <tbody>
-               <tr class="danger" ng-if="fcList.length === 0">
-                   <td colspan="6">No Records found</td>
+               <tr class="danger" ng-if="model.dataList.length === 0">
+                   <td colspan="5">No Records found</td>
                </tr>
-               <tr ng-repeat="fc in fcList | filter:search">
+               <tr ng-repeat="fc in model.dataList | filter:search">
                    <td>{{$index+1}}</td>
                    <td>{{fc.rto}}</td>
                    <td>{{fc.renewalDate}}</td>

@@ -5,21 +5,21 @@
          <div class="panel-body">
             <ft-form>
 
-              <ft-form-text type="radio" source="paymentList" ng-model="model.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
+              <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
 
-               <ft-form-text type="date" ng-model="model.date" name="date" labeltext="Date"></ft-form-text>
+               <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
 
-               <ft-form-text type="select" source="makeList" ng-model="model.make" name="make" labeltext="Make"></ft-form-text>
+               <ft-form-text type="select" source="makeList" ng-model="model.dataModel.make" name="make" labeltext="Make"></ft-form-text>
 
-               <ft-form-text ng-model="model.batteryNo" name="batteryNo" labeltext="Battery No"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-form-text>
 
-               <ft-form-text type="select" ng-model="model.dealer" source="vendorList" name="dealer" labeltext="battery Dealer"></ft-form-text>
+               <ft-form-text type="select" ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="battery Dealer"></ft-form-text>
 
-               <ft-form-text type="date" ng-model="model.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-form-text>
+               <ft-form-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-form-text>
 
-               <ft-form-text ng-model="model.price" name="price" labeltext="Amount"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-form-text>
 
-               <ft-form-text ng-model="model.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-form-text>
               
             </ft-form>
          </div>
@@ -38,10 +38,10 @@
                </tr>
            </thead>
            <tbody>
-               <tr class="danger" ng-if="batteryList.length === 0">
+               <tr class="danger" ng-if="model.dataList.length === 0">
                    <td colspan="6">No Records found</td>
                </tr>
-               <tr ng-repeat="battery in batteryList | filter:search">
+               <tr ng-repeat="battery in model.dataList | filter:search">
                    <td>{{$index+1}}</td>
                    <td>{{battery.dealer}}</td>
                    <td>{{battery.date}}</td>

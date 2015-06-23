@@ -31,7 +31,6 @@
             },
             required: function(modelValue, viewValue){
                 if(scope.opts.required && viewValue === ''){
-                    console.log(scope.opts.required);
                     return false;
                 }
                 return true;
@@ -171,8 +170,11 @@
 
                 ctrl.$validators = new validators(scope);
 
+                if(scope.opts.required && input.val() === ''){
+                    ctrl.$setValidity("required", false);
+                }
+                
                 input.on("blur focus", function(e) {
-                    console.log('here >>>');
                     if(scope.opts.required && input.val() === ''){
                         ctrl.$setValidity("required", false);
                     }

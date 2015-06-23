@@ -4,8 +4,8 @@
         <div class="bootstrap-select">
             <input type="text" class="form-control" ng-model="model" name="{{opts.name}}" placeholder="Select {{opts.name}}" />
             <i class="fa fa-chevron-down"></i>
-            <ul class="dropdown-custom {{opened}}">
-                <li ng-repeat="item in source | filter: model" ng-class="{ active: (index == $index) }">            
+            <ul class="dropdown-custom {{opened}}" ng-show="filteredItems.length>0">
+                <li ng-repeat="item in (filteredItems = (source | filter: model))" ng-class="{ active: (index == $index) }">            
                     <a ng-click="selectItem($index)">{{item.title}}</a>
                 </li>
             </ul>

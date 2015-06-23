@@ -1,35 +1,36 @@
-'use strict';
-MetronicApp.factory('vehicle.tyre.service', ['$http', '$q', '$state', 'alertService', function($http, $q, $state, alertService){
-	
-	return {
-		get: function(editId){
-			var deferred = $q.defer();
-			$http.get('api/vehicleInfo/tyre/getDetails.php?id='+editId).success(function(data){
-				deferred.resolve(data);
-			})
-			return deferred.promise;
-		},
-		add: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/tyre/addDetails.php', data).success(function(data){
-				alertService.add("success", "Record added Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not added, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		},
-		delete: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/tyre/deleteRecord.php', data).success(function(data){
-				alertService.add("success", "Record deleted Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not deleted, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		}
-	}
-}]);
+(function() {
+    'use strict';
+    function myFactory($http, $state, alertService) {
+        var myService = function() {        	        	
+        	this.getScope = function(){
+        		return {
+	                paymentMode:'Cash',
+	                date: new Date(),
+	                make: '',
+	                tyreNo: '',
+	                position: '',
+	                dealer: '',
+	                warrentyDate: '',
+	                price: '',
+	                receiptNo: '',
+	                vehicleId:''
+	            };
+        	};
+        	this.filter = 'vehicleId';
+            this.$http = $http;
+            this.$state = $state;
+            this.alertService = alertService;
+            this.SERVICE_URL = {
+                GET_URL: 'api/vehicleInfo/tyre/getDetails.php',
+                ADD_URL: 'api/vehicleInfo/tyre/addDetails.php',
+                DELETE_URL: 'api/vehicleInfo/tyre/deleteRecord.php'
+            };
+            this.init();
+        }
+        myService.prototype = baseService;
+        return (new myService());
+    }
+    myFactory.$inject = ['$http', '$state', 'alertService'];
+    MetronicApp.factory('vehicle.tyre.service', myFactory);
+}());
+

@@ -5,11 +5,15 @@
         this.updateService = updateService;
 
         this.init = function(){
-            this.$scope.editId = $stateParams.editId;                        
+            this.$scope.editId = $stateParams.editId;
+
+            this.$scope.ownershipList = [{label:"Own", value:"own"}, {label:"Hired", value:"hired"}];                   
 
             this.$scope.makeList = [{title:'Tata', value:'Tata'}, {title:'Leyland', value:'Leyland'}];
-            
-            this.$scope.ownerShiptype = [{label:"Own", value:"own"}, {label:"Hired", value:"hired"}];
+
+            this.$scope.fuelList = [{title:"Diesel", value:"Diesel"}, {title:"Petrol", value:"Petrol"}, {title:"Gas", value:"Gas"}];
+
+            this.$scope.typeList = [{title:"LCV", value:"LCV"}, {title:"HCV", value:"HCV"}];    
 
             this.super('init');
         }

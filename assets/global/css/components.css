@@ -1603,22 +1603,6 @@ File dropzone
   border-color: #aaa;
 }
 
-/***
-Fontawesome Icons
-***/
-[class^="fa-"]:not(.fa-stack),
-[class^="glyphicon-"],
-[class^="icon-"],
-[class*=" fa-"]:not(.fa-stack),
-[class*=" glyphicon-"],
-[class*=" icon-"] {
-  display: inline-block;
-  font-size: 14px;
-  *margin-right: .3em;
-  line-height: 14px;
-  -webkit-font-smoothing: antialiased;
-}
-
 /* Make font awesome icons fixed width */
 li [class^="fa-"],
 li [class^="glyphicon-"],
@@ -2619,7 +2603,7 @@ Dropdown Menu
   text-shadow: none;
   padding: 0px;
   background-color: #ffffff;
-  margin: 10px  0px 0px 0px;
+  margin: 3px  0px 0px 0px;
   box-shadow: 5px 5px rgba(102, 102, 102, 0.1);
   border: 1px solid #eee;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -2678,8 +2662,8 @@ Dropdown Menu
 .dropdown-custom .active > a:hover {
   text-decoration: none;
   background-image: none;
-  background-color: #f6f6f6;
-  color: #555;
+  background-color: #5bc0de;
+  color: #fff;
   filter: none;
 }
 .dropdown-custom.bottom-up {
@@ -4945,7 +4929,9 @@ Customized Progress Bars
 .progress.progress-sm {
   height: 12px;
 }
-
+.progress-bar{
+  background-color: rgba(0, 0, 0, 0.4);
+}
 .progress > .progress-bar-default {
   background-color: #c6c6c6;
 }

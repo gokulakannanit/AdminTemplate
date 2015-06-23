@@ -1,35 +1,32 @@
-'use strict';
-MetronicApp.factory('vehicle.spare.service', ['$http', '$q', '$state', 'alertService', function($http, $q, $state, alertService){
-	
-	return {
-		get: function(editId){
-			var deferred = $q.defer();
-			$http.get('api/vehicleInfo/spare/getDetails.php?id='+editId).success(function(data){
-				deferred.resolve(data);
-			})
-			return deferred.promise;
-		},
-		add: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/spare/addDetails.php', data).success(function(data){
-				alertService.add("success", "Record added Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not added, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		},
-		delete: function(data){
-			var deferred = $q.defer();
-			$http.post('api/vehicleInfo/spare/deleteRecord.php', data).success(function(data){
-				alertService.add("success", "Record deleted Successfully..");
-				deferred.resolve('');
-			}).error(function(){
-				alertService.add("danger", "Record not deleted, please try again later");
-				deferred.reject('');
-			});
-			return deferred.promise;
-		}
-	}
-}]);
+(function() {
+    'use strict';
+    function myFactory($http, $state, alertService) {
+        var myService = function() {        	        	
+        	this.getScope = function(){
+        		return {
+	                purchaseDate:new Date(),
+	                companyName:'',
+	                policyNo:'',
+	                amount:'',
+	                coverageLimit:'',
+	                paymentMode:'Cash',
+	                vehicleId:''
+	            };
+        	};
+        	this.filter = 'vehicleId';
+            this.$http = $http;
+            this.$state = $state;
+            this.alertService = alertService;
+            this.SERVICE_URL = {
+                GET_URL: 'api/vehicleInfo/spare/getDetails.php',
+                ADD_URL: 'api/vehicleInfo/spare/addDetails.php',
+                DELETE_URL: 'api/vehicleInfo/spare/deleteRecord.php'
+            };
+            this.init();
+        }
+        myService.prototype = baseService;
+        return (new myService());
+    }
+    myFactory.$inject = ['$http', '$state', 'alertService'];
+    MetronicApp.factory('vehicle.spare.service', myFactory);
+}());

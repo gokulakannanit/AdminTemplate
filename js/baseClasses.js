@@ -20,7 +20,7 @@ var baseService = {
         var itemObj = {};
         angular.forEach(this.model.dataList, function(item) {
             if (item.id === editId) {
-                itemObj = item;
+                itemObj = angular.copy(item);
             }
         });
         return itemObj;
@@ -54,8 +54,8 @@ var baseService = {
             }
         	self.getByForeignKey();
         }else{
-        	if (!this.isLoadedFromService) {
-                self.editId = arguments[0];
+            self.editId = arguments[0];
+        	if (!this.isLoadedFromService) {                
         		setting = {
 	                method: 'GET',
 	                url: this.SERVICE_URL.GET_URL
@@ -67,12 +67,10 @@ var baseService = {
 	                self.model.dataItemById = self.getArrayById();
                     if(self.editId){
                         self.model.dataModel = self.getById(self.editId);
-                        console.log(self.editId,' : ', self.model.dataModel);
                     }
 	            });
         	}else{                
         		self.model.dataModel = self.getById(self.editId);
-                console.log('75 : ',self.editId,' : ', self.model.dataModel);
         	}
         }
     },
@@ -93,24 +91,24 @@ var baseService = {
         });
         return httpCall;
     },
-    add: function(data) {
-    	if(data[this.filter]){
-    		data[this.filter] = self.parentId;
-    	}
+    add: function(data) {    	
         var self = this,
             setting = {
                 method: 'POST',
                 url: this.SERVICE_URL.ADD_URL,
                 data: data
             }
+        if(data[this.filter]){
+            data[this.filter] = self.parentId;
+        }
         var httpCall = this.$http(setting);
         httpCall.success(function() {
             self.reloadData();
             self.alertService.add("success", "Record added Successfully..");
-            if (self.$state) {
+            if (self.REDIRECT_STATE) {
                 self.$state.go(self.REDIRECT_STATE);
             }else{
-                this.model.dataModel = this.getScope();
+                self.model.dataModel = self.getScope();
             }
         }).error(function() {
             self.alertService.add("danger", "Record not added, please try again later");
@@ -138,18 +136,14 @@ var baseController = {
     loadData: function() {
         if ((this.$scope.$parent.editId && this.isForeignKey)) {
         	if(this.$scope.editId){
-                console.log('here in 138');
         		this.updateService.get(this.$scope.$parent.editId, this.$scope.editId);
         	}else{
-                console.log('here in 141');
         		this.updateService.get(this.$scope.$parent.editId);
         	}            
         } else{            
             if(this.$scope.editId){
-                console.log('here in 147', this.$scope.editId);
                 this.updateService.get(this.$scope.editId);
             }else{
-                console.log('here in 150');
                 this.updateService.get();  
             }            
         }
