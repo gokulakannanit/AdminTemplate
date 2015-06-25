@@ -55,6 +55,7 @@ var baseService = {
         	self.getByForeignKey();
         }else{
             self.editId = arguments[0];
+            self.model.dataModel = this.getScope();
         	if (!this.isLoadedFromService) {                
         		setting = {
 	                method: 'GET',
@@ -69,8 +70,10 @@ var baseService = {
                         self.model.dataModel = self.getById(self.editId);
                     }
 	            });
-        	}else{                
-        		self.model.dataModel = self.getById(self.editId);
+        	}else{
+                if(self.editId){           
+        	       	self.model.dataModel = self.getById(self.editId);
+                }
         	}
         }
     },

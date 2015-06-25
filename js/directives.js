@@ -2,29 +2,33 @@
     'use strict';
 
     var validators = function(scope) {
+        function isValid(viewValue){
+            return (viewValue !== '' && String(viewValue) !== 'undefined');
+        }
         var validationEngine = {
             minlen: function(modelValue, viewValue) {
-                if (scope.opts.minlength && viewValue !== '') {
+                if (scope.opts.minlength && isValid(viewValue)) {
                     return (viewValue.length >= scope.opts.minlength);
                 }
                 return true;
             },
             maxlen: function(modelValue, viewValue) {
-                if (scope.opts.maxlength && viewValue !== '') {
+                if (scope.opts.maxlength && isValid(viewValue)) {
                     return (viewValue.length <= scope.opts.maxlength);
                 }
                 return true;
             },
             pattern: function(modelValue, viewValue) {
-                if (scope.opts.pattern && viewValue !== '') {
+                if (scope.opts.pattern && isValid(viewValue)) {
                     var pattern = new RegExp(scope.opts.pattern);
                     return (pattern).test(viewValue);
                 }
                 return true;
             },
             email: function(modelValue, viewValue) {
-                if (scope.opts.type === 'email' && viewValue !== '') {
+                if (scope.opts.type === 'email' && isValid(viewValue)) {
                     var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+                    console.log('Email:',viewValue);
                     return expr.test(viewValue);
                 }
                 return true;
@@ -32,6 +36,12 @@
             required: function(modelValue, viewValue){
                 if(scope.opts.required && viewValue === ''){
                     return false;
+                }
+                return true;
+            },
+            isNotNumber: function(modelValue, viewValue) {
+                if (scope.opts.number && isValid(viewValue)) {
+                    return !isNaN(Number(viewValue));
                 }
                 return true;
             }

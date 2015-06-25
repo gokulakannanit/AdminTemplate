@@ -4,6 +4,7 @@
         var myService = function() {
             this.getScope = function(){
                 return {
+                    typeOfCompany:'S',
                     companyName:'',
                     ssi:'',
                     tan:'',
@@ -12,8 +13,7 @@
                     address:'',
                     owner:'',
                     email:'',
-                    phone:'',
-                    typeOfCompany:'S'               
+                    phone:''                                  
                 };
             };
             this.$http = $http;

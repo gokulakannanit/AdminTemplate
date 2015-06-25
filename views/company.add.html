@@ -9,7 +9,7 @@
             <ft-form-text ng-model="model.dataModel.address" name="address" labeltext="Address" required="true"></ft-form-text>
 
             <div ng-if="model.dataModel.typeOfCompany == 'S'">
-                <ft-form-text type="select" ng-model="model.dataModel.owner" source="ownerListData" name="owner" labeltext="Propriteship" required="true"></ft-form-text>
+                <search-dropdown ng-model="model.dataModel.owner" source="ownerListData" name="owner" labeltext="Propriteship" required="true"></search-dropdown>
             </div>
 
             <div ng-if="model.dataModel.typeOfCompany == 'P'">

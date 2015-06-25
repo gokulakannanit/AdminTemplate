@@ -1,22 +1,15 @@
 <div class="form-group" ng-class="{ 'has-error' : form.$invalid && form.$touched}" style="margin:3px 10px;">
     <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}</label>
     <div>      
-      <div ng-show="opts.type === 'text' || opts.type === 'email'">
-        <input  type="{{opts.type}}" 
+      <div ng-if="opts.type === 'text' || opts.type === 'email'">
+        <input  type="text" 
                 class="form-control" 
                 name="{{opts.name}}" 
                 placeholder="Enter {{opts.labeltext}}" 
-                ng-model="model" ng-show="opts.type === 'text' || opts.type === 'email'"/>
-      </div>
-
-      <div ng-show="opts.type === 'select'">
-        <select class="form-control" name="{{opts.name}}" ng-model="model" ng-show="opts.type === 'select'">
-            <option value="">-- Select {{opts.labeltext}} --</option>
-            <option ng-repeat="itemObj in source" value="{{itemObj.id}}">{{itemObj.name}}</option>
-        </select>
+                ng-model="$parent.model" ng-show="opts.type === 'text' || opts.type === 'email'"/>
       </div>
       
-      <div class="radio" ng-show="opts.type === 'radio'" style="height:34px;">
+      <div class="radio" ng-if="opts.type === 'radio'" style="height:34px;">
           <label ng-repeat="itemObj in source" for="{{opts.name}}">
             <input type="radio" name="{{opts.name}}" value="{{itemObj.value}}" ng-model="$parent.model" />
             {{itemObj.label}}
@@ -24,7 +17,7 @@
       </div>
 
       <p class="input-group" ng-if="opts.type === 'date'" style="margin:0px;">
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="model" is-open="opened" max-date="opts.maxDate" datepickerOptions="dateOptions" close-text="Close" show-button-bar="false" />
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.model" is-open="opened" max-date="opts.maxDate" datepickerOptions="dateOptions" close-text="Close" show-button-bar="false" />
             
         <span class="input-group-btn">
           <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
