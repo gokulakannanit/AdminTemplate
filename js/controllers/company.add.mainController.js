@@ -20,7 +20,9 @@
         this.onDataLoaded = function(){
            if(self.$scope.model.dataModel.owner && self.$scope.owner.source.dataItemById.length>0){
                 self.$scope.owner.selecteditem = self.$scope.owner.source.dataItemById[self.$scope.model.dataModel.owner];
-                self.$scope.owner.name = self.$scope.owner.selecteditem.name;
+                if(self.$scope.owner.selecteditem){
+                   self.$scope.owner.name = self.$scope.owner.selecteditem.name; 
+               }                
             } 
         }
         this.init();
