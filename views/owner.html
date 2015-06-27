@@ -12,8 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="danger" ng-if="list.length === 0">
+            <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
                 <td colspan="7">No Records found</td>
+            </tr>
+            <tr ng-if="!isDataLoaded">
+                <td colspan="7"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
             <tr ng-repeat="owner in list = (model.dataList | filter:search)">
                 <td>{{::($index+1)}}</td>

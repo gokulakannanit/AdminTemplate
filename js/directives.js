@@ -144,9 +144,8 @@
                         scope.search = input.val();
                     }else{
                         scope.$apply();
-                    }
-                    
-                });
+                    }                    
+                });                
                 input.on("click", function() {
                     if(!scope.selecteditem){
                         angular.forEach(scope.source, function(item){

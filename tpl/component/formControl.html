@@ -1,5 +1,5 @@
 <div class="form-group" ng-class="{ 'has-error' : form.$invalid && form.$touched}" style="margin:3px 10px;">
-    <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}</label>
+    <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}<i class="fa fa-asterisk" ng-if="opts.required"></i></label>
     <div>      
       <div ng-show="opts.type === 'text' || opts.type === 'email'">
         <input  type="text" 

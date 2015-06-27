@@ -23,7 +23,7 @@
                 if(self.$scope.owner.selecteditem){
                    self.$scope.owner.name = self.$scope.owner.selecteditem.name; 
                }                
-            } 
+            }
         }
         this.init();
     }

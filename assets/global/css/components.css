@@ -2617,6 +2617,8 @@ Dropdown Menu
   width: 100%;
 }
 .bootstrap-select .dropdown-custom.opened{
+  position: fixed;
+  top:-100px;
   opacity: 0;
   height: 0;
 }
@@ -13753,4 +13755,11 @@ Transparent Button
 
 a.caption:hover{
   text-decoration: none;
+}
+
+.form-group .fa-asterisk{
+  color: #777;
+  font-size: 10px;
+  font-weight: normal;
+  margin-left: 5px;
 }

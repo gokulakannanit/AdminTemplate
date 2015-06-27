@@ -9,13 +9,13 @@
 
                <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
 
-               <ft-form-text type="select" source="makeList" ng-model="model.dataModel.make" name="make" labeltext="Make"></ft-form-text>
+               <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
 
                <ft-form-text ng-model="model.dataModel.tyreNo" name="tyreNo" labeltext="Tyre No"></ft-form-text>
 
-               <ft-form-text type="select" ng-model="model.dataModel.position" source="tyrePositionList" name="position" labeltext="Tyre Position"></ft-form-text>
+               <search-dropdown ng-model="model.dataModel.position" source="tyrePositionList" name="position" labeltext="Tyre Position"></search-dropdown>
 
-               <ft-form-text type="select" ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Tyre Dealer"></ft-form-text>
+               <search-dropdown ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Tyre Dealer"></search-dropdown>
 
                <ft-form-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-form-text>
 
@@ -40,9 +40,12 @@
                </tr>
            </thead>
            <tbody>
-               <tr class="danger" ng-if="model.dataList.length === 0">
-                   <td colspan="6">No Records found</td>
-               </tr>
+              <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
+                  <td colspan="6">No Records found</td>
+              </tr>
+              <tr ng-if="!isDataLoaded">
+                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+              </tr>
                <tr ng-repeat="tyre in model.dataList | filter:search">
                    <td>{{$index+1}}</td>
                    <td>{{tyre.dealer}}</td>

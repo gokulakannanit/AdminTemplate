@@ -143,10 +143,10 @@ var baseController = {
         this.loadData();
     },
     onDataLoaded: function(){
-
+        this.$scope.isDataLoaded = true;
     },
     loadData: function() {
-        var defer;
+        var defer, self = this;
         if ((this.$scope.$parent.editId && this.isForeignKey)) {
         	if(this.$scope.editId){
         		defer = this.updateService.get(this.$scope.$parent.editId, this.$scope.editId);
@@ -160,10 +160,13 @@ var baseController = {
                 defer = this.updateService.get();  
             }            
         }
-        defer.then(this.onDataLoaded)
+        defer.then(function(){
+            self.onDataLoaded.apply(self);            
+        });
     },
     defineScope: function() {
         var self = this;
+        this.$scope.isDataLoaded = false;
         if (this.$stateParams) {
             this.$scope.editId = this.$stateParams.editId;
         }

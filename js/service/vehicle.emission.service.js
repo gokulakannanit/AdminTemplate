@@ -10,7 +10,7 @@
 	                amount:'',
 	                renewalDate:'',
 	                paymentMode:'Cash',
-	                vehicleId:$scope.$parent.editId      
+	                vehicleId:''     
 	            };
         	};
         	this.filter = 'vehicleId';
