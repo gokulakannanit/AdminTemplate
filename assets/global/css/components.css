@@ -2617,7 +2617,8 @@ Dropdown Menu
   width: 100%;
 }
 .bootstrap-select .dropdown-custom.opened{
-  opacity: 0;  
+  opacity: 0;
+  height: 0;
 }
 
 .bootstrap-select i.fa-chevron-down{
@@ -4517,7 +4518,7 @@ Portlets
 }
 .portlet > .portlet-title > .caption > i {
   float: left;
-  margin-top: 4px;
+  margin-top: 2px;
   display: inline-block;
   font-size: 18px;
   margin-right: 5px;

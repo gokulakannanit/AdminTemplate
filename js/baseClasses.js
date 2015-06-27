@@ -12,7 +12,7 @@ var baseService = {
     getArrayById: function() {
         var itemObj = [];
         angular.forEach(this.model.dataList, function(item) {
-            itemObj[item.id] = item.name;
+            itemObj[item.id] = item;
         });
         return itemObj;
     },
@@ -25,7 +25,7 @@ var baseService = {
         });
         return itemObj;
     },
-    getByForeignKey: function(){
+    getByForeignKey: function(defer){
     	var self = this, setting, httpCall;    	
     	if(!this.model.mainList[self.parentId]){
     		setting = {
@@ -35,24 +35,27 @@ var baseService = {
             httpCall = this.$http(setting);
             httpCall.success(function(data) {
             	self.model.mainList[self.parentId] = data;
-                self.model.dataList = data;               
+                self.model.dataList = data;
+                defer.resolve();
             });
     	}else{
     		if(!self.editId){
     			self.model.dataList = self.model.mainList[self.parentId];	
     		}else{
     			self.model.dataModel = self.getById(self.editId);
-    		}    		
+    		}   
+            defer.resolve(); 		
     	}
     },
     get: function() {
-        var self = this, setting, httpCall;        
+        var self = this, setting, httpCall, defer;
+        defer = this.$q.defer();
         if(this.filter){
         	self.parentId = arguments[0];
             if(arguments.length>1){
                 self.editId = arguments[1];
             }
-        	self.getByForeignKey();
+        	self.getByForeignKey(defer);
         }else{
             self.editId = arguments[0];
             self.model.dataModel = this.getScope();
@@ -69,13 +72,16 @@ var baseService = {
                     if(self.editId){
                         self.model.dataModel = self.getById(self.editId);
                     }
+                    defer.resolve();
 	            });
         	}else{
                 if(self.editId){           
         	       	self.model.dataModel = self.getById(self.editId);
                 }
+                defer.resolve();
         	}
         }
+        return defer.promise;
     },
     delete: function(data) {
         var self = this,
@@ -136,20 +142,25 @@ var baseController = {
         this.defineScope();
         this.loadData();
     },
+    onDataLoaded: function(){
+
+    },
     loadData: function() {
+        var defer;
         if ((this.$scope.$parent.editId && this.isForeignKey)) {
         	if(this.$scope.editId){
-        		this.updateService.get(this.$scope.$parent.editId, this.$scope.editId);
+        		defer = this.updateService.get(this.$scope.$parent.editId, this.$scope.editId);
         	}else{
-        		this.updateService.get(this.$scope.$parent.editId);
+        		defer = this.updateService.get(this.$scope.$parent.editId);
         	}            
         } else{            
             if(this.$scope.editId){
-                this.updateService.get(this.$scope.editId);
+                defer = this.updateService.get(this.$scope.editId);
             }else{
-                this.updateService.get();  
+                defer = this.updateService.get();  
             }            
         }
+        defer.then(this.onDataLoaded)
     },
     defineScope: function() {
         var self = this;

@@ -9,11 +9,11 @@
             <ft-form-text ng-model="model.dataModel.address" name="address" labeltext="Address" required="true"></ft-form-text>
 
             <div ng-if="model.dataModel.typeOfCompany == 'S'">
-                <search-dropdown ng-model="model.dataModel.owner" source="ownerListData" name="owner" labeltext="Propriteship" required="true"></search-dropdown>
+                <search-dropdown ng-model="owner.name" selecteditem="owner.selecteditem" source="owner.source.dataList" name="owner" labeltext="Propriteship" required="true" displayname="name"></search-dropdown>
             </div>
 
             <div ng-if="model.dataModel.typeOfCompany == 'P'">
-                <ft-tag-input name="owner" minlen="2" ng-model="selectedTags" source="ownerListData" labeltext="Add Partners"></ft-tag-input>
+                <ft-tag-input name="owner" minlen="2" ng-model="selectedTags" source="owner.source.dataList" labeltext="Add Partners"></ft-tag-input>
             </div>
 
             <ft-form-text type="email" ng-model="model.dataModel.email" name="email" labeltext="Email"></ft-form-text>                

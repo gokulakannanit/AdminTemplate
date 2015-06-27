@@ -4,9 +4,10 @@
         <div class="bootstrap-select">
             <input type="text" class="form-control" ng-model="model" name="{{opts.name}}" placeholder="Select {{opts.name}}" />
             <i class="fa fa-chevron-down"></i>
-            <ul class="dropdown-custom {{opened}}" ng-show="filteredItems.length>0">
-                <li ng-repeat="item in (filteredItems = (source | filter: model))" ng-class="{ active: (index == $index) }">            
-                    <a ng-click="selectItem($index)">{{item.title}}</a>
+            <ul class="dropdown-custom" ng-class="{'opened':!opened}">
+                <li ng-if="filteredItems.length==0">No Records Found</li>
+                <li ng-repeat="item in (filteredItems = (source | filter: search))" ng-class="{ active: (item.id === selecteditem.id) }">    
+                    <a ng-click="setSelected(item.id)">{{item[opts.displayname]}}</a>
                 </li>
             </ul>
         </div>

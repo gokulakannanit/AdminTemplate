@@ -9,11 +9,11 @@
 
             this.$scope.ownershipList = [{label:"Own", value:"own"}, {label:"Hired", value:"hired"}];                   
 
-            this.$scope.makeList = [{title:'Tata', value:'Tata'}, {title:'Leyland', value:'Leyland'}];
+            this.$scope.makeList = [{id:'Tata', label:'Tata'}, {id:'Leyland', label:'Leyland'}];
 
-            this.$scope.fuelList = [{title:"Diesel", value:"Diesel"}, {title:"Petrol", value:"Petrol"}, {title:"Gas", value:"Gas"}];
+            this.$scope.fuelList = [{id:"Diesel", label:"Diesel"}, {id:"Petrol", label:"Petrol"}, {id:"Gas", label:"Gas"}];
 
-            this.$scope.typeList = [{title:"LCV", value:"LCV"}, {title:"HCV", value:"HCV"}];    
+            this.$scope.typeList = [{id:"LCV", label:"LCV"}, {id:"HCV", label:"HCV"}];    
 
             this.super('init');
         }

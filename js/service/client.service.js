@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    function myFactory($http, $state, alertService) {
+    function myFactory($http, $q, $state, alertService) {
         var myService = function() {
             this.getScope = function(){
                 return {
@@ -12,6 +12,7 @@
                 };
             };
             this.$http = $http;
+            this.$q = $q;
             this.$state = $state;
             this.alertService = alertService;
             this.REDIRECT_STATE = 'client';
@@ -25,6 +26,6 @@
         myService.prototype = baseService;
         return (new myService());
     }
-    myFactory.$inject = ['$http', '$state', 'alertService'];
+    myFactory.$inject = ['$http', '$q', '$state', 'alertService'];
     MetronicApp.factory('client.service', myFactory);
 }());

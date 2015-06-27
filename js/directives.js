@@ -110,15 +110,24 @@
                 templateUrl: 'tpl/component/tags.html'
             }
         },
-        searchDropdown: function() {
+        searchDropdown: function($compile) {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
                 scope.form = ctrl;
-                scope.opened = 'opened';
+                scope.opened = false;
+                scope.search = '';
+                if(!scope.opts.displayname){
+                    scope.opts.displayname = 'label';
+                    scope.selecteditem = {};
+                }
 
-                scope.selectItem = function(index) {
-                    scope.index = index;
-                    scope.model = scope.source[index].title;
+                scope.setSelected = function(index) {
+                    angular.forEach(scope.source, function(item){
+                        if(item.id === index){
+                          scope.selecteditem = item;  
+                        }                        
+                    })
+                    scope.model = scope.selecteditem[scope.opts.displayname];
                 }
 
                 function checkValidity() {
@@ -129,15 +138,33 @@
                 }
 
                 var input = $(elem).find("input");
+                input.on("keyup", function() {
+                    scope.search = '';                    
+                    if(input.val() !== ''){
+                        scope.search = input.val();
+                    }else{
+                        scope.$apply();
+                    }
+                    
+                });
                 input.on("click", function() {
-                    scope.opened = '';
+                    if(!scope.selecteditem){
+                        angular.forEach(scope.source, function(item){
+                            if(item.label === scope.model){
+                              scope.selecteditem = item;  
+                            }                     
+                        })
+                    }
+                    scope.opened = true;
                     scope.$apply();
-                })
+                });
                 input.on("blur", function() {
-                    scope.opened = 'opened';
+                    scope.search = '';
+                    scope.opened = false;
                     scope.$apply();
                     checkValidity();
-                })
+                });
+
             }
             return {
                 restrict: 'AE',
@@ -145,6 +172,7 @@
                 require: 'ngModel',
                 scope: {
                     model: '=ngModel',
+                    selecteditem: '=?',
                     source: '='
                 },
                 link: link,
@@ -173,7 +201,6 @@
                     };
                     scope.format = 'dd/MM/yyyy';
                 }
-
                 $compile(elem.contents())(scope);
 
                 var input = $(elem).find("input");
@@ -185,12 +212,12 @@
                 }
                 
                 input.on("blur focus", function(e) {
+                    ctrl.$setTouched(true);
                     if(scope.opts.required && input.val() === ''){
                         ctrl.$setValidity("required", false);
-                    }
-                    ctrl.$setTouched(true);
-                    
+                    }                                        
                 });
+                
             }
             return {
                 restrict: 'AE',

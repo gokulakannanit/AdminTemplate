@@ -1,15 +1,15 @@
 <div class="form-group" ng-class="{ 'has-error' : form.$invalid && form.$touched}" style="margin:3px 10px;">
     <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}</label>
     <div>      
-      <div ng-if="opts.type === 'text' || opts.type === 'email'">
+      <div ng-show="opts.type === 'text' || opts.type === 'email'">
         <input  type="text" 
                 class="form-control" 
                 name="{{opts.name}}" 
                 placeholder="Enter {{opts.labeltext}}" 
-                ng-model="$parent.model" ng-show="opts.type === 'text' || opts.type === 'email'"/>
+                ng-model="model" />
       </div>
       
-      <div class="radio" ng-if="opts.type === 'radio'" style="height:34px;">
+      <div class="radio" ng-show="opts.type === 'radio'" style="height:34px;">
           <label ng-repeat="itemObj in source" for="{{opts.name}}">
             <input type="radio" name="{{opts.name}}" value="{{itemObj.value}}" ng-model="$parent.model" />
             {{itemObj.label}}

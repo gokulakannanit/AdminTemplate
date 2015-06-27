@@ -1,6 +1,7 @@
 (function(){
     'use strict';
     function controller($scope, updateService, $stateParams, ownerService){
+        var self = this;
         this.$scope = $scope;
         this.$stateParams = $stateParams;
         this.updateService = updateService;
