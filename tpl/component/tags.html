@@ -1,7 +1,12 @@
 <div class="form-group" ng-class="{ 'has-error' : form.$invalid && form.$touched}" style="margin:3px 10px;">
     <label class="control-label" for="{{opts.name}}" style="margin:10px 0 5px;padding:0;">{{opts.labeltext | titleCase}}</label>
     <div>
-      <tags-input display-property="name" ng-model="selectedTags" add-from-autocomplete-only="true" on-tag-added="onTagAdded();" on-tag-removed="onTagAdded();"><auto-complete source="source"></auto-complete></tags-input>
+      <tags-input display-property="{{opts.displayname}}" ng-model="model" add-from-autocomplete-only="true" on-tag-added="onTagAdded();" on-tag-removed="onTagAdded();" replace-spaces-with-dashes="false">
+      		<auto-complete source="source" min-length="0"
+                     load-on-focus="true"
+                     load-on-empty="true"
+                     max-results-to-show="32"></auto-complete>
+       </tags-input>
 
       <div ng-include="'tpl/component/errorBlock.html'"></div>
     </div>

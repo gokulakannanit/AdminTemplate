@@ -2592,7 +2592,10 @@ Dropdowns
 /***
 Dropdown Menu
 ***/
-.dropdown-custom {
+tags-input .autocomplete .suggestion-list{
+  margin: 5px;
+}
+.dropdown-custom, tags-input .autocomplete {
   min-width: 175px;
   position: absolute;
   top: 100%;
@@ -13768,5 +13771,23 @@ a.caption:hover{
 
 .success td i{
   margin-right: 10px;
-  font-size: 14px;
+  font-size: 20px;
+}
+
+tags-input .host{
+  margin:0px;
+}
+tags-input .host .form-control .tags{
+  padding: 6px 12px;
+}
+
+tags-input .tags .tag-item{
+  background: #5bc0de;
+  color:#fff;
+  border:none;
+}
+
+tags-input .autocomplete .suggestion-item.selected, tags-input .autocomplete .suggestion-item.selected em{
+  background: #5bc0de;
+  color:#fff;
 }

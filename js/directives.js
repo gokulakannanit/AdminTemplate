@@ -90,20 +90,20 @@
                 scope.form = ctrl;
 
                 scope.onTagAdded = function() {
-                    ctrl.$setValidity('minlen', (scope.selectedTags.length >= scope.opts.minlen));
-                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
+                    ctrl.$setValidity('minlen', (scope.model.length >= scope.opts.minlen));
+                    ctrl.$setValidity('required', (scope.model.length >= 1));
                 }
 
                 angular.element(elem).find("input").on("blur keydown", function() {
                     ctrl.$setTouched(true);
-                    ctrl.$setValidity('required', (scope.selectedTags.length >= 1));
+                    ctrl.$setValidity('required', (scope.model.length >= 1));
                 })
             }
             return {
                 restrict: 'AE',
                 require: 'ngModel',
                 scope: {
-                    selectedTags: '=ngModel',
+                    model: '=ngModel',
                     source: '='
                 },
                 link: link,
