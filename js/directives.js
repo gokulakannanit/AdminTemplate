@@ -192,19 +192,24 @@
                 }
                 scope.form = ctrl;
 
-                scope.open = function($event) {
-                    $event.preventDefault();
-                    $event.stopPropagation();
-                    scope.opened = true;
-                };
-
                 if (scope.opts.type === 'date') {
-                    scope.opts.maxDate = new Date();
-                    scope.dateOptions = {
-                        formatYear: 'yy',
-                        startingDay: 1
+
+                    // New object holder to avoid scope Inheritance.
+                    var datePickerObj = {
+                        maxDate: new Date(),
+                        format: 'dd/MM/yyyy',
+                        dateOptions: {
+                            formatYear: 'yy',
+                            startingDay: 1
+                        },
+                        opened:false,
+                        open: function($event) {
+                            $event.preventDefault();
+                            $event.stopPropagation();
+                            this.opened = true;
+                        }
                     };
-                    scope.format = 'dd/MM/yyyy';
+                    scope.datePickerObj = datePickerObj;
                 }
                 $compile(elem.contents())(scope);
 

@@ -17,10 +17,10 @@
       </div>
 
       <p class="input-group" ng-if="opts.type === 'date'" style="margin:0px;">
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="$parent.model" is-open="opened" max-date="opts.maxDate" datepickerOptions="dateOptions" close-text="Close" show-button-bar="false" />
+        <input type="text" class="form-control" datepicker-append-to-body="true" datepicker-popup="{{datePickerObj.format}}" ng-model="$parent.model" is-open="datePickerObj.opened" max-date="datePickerObj.maxDate" datepickerOptions="datePickerObj.dateOptions" close-text="Close" show-button-bar="false"  />
             
         <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+          <button type="button" class="btn btn-default" ng-click="datePickerObj.open($event)"><i class="fa fa-calendar"></i></button>
         </span>
       </p>
 
