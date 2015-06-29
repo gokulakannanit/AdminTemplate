@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th>#ID</th>
-                <th> owner Name</th>
+                <th>Owner Name</th>
                 <th class="hidden-phone">Email</th>
                 <th class="hidden-phone">Address</th>
                 <th class="hidden-phone">Pan Number</th>
@@ -14,16 +14,13 @@
         <tbody>
             <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
                 <td colspan="7">No Records found</td>
-            </tr>
-            <tr ng-if="!isDataLoaded">
-                <td colspan="7"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-            </tr>
+            </tr>            
             <tr ng-repeat="owner in list = (model.dataList | filter:search)">
                 <td>{{::($index+1)}}</td>
-                <td>{{::owner.name}}</td>
+                <td>{{::owner.name | titleCase}}</td>
                 <td>{{::owner.email}}</td>
-                <td>{{::owner.address}}</td>
-                <td>{{::owner.pan}}</td>
+                <td>{{::owner.address | titleCase}}</td>
+                <td>{{::owner.pan | uppercase}}</td>
                 <td>{{::owner.phone}}</td>
                 <td>
                     <a ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'update', editId: owner.id })" class="btn btn-xs btn-info" data-original-title="">
@@ -33,6 +30,9 @@
                         <i class="fa fa-trash-o"></i> Delete
                     </a>
                 </td>
+            </tr>
+            <tr ng-if="!isDataLoaded" class="success">
+                <td colspan="7"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
         </tbody>
     </table>

@@ -128,6 +128,7 @@
                         }                        
                     })
                     scope.model = scope.selecteditem[scope.opts.displayname];
+                    scope.opened = false;
                 }
 
                 function checkValidity() {
@@ -159,10 +160,15 @@
                 });
                 input.on("blur", function() {
                     scope.search = '';
-                    scope.opened = false;
+                    //scope.opened = false;
                     scope.$apply();
                     checkValidity();
                 });
+                $(document).click(function(e){
+                    if(!$(e.target).parents('ul').hasClass('dropdown-custom')){
+                        scope.opened = false;
+                    }
+                }. false)
 
             }
             return {

@@ -4,25 +4,26 @@
             <tr>
                 <th>#ID</th>
                 <th class="hidden-phone">Vendor Name</th>
-                <th class="hidden-phone">Status</th>
+                <th class="hidden-phone">Goods Type</th>
+                <th class="hidden-phone">Contact Person</th>
                 <th class="hidden-phone">Address</th>
+                <th class="hidden-phone">Email</th>
+                <th class="hidden-phone">Phone</th>
                 <th class="hidden-phone">Actions</th>
             </tr>
         </thead>
         <tbody>
             <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
-                <td colspan="6">No Records found</td>
-            </tr>
-            <tr ng-if="!isDataLoaded">
-                <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-            </tr>
+                <td colspan="8">No Records found</td>
+            </tr>            
             <tr ng-repeat="vendor in list = (model.dataList | filter:search)">
                 <td>{{::($index+1)}}</td>
-                <td>{{::vendor.companyName}}</td>
-                <td class="hidden-phone">
-                    <span class="label label label-info">New</span>
-                </td>
-                <td>{{::vendor.address}}</td>
+                <td>{{::vendor.companyName | titleCase}}</td>
+                <td>{{::vendor.typeOfGoods | titleCase}}</td>
+                <td>{{::vendor.contactPerson | titleCase}}</td>
+                <td>{{::vendor.address | titleCase}}</td>
+                <td>{{::vendor.email}}</td>
+                <td>{{::vendor.phone}}</td>
                 <td>
                     <a ui-sref="vendorDetail({ isEdit: 'update', editId: vendor.id })" class="btn btn-xs btn-info" data-original-title="">
                         <i class="fa fa-edit"></i> Edit
@@ -31,6 +32,9 @@
                         <i class="fa fa-trash-o"></i> Delete
                     </a>
                 </td>
+            </tr>
+            <tr ng-if="!isDataLoaded" class="success">
+                <td colspan="8"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
         </tbody>
     </table>

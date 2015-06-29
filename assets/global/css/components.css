@@ -13756,8 +13756,17 @@ a.caption:hover{
 }
 
 .form-group .fa-asterisk{
-  color: #777;
   font-size: 10px;
   font-weight: normal;
   margin-left: 5px;
+  color:#FB5557;
+}
+
+.success td{
+  color: #3c763d;
+}
+
+.success td i{
+  margin-left: 10px;
+  font-size: 14px;
 }

@@ -13,10 +13,7 @@
         <tbody>
             <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
                 <td colspan="6">No Records found</td>
-            </tr>
-            <tr ng-if="!isDataLoaded">
-                <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-            </tr>
+            </tr>            
             <tr ng-repeat="vehicleInfo in list = (model.dataList | filter:search)">
                 <td>{{::($index+1)}}</td>
                 <td>{{::vehicleInfo.vehicleNo}}</td>
@@ -31,6 +28,9 @@
                         <i class="fa fa-trash-o"></i> Delete
                     </a>
                 </td>
+            </tr>
+            <tr ng-if="!isDataLoaded" class="success">
+                <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
         </tbody>
     </table>
