@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2015 at 07:12 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Jun 29, 2015 at 07:56 PM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `logistics`
 --
+CREATE DATABASE IF NOT EXISTS `logistics` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `logistics`;
 
 -- --------------------------------------------------------
 
@@ -93,8 +95,7 @@ CREATE TABLE IF NOT EXISTS `owners` (
 --
 
 INSERT INTO `owners` (`id`, `name`, `phone`, `address`, `email`, `pan`) VALUES
-(5, 'gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D'),
-(6, 'RAJ', '', '13 Chettinadu Gree villa', 'raj@gmail.com', '');
+(5, 'Gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D');
 
 -- --------------------------------------------------------
 
@@ -168,14 +169,15 @@ CREATE TABLE IF NOT EXISTS `vehiclefc` (
   `paymentMode` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `vehicleId` (`vehicleId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `vehiclefc`
 --
 
 INSERT INTO `vehiclefc` (`id`, `date`, `rto`, `fcNo`, `amount`, `renewalDate`, `vehicleId`, `paymentMode`) VALUES
-(1, '2015-06-14T13:03:43.823Z', 'fdsfdsf', '12121', '2341', '', 2, 'Cash');
+(1, '2015-06-14T13:03:43.823Z', 'fdsfdsf', '12121', '2341', '', 2, 'Cash'),
+(2, '2015-06-11T18:30:00.000Z', 'abc', '2222', '1234', '2015-06-12T18:30:00.000Z', 0, 'Cash');
 
 -- --------------------------------------------------------
 
@@ -226,15 +228,16 @@ CREATE TABLE IF NOT EXISTS `vehiclelist` (
   `fuelType` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vehiclelist`
 --
 
 INSERT INTO `vehiclelist` (`id`, `vehicleNo`, `date`, `amtPurchased`, `modelYear`, `make`, `ownershipType`, `chasisNo`, `engineNo`, `ownership`, `owner`, `odometer`, `fuelType`, `type`) VALUES
-(2, 'TN 22 AF 1234', '2015-06-12T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '12121212', '121212', '', 'RAJ', '121212', 'Diesel', 'LCV'),
-(4, 'TN 22 AF 1234', '2015-06-12T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '7567876', '76876876', '', 'RAJ', '65756756', 'TATA', 'TATA');
+(2, 'TN 22 AF 1234', '2015-06-09T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '12121212', '121212', '', 'RAJ', '121212', 'Diesel', 'LCV'),
+(4, 'TN 22 AF 1234', '2015-06-12T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '7567876', '76876876', '', 'RAJ', '65756756', 'TATA', 'TATA'),
+(5, 'TN 99k 8546', '2015-06-29T17:47:20.350Z', '', '', 'Tata', 'own', '', '', '', 'ASED', '', 'Diesel', 'LCV');
 
 -- --------------------------------------------------------
 
@@ -264,6 +267,35 @@ CREATE TABLE IF NOT EXISTS `vehicletyre` (
 
 INSERT INTO `vehicletyre` (`id`, `tyreNo`, `make`, `position`, `dealer`, `date`, `warrentyDate`, `receiptNo`, `price`, `vehicleId`, `paymentMode`) VALUES
 (3, '1524', 'MRF', 'FL', 'dealer1', '2015-06-13T15:38:53.938Z', '', '12', '102', 2, 'Cash');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle_spare_parts`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicle_spare_parts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `purchaseDate` varchar(255) NOT NULL,
+  `paymentMode` varchar(255) NOT NULL,
+  `dealerName` varchar(255) NOT NULL,
+  `spareName` varchar(255) NOT NULL,
+  `spareCode` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `rate` varchar(255) NOT NULL,
+  `amount` varchar(255) NOT NULL,
+  `warrantyPeriod` varchar(255) NOT NULL,
+  `vehicleId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `vehicle_spare_parts`
+--
+
+INSERT INTO `vehicle_spare_parts` (`id`, `purchaseDate`, `paymentMode`, `dealerName`, `spareName`, `spareCode`, `quantity`, `rate`, `amount`, `warrantyPeriod`, `vehicleId`) VALUES
+(1, '2015-06-17T17:32:53.587Z', 'Cash', 'Abc', 'Battery', 'BY7089', 1, '2523', '2533', '1 Year', 2),
+(3, '2015-06-23T18:30:00.000Z', 'Cash', 'abc', 'Head Light', 'HL4567', 2, '', '2400', '6 Months', 5);
 
 -- --------------------------------------------------------
 

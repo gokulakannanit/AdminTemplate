@@ -1,20 +1,28 @@
 <div class="container-fluid">
    <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
       <div class="panel panel-default">
-         <div class="panel-title">Add FC</div>
+         <div class="panel-title">Add Spare Parts</div>
          <div class="panel-body">
             <ft-form>
+               
+               <ft-form-text ng-model="model.dataModel.dealerName" name="dealerName" labeltext="Dealer Name"></ft-form-text>
+              
+                <ft-form-text ng-model="model.dataModel.spareName" name="spareName" labeltext="Spare Name"></ft-form-text>
+
+                <ft-form-text ng-model="model.dataModel.spareCode" name="spareCode" labeltext="Spare Code"></ft-form-text>
+
+                <ft-form-text ng-model="model.dataModel.quantity" name="quantity" labeltext="Quantity"></ft-form-text>
+
                <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
 
                <ft-form-text type="date" ng-model="model.dataModel.purchaseDate" name="date" labeltext="Purchased Date"></ft-form-text>
 
-               <ft-form-text ng-model="model.dataModel.companyName" name="companyName" labeltext="Company Name"></ft-form-text>
 
-               <ft-form-text ng-model="model.dataModel.policyNo" name="policyNo" labeltext="Policy No"></ft-form-text>
+               <ft-form-text ng-model="model.dataModel.rate" name="rate" labeltext="Rate"></ft-form-text>
 
                <ft-form-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-form-text>
 
-               <ft-form-text ng-model="model.dataModel.coverageLimit" name="coverageLimit" labeltext="Coverage Limit"></ft-form-text>             
+               <ft-form-text ng-model="model.dataModel.warrantyPeriod" name="warrantyPeriod" labeltext="Warranty Period"></ft-form-text>             
             </ft-form>
          </div>
       </div>
@@ -24,26 +32,29 @@
            <thead>
                <tr>
                    <th>#ID</th>
-                   <th class="hidden-phone">Company Name</th>
-                   <th class="hidden-phone">Purchase Date</th>
-                   <th class="hidden-phone">Policy No</th>
+                   <th class="hidden-phone">Dealer Name</th>
+                   <th class="hidden-phone">Spare Name</th>
+                   <th class="hidden-phone">Spare Code</th>
                    <th class="hidden-phone">Amount</th>
-                   <th class="hidden-phone">Coverage Limit</th>
+                   <th class="hidden-phone">Quantity</th>
+                   <th class="hidden-phone">Purchase Date</th>
                </tr>
            </thead>
            <tbody>
                <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
-                  <td colspan="6">No Records found</td>
+                  <td colspan="7">No Records found</td>
               </tr>
               <tr ng-if="!isDataLoaded">
                   <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
               </tr>
                <tr ng-repeat="spare in model.dataList | filter:search">
                    <td>{{$index+1}}</td>
-                   <td>{{spare.companyName}}</td>
-                   <td>{{spare.purchaseDate}}</td>
-                   <td>{{spare.policyNo}}</td>
+                   <td>{{spare.dealerName}}</td>
+                   <td>{{spare.spareName}}</td>
+                   <td>{{spare.spareCode}}</td>
                    <td>{{spare.amount}}</td>
+                   <td>{{spare.quantity}}</td>
+                   <td>{{spare.purchaseDate}}</td>
                    <td>
                        <a class="btn btn-xs btn-info" ng-click="edit(spare.id)">
                            <i class="fa fa-edit"></i> Edit

@@ -5,12 +5,15 @@
         	this.getScope = function(){
         		return {
 	                purchaseDate:new Date(),
-	                companyName:'',
-	                policyNo:'',
-	                amount:'',
-	                coverageLimit:'',
 	                paymentMode:'Cash',
-	                vehicleId:''
+                    dealerName:'',
+                    spareName:'',
+                    spareCode:'',
+                    quantity:'',
+	                rate:'',
+                    amount:'',
+                    warrantyPeriod:'',
+                    vehicleId:''
 	            };
         	};
         	this.filter = 'vehicleId';
