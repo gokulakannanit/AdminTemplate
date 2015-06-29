@@ -4,19 +4,11 @@
         var myService = function() {
             this.getScope = function(){
                 return {
-                    ownershipType:'own',
-                    vehicleNo: '',
-                    date:new Date(),
-                    amtPurchased:'',
-                    modelYear:'',
-                    make:'',
-                    modelYear:'',
-                    owner:'',
-                    fuelType:'',
-                    type:'',
-                    chasisNo:'',
-                    engineNo:'',
-                    odometer:''              
+                    name: '',
+                    phone: '',
+                    address: '',
+                    email: '',
+                    pan: ''
                 };
             };
             this.$http = $http;

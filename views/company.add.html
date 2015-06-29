@@ -13,7 +13,7 @@
             </div>
 
             <div ng-if="model.dataModel.typeOfCompany == 'P'">
-                <ft-tag-input name="owner" minlen="2" ng-model="selectedTags" source="owner.source.dataList" labeltext="Add Partners"></ft-tag-input>
+                <ft-tag-input name="owner" minlen="2" ng-model="selectedTags" source="owner.source.dataList" labeltext="Add Partners" displayname="name"></ft-tag-input>
             </div>
 
             <ft-form-text type="email" ng-model="model.dataModel.email" name="email" labeltext="Email"></ft-form-text>                
