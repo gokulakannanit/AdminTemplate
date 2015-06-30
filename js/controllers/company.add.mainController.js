@@ -12,7 +12,17 @@
             this.$scope.companyType = [{label:"Sole Propriteship", value:"S"}, {label:"Partnership", value:"P"}];
             ownerService.get().then(this.onDataLoaded);
             this.$scope.updateDetails = function(){
-                self.$scope.model.dataModel.owner = self.$scope.owner.selecteditem.id;
+            	if(self.$scope.selectedTags.length>0){
+            		var id_str = '';
+            		angular.forEach(self.$scope.selectedTags, function(item){
+						id_str += item.id+",";
+            		})
+            		String(id_str).substr(0, id_str.length-2);
+            		self.$scope.model.dataModel.owner = id_str;
+            		console.log(id_str);
+            	}else{
+            		self.$scope.model.dataModel.owner = self.$scope.owner.selecteditem.id;
+            	}
                 self.updateService.add(self.$scope.model.dataModel);
             }
         }
