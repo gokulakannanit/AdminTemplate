@@ -4,7 +4,8 @@
 
          <ft-form-text type="radio" source="ownershipList" ng-model="model.dataModel.ownershipType" name="typeOfOwnership" labeltext="Ownership" required="true"></ft-form-text>
          
-         <ft-form-text ng-model="model.dataModel.vehicleNo" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
+         <!-- Name attribute require to check duplicate -->
+         <ft-form-text ng-model="model.dataModel.vehicleNo" check-duplicate-in="model.dataList" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
 
          <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Purchased Date"></ft-form-text>
 

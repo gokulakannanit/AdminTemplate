@@ -5,4 +5,5 @@
 	<p ng-if="form.$error.maxlen">Only maximum of {{opts.maxlength}} charaters allowed</p>
 	<p ng-if="form.$error.email">Invalid email address</p>
 	<p ng-if="form.$error.isNotNumber">Only Number is allowed</p>
+	<p ng-if="form.$error.isDuplicate">{{opts.labeltext}} is already Exist!</p>
 </div>
