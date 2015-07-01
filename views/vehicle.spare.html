@@ -36,14 +36,15 @@
                    <th class="hidden-phone">Amount</th>
                    <th class="hidden-phone">Quantity</th>
                    <th class="hidden-phone">Purchase Date</th>
+                   <th></th>
                </tr>
            </thead>
            <tbody>
                <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                  <td colspan="7">No Records found</td>
+                  <td colspan="8">No Records found</td>
               </tr>
               <tr ng-if="!model.isDataLoaded">
-                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+                  <td colspan="8"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
               </tr>
                <tr ng-repeat="spare in model.dataList | filter:search" ng-if="model.isDataLoaded">
                    <td>{{$index+1}}</td>

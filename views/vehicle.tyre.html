@@ -40,13 +40,10 @@
                </tr>
            </thead>
            <tbody>
-              <tr class="danger" ng-if="(model.dataList.length === 0 && isDataLoaded)">
+              <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
                   <td colspan="6">No Records found</td>
-              </tr>
-              <tr ng-if="!isDataLoaded">
-                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-              </tr>
-               <tr ng-repeat="tyre in model.dataList | filter:search">
+              </tr>              
+               <tr ng-repeat="tyre in model.dataList | filter:search" ng-if="model.isDataLoaded">
                    <td>{{$index+1}}</td>
                    <td>{{tyre.dealer}}</td>
                    <td>{{tyre.date}}</td>
@@ -61,6 +58,9 @@
                        </a>
                    </td>
                </tr>
+               <tr ng-if="!model.isDataLoaded">
+                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+              </tr>
            </tbody>
        </table>
       </div>

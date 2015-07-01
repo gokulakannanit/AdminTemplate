@@ -103,16 +103,16 @@ var baseService = {
         });
         return httpCall;
     },
-    add: function(data) {    	
+    add: function(data) {
+        if(data[this.filter] === ''){
+            data[this.filter] = this.parentId;
+        }  	
         var self = this,
             setting = {
                 method: 'POST',
                 url: this.SERVICE_URL.ADD_URL,
                 data: data
             }
-        if(data[this.filter]){
-            data[this.filter] = self.parentId;
-        }
         var httpCall = this.$http(setting);
         httpCall.success(function() {
             self.reloadData();
