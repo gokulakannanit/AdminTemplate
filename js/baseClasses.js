@@ -34,13 +34,15 @@ var baseService = {
             };
             httpCall = this.$http(setting);
             httpCall.success(function(data) {
+                self.model.isDataLoaded = true;
             	self.model.mainList[self.parentId] = data;
                 self.model.dataList = data;
                 defer.resolve();
             });
     	}else{
     		if(!self.editId){
-    			self.model.dataList = self.model.mainList[self.parentId];	
+    			self.model.dataList = self.model.mainList[self.parentId];
+                self.model.isDataLoaded = true;	
     		}else{
     			self.model.dataModel = self.getById(self.editId);
     		}   
@@ -59,7 +61,7 @@ var baseService = {
         }else{
             self.editId = arguments[0];
             self.model.dataModel = this.getScope();
-        	if (!this.model.isDataLoaded) {                
+        	if (!self.model.isDataLoaded) {         
         		setting = {
 	                method: 'GET',
 	                url: this.SERVICE_URL.GET_URL
@@ -67,6 +69,7 @@ var baseService = {
 	            httpCall = this.$http(setting);
 	            httpCall.success(function(data) {
 	                self.model.isDataLoaded = true;
+                    console.log('isDataLoaded: ',self.model.isDataLoaded);
 	                self.model.dataList = data;	                
 	                self.model.dataItemById = self.getArrayById();
                     if(self.editId){
@@ -77,7 +80,7 @@ var baseService = {
         	}else{
                 if(self.editId){           
         	       	self.model.dataModel = self.getById(self.editId);
-                }
+                }                
                 defer.resolve();
         	}
         }
