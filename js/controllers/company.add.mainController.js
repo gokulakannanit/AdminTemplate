@@ -16,9 +16,8 @@
             		var id_str = '';
             		angular.forEach(self.$scope.selectedTags, function(item){
 						id_str += item.id+",";
-            		})
-            		String(id_str).substr(0, id_str.length-2);
-            		self.$scope.model.dataModel.owner = id_str;
+            		})            		
+            		self.$scope.model.dataModel.owner = String(id_str).substr(0, id_str.length-2);;
             		console.log(id_str);
             	}else{
             		self.$scope.model.dataModel.owner = self.$scope.owner.selecteditem.id;
@@ -28,12 +27,22 @@
         }
         
         this.onDataLoaded = function(){
-           if(self.$scope.model.dataModel.owner && self.$scope.owner.source.dataItemById.length>0){
-                self.$scope.owner.selecteditem = self.$scope.owner.source.dataItemById[self.$scope.model.dataModel.owner];
-                if(self.$scope.owner.selecteditem){
-                   self.$scope.owner.name = self.$scope.owner.selecteditem.name; 
-               }                
+            if(self.$scope.model.dataModel.owner && self.$scope.owner.source.dataItemById.length>0){
+                if(self.$scope.model.dataModel.typeOfCompany === 'P'){
+                    self.$scope.selectedTags = [];
+                    angular.forEach(self.$scope.model.dataModel.owner.split(','), function(item){
+                        if(self.$scope.owner.source.dataItemById[item]){
+                            self.$scope.selectedTags.push(self.$scope.owner.source.dataItemById[item]);
+                        }                        
+                    })
+                }else{
+                    self.$scope.owner.selecteditem = self.$scope.owner.source.dataItemById[self.$scope.model.dataModel.owner];
+                    if(self.$scope.owner.selecteditem){
+                       self.$scope.owner.name = self.$scope.owner.selecteditem.name; 
+                    }
+                }
             }
+            
         }
         this.init();
     }

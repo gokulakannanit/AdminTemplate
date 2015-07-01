@@ -46,10 +46,9 @@
                 return true;
             },
             isDuplicate: function(modelValue, viewValue) {
-                var key = scope.opts.name,
+              var key = scope.opts.name,
                     source = scope.checkDuplicateIn,
                     isUnique = true;
-                    console.log(scope.checkDuplicateIn)
                 angular.forEach(source, function(item){
                     if(item[key] === modelValue) {
                         isUnique = false;
@@ -58,7 +57,7 @@
                 });
 
                 return isUnique;
-            }
+             }
 
         };
         return validationEngine;
@@ -225,7 +224,6 @@
                     };
                     scope.datePickerObj = datePickerObj;
                 }
-
                 $compile(elem.contents())(scope);
 
                 var input = $(elem).find("input");
@@ -235,9 +233,6 @@
                 if(scope.opts.required && input.val() === ''){
                     ctrl.$setValidity("required", false);
                 }
-                if(scope.checkDuplicateIn){
-                    ctrl.$setValidity("isDuplicate", false);
-                }
                 
                 input.on("blur focus", function(e) {
                     ctrl.$setTouched(true);
@@ -245,17 +240,14 @@
                         ctrl.$setValidity("required", false);
                     }                                        
                 });
-
                 
-
             }
             return {
                 restrict: 'AE',
                 require: 'ngModel',
                 scope: {
                     model: '=ngModel',
-                    source:"=",
-                    checkDuplicateIn: '='
+                    source: '='
                 },
                 link: link,
                 templateUrl: 'tpl/component/formControl.html'

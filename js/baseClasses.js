@@ -1,12 +1,12 @@
 var baseService = {
-    isLoadedFromService: false,
     parentId:'',  
     init:function(){
         this.model = {
         	mainList:[],
             dataList:[],
             dataModel:this.getScope(),
-            dataItemById:[]
+            dataItemById:[],
+            isDataLoaded:false
         }
     },
     getArrayById: function() {
@@ -59,14 +59,14 @@ var baseService = {
         }else{
             self.editId = arguments[0];
             self.model.dataModel = this.getScope();
-        	if (!this.isLoadedFromService) {                
+        	if (!this.model.isDataLoaded) {                
         		setting = {
 	                method: 'GET',
 	                url: this.SERVICE_URL.GET_URL
 	            };
 	            httpCall = this.$http(setting);
 	            httpCall.success(function(data) {
-	                self.isLoadedFromService = true;
+	                self.model.isDataLoaded = true;
 	                self.model.dataList = data;	                
 	                self.model.dataItemById = self.getArrayById();
                     if(self.editId){
@@ -129,7 +129,7 @@ var baseService = {
         	this.model.mainList[this.parentId] = null;
 			this.get(this.parentId);
         }else{
-        	this.isLoadedFromService = false;
+        	this.model.isDataLoaded = false;
         	this.get();
         } 
     }
@@ -143,7 +143,7 @@ var baseController = {
         this.loadData();
     },
     onDataLoaded: function(){
-        this.$scope.isDataLoaded = true;
+       
     },
     loadData: function() {
         var defer, self = this;
@@ -166,7 +166,6 @@ var baseController = {
     },
     defineScope: function() {
         var self = this;
-        this.$scope.isDataLoaded = false;
         if (this.$stateParams) {
             this.$scope.editId = this.$stateParams.editId;
         }
