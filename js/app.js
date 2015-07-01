@@ -626,6 +626,80 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
+            .state('manage', {
+                url: '/manage.html',
+                templateUrl: 'views/manage.html',
+                controller: 'manage.mainController',
+                data: {
+                    pageTitle: 'Manage Details',
+                    breadScrum: [{
+                        label: 'home',
+                        url: '#/dashboard.html'
+                    }, {
+                        label: 'Manage Details',
+                        url: '#/'
+                    }]
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/controllers/manage.mainController.js'
+                                ]
+                            });
+                        }
+                    ]
+                }
+            })
+            .state('manage.manufacturer', {
+                views: {
+                    url: '/manufacturer',
+                    "container": {
+                        templateUrl: "views/manage.manufacturer.html",
+                        controller: 'manage.manufacturer.mainController',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        name: 'MetronicApp',
+                                        insertBefore: '#ng_load_plugins_before',
+                                        files: [
+                                            'js/service/manage.manufacturer.service.js',
+                                            'js/controllers/manage.manufacturer.mainController.js'
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    }
+                }
+            })
+            .state('manage.trucks', {
+                views: {
+                    url: '/trucks',
+                    "container": {
+                        templateUrl: "views/manage.trucks.html",
+                        controller: 'manage.trucks.mainController',
+                        resolve: {
+                            deps: ['$ocLazyLoad',
+                                function($ocLazyLoad) {
+                                    return $ocLazyLoad.load({
+                                        name: 'MetronicApp',
+                                        insertBefore: '#ng_load_plugins_before',
+                                        files: [
+                                            'js/service/manage.trucks.service.js',
+                                            'js/controllers/manage.trucks.mainController.js'
+                                        ]
+                                    });
+                                }
+                            ]
+                        }
+                    }
+                }
+            })
 
 
     }

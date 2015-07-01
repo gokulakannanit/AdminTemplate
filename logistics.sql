@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2015 at 07:56 PM
+-- Generation Time: Jul 01, 2015 at 08:30 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -76,6 +76,26 @@ INSERT INTO `companylist` (`id`, `companyName`, `tan`, `serviceTax`, `ssi`, `pan
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `manufacturer`
+--
+
+CREATE TABLE IF NOT EXISTS `manufacturer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `manufacturerName` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `manufacturer`
+--
+
+INSERT INTO `manufacturer` (`id`, `manufacturerName`) VALUES
+(4, 'Tata Motors'),
+(5, 'BMW');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `owners`
 --
 
@@ -96,6 +116,30 @@ CREATE TABLE IF NOT EXISTS `owners` (
 
 INSERT INTO `owners` (`id`, `name`, `phone`, `address`, `email`, `pan`) VALUES
 (5, 'Gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `truck_model`
+--
+
+CREATE TABLE IF NOT EXISTS `truck_model` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `truckModel` varchar(255) NOT NULL,
+  `tonnage` varchar(255) NOT NULL,
+  `tankCapacity` varchar(255) NOT NULL,
+  `tyreSize` varchar(255) NOT NULL,
+  `engineCapacity` varchar(255) NOT NULL,
+  `manufacturerId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `truck_model`
+--
+
+INSERT INTO `truck_model` (`id`, `truckModel`, `tonnage`, `tankCapacity`, `tyreSize`, `engineCapacity`, `manufacturerId`) VALUES
+(1, 'Tata Ace', '1500', '20', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -196,15 +240,14 @@ CREATE TABLE IF NOT EXISTS `vehicleinsurance` (
   `vehicleId` int(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vehicleinsurance`
 --
 
 INSERT INTO `vehicleinsurance` (`id`, `purchaseDate`, `paymentMode`, `companyName`, `policyNo`, `amount`, `coverageLimit`, `vehicleId`) VALUES
-(1, '', '', '', '', '', '', 0),
-(4, '2015-06-13T12:32:02.604Z', 'Cash', 'LIC', '124634', '12000', '250000', 2);
+(5, '2015-07-01T17:52:09.858Z', 'Cash', 'Bajaj Alianz', '7489561278', '1458998', '', 6);
 
 -- --------------------------------------------------------
 
@@ -228,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `vehiclelist` (
   `fuelType` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `vehiclelist`
@@ -287,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `vehicle_spare_parts` (
   `warrantyPeriod` varchar(255) NOT NULL,
   `vehicleId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `vehicle_spare_parts`

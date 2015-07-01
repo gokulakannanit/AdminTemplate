@@ -1,0 +1,64 @@
+<div class="container-fluid">
+   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
+      <div class="panel panel-default">
+         <div class="panel-title">Add Truck Model</div>
+         <div class="panel-body">
+            <ft-form>
+
+               <ft-form-text ng-model="model.dataModel.truckModel" name="truckModel" labeltext="Truck Model" required="true"></ft-form-text>
+
+               <ft-form-text ng-model="model.dataModel.tonnage" name="tonnage" labeltext="Tonnage" ></ft-form-text>
+
+               <ft-form-text ng-model="model.dataModel.tankCapacity" name="tankCapacity" labeltext="Tank Capacity" ></ft-form-text>
+
+               <ft-form-text ng-model="model.dataModel.tyreSize" name="tyreSize" labeltext="Tyre Size" ></ft-form-text>
+
+               <!-- ac or non ac -->
+               <!-- type LCV or HCV -->
+
+               <ft-form-text ng-model="model.dataModel.engineCapacity" name="engineCapacity" labeltext="Engine Capacity" ></ft-form-text>
+
+            </ft-form>
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
+         <table class="table table-striped table-bordered table-hover no-margin">
+           <thead>
+               <tr>
+                   <th>#ID</th>
+                   <th class="hidden-phone">Truck Model</th>
+                   <th class="hidden-phone">Tonnage</th>
+                   <th class="hidden-phone">Tank Capacity</th>
+                   <th class="hidden-phone">Tyre Size</th>
+                   <th class="hidden-phone">Engine Capacity</th>
+                   <th></th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
+                  <td colspan="7">No Records found</td>
+              </tr>              
+              <tr ng-repeat="item in model.dataList | filter:search" ng-if="model.isDataLoaded">
+                   <td>{{$index+1}}</td>
+                   <td>{{item.truckModel}}</td>
+                   <td>{{item.tonnage}}</td>
+                   <td>{{item.tankCapacity}}</td>
+                   <td>{{item.tyreSize}}</td>
+                   <td>{{item.engineCapacity}}</td>
+                   <td>
+                       <a class="btn btn-xs btn-info" ng-click="edit(item.id)">
+                           <i class="fa fa-edit"></i> Edit
+                       </a>
+                       <a class="btn btn-xs btn-danger" ng-click="confirmDelete(item.id);">
+                           <i class="fa fa-trash-o"></i> Delete
+                       </a>
+                   </td>
+               </tr>
+               <tr ng-if="!model.isDataLoaded">
+                  <td colspan="7"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+              </tr>
+           </tbody>
+       </table>
+      </div>
+</div>
