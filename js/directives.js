@@ -247,7 +247,8 @@
                 require: 'ngModel',
                 scope: {
                     model: '=ngModel',
-                    source: '='
+                    source: '=',
+                    checkDuplicateIn: '='
                 },
                 link: link,
                 templateUrl: 'tpl/component/formControl.html'
