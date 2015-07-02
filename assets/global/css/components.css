@@ -4779,7 +4779,7 @@ Portlets
 }
 .portlet.box > .portlet-body {
   background-color: #fff;
-  padding: 30px 10px 10px;
+  padding: 10px 5px 10px;
 }
 .portlet.box.portlet-fullscreen > .portlet-body {
   padding: 10px;
@@ -13790,4 +13790,24 @@ tags-input .tags .tag-item{
 tags-input .autocomplete .suggestion-item.selected, tags-input .autocomplete .suggestion-item.selected em{
   background: #5bc0de;
   color:#fff;
+}
+
+.row.no-gutter{
+  margin:5px 15px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+  padding: 5px;
+}
+.form-horizontal .form-group{
+  margin:3px 10px;
+}
+
+.form-horizontal .form-group.removeMargin{
+  margin:2px 2px;
+}
+
+.portlet.box > .portlet-body .container-fluid.subForm{
+  padding-right: 5px;
+  padding-left: 5px;
 }

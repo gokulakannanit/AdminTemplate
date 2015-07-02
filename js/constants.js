@@ -6,7 +6,7 @@
 		makeList:[{id:'Tata', label:'Tata'}, {id:'Leyland', label:'Leyland'}],
 		fuelList:[{id:"Diesel", label:"Diesel"}, {id:"Petrol", label:"Petrol"}, {id:"Gas", label:"Gas"}],
 		typeList:[{id:"LCV", label:"LCV"}, {id:"HCV", label:"HCV"}],
-		paymentList:[{label:"Online", value:"Online"}, {label:"Cash", value:"Cash"}, {label:"Cheque / DD", value:"Cheque"}],
+		paymentList:[{label:"Online", value:"Online"}, {label:"Cash", value:"Cash"}, {label:"Cheque", value:"Cheque"}, {label:"Credit", value:"Credit"}],
 		tyreMakeList:[{id: 'MRF', label: 'MRF'}, {id: 'Tyre1', label: 'Tyre1'}],
 		tyrePositionList:[
 					{id: 'FL', label: 'Front Left'}, 

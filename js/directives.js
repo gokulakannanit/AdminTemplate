@@ -259,7 +259,7 @@
     MetronicApp.directive("ftAlert", directiveObject.ftAlert);
     MetronicApp.directive("ftTagInput", directiveObject.ftTagInput);
     MetronicApp.directive("searchDropdown", directiveObject.searchDropdown);
-    MetronicApp.directive("ftFormText", directiveObject.ftFormText);
+    MetronicApp.directive("ftText", directiveObject.ftFormText);
 }());
 
 

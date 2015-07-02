@@ -1,57 +1,64 @@
 <div class="container-fluid">
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
-      <div class="panel panel-default">
-         <div class="panel-title">Add FC</div>
-         <div class="panel-body">
-            <ft-form>
-               <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
-
-               <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.rto" name="rto" labeltext="RTO Name"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.fcNo" name="fcNo" labeltext="FC No"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-form-text>
-
-               <ft-form-text type="date" ng-model="model.dataModel.renewalDate" name="renewalDate" labeltext="Renewal Date"></ft-form-text>             
-            </ft-form>
-         </div>
+  <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-title">Add FC</div>
+      <div class="panel-body">
+        <ft-form>
+        <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
+        <div class="row">
+          <div class="col-lg-6">
+            <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-text>
+          </div>
+          <div class="col-lg-6">
+            <ft-text ng-model="model.dataModel.fcNo" name="fcNo" labeltext="FC No"></ft-text>
+          </div>
+        </div>
+        <ft-text ng-model="model.dataModel.rto" name="rto" labeltext="RTO Name"></ft-text>
+        <div class="row">
+          <div class="col-lg-6">
+            <ft-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-text>
+          </div>
+          <div class="col-lg-6">
+            <ft-text type="date" ng-model="model.dataModel.renewalDate" name="renewalDate" labeltext="Renewal Date"></ft-text>
+          </div>
+        </div>
+        </ft-form>
       </div>
-   </div>
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
-         <table class="table table-striped table-bordered table-hover no-margin">
-           <thead>
-               <tr>
-                   <th>#ID</th>
-                   <th class="hidden-phone">RTO</th>
-                   <th class="hidden-phone">Renewal Date</th>
-                   <th class="hidden-phone">Amount</th>
-                   <th class="hidden-phone"></th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                  <td colspan="5">No Records found</td>
-              </tr>
-              <tr ng-if="!model.isDataLoaded">
-                  <td colspan="5"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-              </tr>
-               <tr ng-repeat="fc in model.dataList | filter:search" ng-if="model.isDataLoaded">
-                   <td>{{$index+1}}</td>
-                   <td>{{fc.rto}}</td>
-                   <td>{{fc.renewalDate}}</td>
-                   <td>{{fc.amount}}</td>
-                   <td>
-                       <a class="btn btn-xs btn-info" ng-click="edit(fc.id)">
-                           <i class="fa fa-edit"></i> Edit
-                       </a>
-                       <a class="btn btn-xs btn-danger" ng-click="confirmDelete(fc.id);">
-                           <i class="fa fa-trash-o"></i> Delete
-                       </a>
-                   </td>
-               </tr>
-           </tbody>
-       </table>
-      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
+    <table class="table table-striped table-bordered table-hover no-margin">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th class="hidden-phone">RTO</th>
+          <th class="hidden-phone">Renewal Date</th>
+          <th class="hidden-phone">Amount</th>
+          <th class="hidden-phone"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
+          <td colspan="5">No Records found</td>
+        </tr>
+        <tr ng-if="!model.isDataLoaded">
+          <td colspan="5"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+        </tr>
+        <tr ng-repeat="fc in model.dataList | filter:search" ng-if="model.isDataLoaded">
+          <td>{{$index+1}}</td>
+          <td>{{fc.rto}}</td>
+          <td>{{fc.renewalDate}}</td>
+          <td>{{fc.amount}}</td>
+          <td>
+            <a class="btn btn-xs btn-info" ng-click="edit(fc.id)">
+              <i class="fa fa-edit"></i> Edit
+            </a>
+            <a class="btn btn-xs btn-danger" ng-click="confirmDelete(fc.id);">
+              <i class="fa fa-trash-o"></i> Delete
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

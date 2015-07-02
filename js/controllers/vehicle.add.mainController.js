@@ -12,7 +12,6 @@ MetronicApp.controller('vehicle.add.mainController', ['$scope', '$state', '$stat
         $scope.links = [{view:'vehicleDetail.basic', label:'Basic', selected:true},
                         {view:'vehicleDetail.insurance', label:'Insurance', selected:false},
                         {view:'vehicleDetail.fc', label:'Fitness Certificate', selected:false},
-                        {view:'vehicleDetail.spare', label:'Spare Parts', selected:false},
                         {view:'vehicleDetail.tyre', label:'Tyre', selected:false},
                         {view:'vehicleDetail.battery', label:'Battery', selected:false},
                         {view:'vehicleDetail.emission', label:'Emission', selected:false}

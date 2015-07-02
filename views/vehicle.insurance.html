@@ -4,17 +4,26 @@
          <div class="panel-title">Add Insurance</div>
          <div class="panel-body">
             <ft-form>
-               <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
+               <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
+               <div class="row">
+                <div class="col-lg-6">
+                  <ft-text type="date" ng-model="model.dataModel.purchaseDate" name="date" labeltext="Policy Date"></ft-text>
+                </div>
+                <div class="col-lg-6">
+                  <ft-text ng-model="model.dataModel.companyName" name="companyName" labeltext="Company Name"></ft-text>
+                </div>
+              </div>
 
-               <ft-form-text type="date" ng-model="model.dataModel.purchaseDate" name="date" labeltext="Policy Date"></ft-form-text>
+               <div class="row">
+                <div class="col-lg-6">
+                  <ft-text ng-model="model.dataModel.policyNo" name="policyNo" labeltext="Policy No"></ft-text>
+                </div>
+                <div class="col-lg-6">
+                  <ft-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-text>
+                </div>
+              </div>
 
-               <ft-form-text ng-model="model.dataModel.companyName" name="companyName" labeltext="Company Name"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.policyNo" name="policyNo" labeltext="Policy No"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.amount" name="amount" labeltext="Amount"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.coverageLimit" name="coverageLimit" labeltext="Coverage Limit"></ft-form-text>               
+               <ft-text ng-model="model.dataModel.coverageLimit" name="coverageLimit" labeltext="Coverage Limit"></ft-text>               
             </ft-form>
          </div>
       </div>

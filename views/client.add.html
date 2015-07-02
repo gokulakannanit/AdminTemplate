@@ -1,17 +1,17 @@
 <ft-panel>
     <ft-form>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <ft-form-text ng-model="model.dataModel.companyName" name="companyName" labeltext="Client Name" required="true"></ft-form-text>
+            <ft-text ng-model="model.dataModel.companyName" name="companyName" labeltext="Client Name" required="true"></ft-text>
 
-            <ft-form-text ng-model="model.dataModel.address" name="address" labeltext="Address" required="true"></ft-form-text>
+            <ft-text ng-model="model.dataModel.address" name="address" labeltext="Address" required="true"></ft-text>
 
-            <ft-form-text ng-model="model.dataModel.contactPerson" name="contactPerson" labeltext="Contact Person" required="true"></ft-form-text>
+            <ft-text ng-model="model.dataModel.contactPerson" name="contactPerson" labeltext="Contact Person" required="true"></ft-text>
 
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <ft-form-text type="email" ng-model="model.dataModel.email" name="email" labeltext="Email"></ft-form-text>
+            <ft-text type="email" ng-model="model.dataModel.email" name="email" labeltext="Email"></ft-text>
 
-            <ft-form-text ng-model="model.dataModel.phone" name="phone" labeltext="Phone Number" minlength="10" maxlength="10" number="true"></ft-form-text>
+            <ft-text ng-model="model.dataModel.phone" name="phone" labeltext="Phone Number" minlength="10" maxlength="10" number="true"></ft-text>
         </div>
     </ft-form>
 </ft-panel>

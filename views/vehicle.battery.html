@@ -5,21 +5,21 @@
          <div class="panel-body">
             <ft-form>
 
-              <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
+              <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
 
-               <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
+               <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-text>
 
                <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
 
-               <ft-form-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-form-text>
+               <ft-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-text>
 
                <search-dropdown ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Battery Dealer"></search-dropdown>
 
-               <ft-form-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-form-text>
+               <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-text>
 
-               <ft-form-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-form-text>
+               <ft-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-text>
 
-               <ft-form-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-form-text>
+               <ft-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-text>
               
             </ft-form>
          </div>

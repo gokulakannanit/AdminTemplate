@@ -2,22 +2,22 @@
    <ft-form>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
 
-         <ft-form-text type="radio" source="ownershipList" ng-model="model.dataModel.ownershipType" name="typeOfOwnership" labeltext="Ownership" required="true"></ft-form-text>
+         <ft-text type="radio" source="ownershipList" ng-model="model.dataModel.ownershipType" name="typeOfOwnership" labeltext="Ownership" required="true"></ft-text>
          
          <!-- Name attribute require to check duplicate -->
-         <ft-form-text ng-model="model.dataModel.vehicleNo" check-duplicate-in="model.dataList" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-form-text> 
+         <ft-text ng-model="model.dataModel.vehicleNo" check-duplicate-in="model.dataList" name="vehicleNo" labeltext="Vehicle No" required="true"></ft-text> 
  
 
-         <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Purchased Date"></ft-form-text>
+         <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Purchased Date"></ft-text>
 
-         <ft-form-text ng-model="model.dataModel.amtPurchased" name="amtPurchased" labeltext="Purchased Amt"></ft-form-text>
+         <ft-text ng-model="model.dataModel.amtPurchased" name="amtPurchased" labeltext="Purchased Amt"></ft-text>
 
       </div>
       <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
 
-         <ft-form-text ng-model="model.dataModel.modelYear" name="modelYear" labeltext="Model"></ft-form-text>
+         <ft-text ng-model="model.dataModel.modelYear" name="modelYear" labeltext="Model"></ft-text>
 
-         <ft-form-text ng-model="model.dataModel.owner" name="owner" labeltext="Owner" required="true"></ft-form-text>
+         <ft-text ng-model="model.dataModel.owner" name="owner" labeltext="Owner" required="true"></ft-text>
 
          <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make" required="true"></search-dropdown>
 
@@ -28,11 +28,11 @@
 
          <search-dropdown ng-model="model.dataModel.type" source="typeList" name="type" labeltext="Vehicle Type" required="true"></search-dropdown>
 
-         <ft-form-text ng-model="model.dataModel.chasisNo" name="chasisNo" labeltext="chasisNo"></ft-form-text>
+         <ft-text ng-model="model.dataModel.chasisNo" name="chasisNo" labeltext="chasisNo"></ft-text>
 
-         <ft-form-text ng-model="model.dataModel.engineNo" name="engineNo" labeltext="engineNo"></ft-form-text>
+         <ft-text ng-model="model.dataModel.engineNo" name="engineNo" labeltext="engineNo"></ft-text>
 
-         <ft-form-text ng-model="model.dataModel.odometer" name="odometer" labeltext="odometer"></ft-form-text>
+         <ft-text ng-model="model.dataModel.odometer" name="odometer" labeltext="odometer"></ft-text>
 
       </div>
    </ft-form>

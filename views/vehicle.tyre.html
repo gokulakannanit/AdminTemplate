@@ -1,67 +1,82 @@
 <div class="container-fluid">
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
-      <div class="panel panel-default">
-         <div class="panel-title">Add Tyre</div>
-         <div class="panel-body">
-            <ft-form>
-
-              <ft-form-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-form-text>
-
-               <ft-form-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-form-text>
-
-               <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
-
-               <ft-form-text ng-model="model.dataModel.tyreNo" name="tyreNo" labeltext="Tyre No"></ft-form-text>
-
-               <search-dropdown ng-model="model.dataModel.position" source="tyrePositionList" name="position" labeltext="Tyre Position"></search-dropdown>
-
-               <search-dropdown ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Tyre Dealer"></search-dropdown>
-
-               <ft-form-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-form-text>
-
-               <ft-form-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-form-text>
-              
-            </ft-form>
-         </div>
+  <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-title">Add Tyre</div>
+      <div class="panel-body">
+        <ft-form>
+        <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
+        <div class="row">
+          <div class="col-lg-6">
+            <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-text>
+          </div>
+          <div class="col-lg-6">
+            <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <ft-text ng-model="model.dataModel.tyreNo" name="tyreNo" labeltext="Tyre No"></ft-text>
+          </div>
+          <div class="col-lg-6">
+            <search-dropdown ng-model="model.dataModel.position" source="tyrePositionList" name="position" labeltext="Tyre Position"></search-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <search-dropdown ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Tyre Dealer"></search-dropdown>
+          </div>
+          <div class="col-lg-6">
+            <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-text>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <ft-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-text>
+          </div>
+          <div class="col-lg-6">
+            <ft-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-text>
+          </div>
+        </div>
+        
+        </ft-form>
       </div>
-   </div>
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
-         <table class="table table-striped table-bordered table-hover no-margin">
-           <thead>
-               <tr>
-                   <th>#ID</th>
-                   <th class="hidden-phone">Dealer</th>
-                   <th class="hidden-phone">Purchased Date</th>
-                   <th class="hidden-phone">Warrenty Date</th>
-                   <th class="hidden-phone">Price</th>
-                   <th class="hidden-phone"></th>
-               </tr>
-           </thead>
-           <tbody>
-              <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                  <td colspan="6">No Records found</td>
-              </tr>              
-               <tr ng-repeat="tyre in model.dataList | filter:search" ng-if="model.isDataLoaded">
-                   <td>{{$index+1}}</td>
-                   <td>{{tyre.dealer}}</td>
-                   <td>{{tyre.date}}</td>
-                   <td>{{tyre.warrentyDate}}</td>
-                   <td>{{tyre.price}}</td>
-                   <td>
-                       <a class="btn btn-xs btn-info" ng-click="edit(tyre.id)">
-                           <i class="fa fa-edit"></i> Edit
-                       </a>
-                       <a class="btn btn-xs btn-danger" ng-click="confirmDelete(tyre.id);">
-                           <i class="fa fa-trash-o"></i> Delete
-                       </a>
-                   </td>
-               </tr>
-               <tr ng-if="!model.isDataLoaded">
-                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-              </tr>
-           </tbody>
-       </table>
-      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
+    <table class="table table-striped table-bordered table-hover no-margin">
+      <thead>
+        <tr>
+          <th>#ID</th>
+          <th class="hidden-phone">Dealer</th>
+          <th class="hidden-phone">Purchased Date</th>
+          <th class="hidden-phone">Warrenty Date</th>
+          <th class="hidden-phone">Price</th>
+          <th class="hidden-phone"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
+          <td colspan="6">No Records found</td>
+        </tr>
+        <tr ng-repeat="tyre in model.dataList | filter:search" ng-if="model.isDataLoaded">
+          <td>{{$index+1}}</td>
+          <td>{{tyre.dealer}}</td>
+          <td>{{tyre.date}}</td>
+          <td>{{tyre.warrentyDate}}</td>
+          <td>{{tyre.price}}</td>
+          <td>
+            <a class="btn btn-xs btn-info" ng-click="edit(tyre.id)">
+              <i class="fa fa-edit"></i> Edit
+            </a>
+            <a class="btn btn-xs btn-danger" ng-click="confirmDelete(tyre.id);">
+              <i class="fa fa-trash-o"></i> Delete
+            </a>
+          </td>
+        </tr>
+        <tr ng-if="!model.isDataLoaded">
+          <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

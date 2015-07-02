@@ -534,29 +534,6 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
-            .state('vehicleDetail.spare', {
-                views: {
-                    url: '/spare',
-                    "container": {
-                        templateUrl: "views/vehicle.spare.html",
-                        controller: 'vehicle.spare.mainController',
-                        resolve: {
-                            deps: ['$ocLazyLoad',
-                                function($ocLazyLoad) {
-                                    return $ocLazyLoad.load({
-                                        name: 'MetronicApp',
-                                        insertBefore: '#ng_load_plugins_before',
-                                        files: [
-                                            'js/service/vehicle.spare.service.js',
-                                            'js/controllers/vehicle.spare.mainController.js'
-                                        ]
-                                    });
-                                }
-                            ]
-                        }
-                    }
-                }
-            })
             .state('vehicleDetail.tyre', {
                 views: {
                     url: '/tyre',
@@ -624,6 +601,75 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                             ]
                         }
                     }
+                }
+            })
+            .state('workOrder', {
+                url: '/workOrder.html',
+                templateUrl: 'views/workorder.html',
+                controller: 'workorder.mainController',
+                data: {
+                    pageTitle: 'Work Order for Vehicle',
+                    panelTitle: 'Work Order List',
+                    addUri: 'workOrder',
+                    breadScrum: [{
+                        label: 'home',
+                        url: '#/dashboard.html'
+                    }, {
+                        label: 'Work Order',
+                        url: '#/'
+                    }]
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.service.js',
+                                    'js/service/workorder.service.js',
+                                    'js/controllers/workorder.mainController.js'
+                                ]
+                            });
+                        }
+                    ]
+                }                   
+            })
+            .state('workOrderDetail', {
+                url: '/workOrder/:isEdit/:editId',
+                templateUrl: 'views/workorder.add.html',
+                data: {
+                    pageTitle: 'Add Work Order',
+                    panelTitle: 'Work Order Details',
+                    form: true,
+                    back: 'workOrder',
+                    isEdit: false,
+                    breadScrum: [{
+                        label: 'home',
+                        url: '#/dashboard.html'
+                    }, {
+                        label: 'Work Order',
+                        url: '#/workorder.html'
+                    }, {
+                        label: 'Add Work Order',
+                        url: '#'
+                    }]
+                },
+                controller: 'workorder.add.mainController',
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vehicle.service.js',
+                                    'js/service/workorder.service.js',
+                                    'js/controllers/workorder.add.mainController.js'
+                                ]
+                            });
+                        }
+                    ]
                 }
             })
             .state('manage', {
