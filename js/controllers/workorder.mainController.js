@@ -8,7 +8,7 @@
         this.vehicleService = vehicleService;
         this.init = function(){
         	this.super('init'); 	
-        	this.$scope.vehicleListData = this.vehicleService.model;
+        	this.$scope.vehicle = this.vehicleService.model;
         	this.vehicleService.get();
         }
         this.init();

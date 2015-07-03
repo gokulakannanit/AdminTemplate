@@ -29,7 +29,8 @@
             }, {
                 id: 'Tyre',
                 label: 'Tyre'
-            }]        
+            }],
+     	workorderList:[{label:"Labour", value:"L"}, {label:"Spare Parts", value:"S"}]
 	}
 	MetronicApp.constant("config", constants)
 }())

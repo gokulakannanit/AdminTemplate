@@ -1,7 +1,18 @@
 (function() {
     'use strict';
     function myFactory($http, $q, $state, alertService) {
-        var myService = function() {
+        var myService = function() {            
+            this.getSpareScope = function(){
+                return{
+                    spareName:'',
+                    spareCode:'',
+                    rate:'',
+                    quantity:'',
+                    tax:'',
+                    discount:'',
+                    warrenty:''
+                };
+            }
             this.getScope = function(){
                 return {
                     paymentMode: 'Cash',
@@ -9,7 +20,8 @@
                     billNumber: '',
                     billDate: '',
                     workorderType: 'L',
-                    labour:''
+                    labour:'',
+                    spareDetail:[this.getSpareScope()]
                 };
             };
             this.$http = $http;
@@ -22,6 +34,7 @@
                 ADD_URL: 'api/workorder/addDetails.php',
                 DELETE_URL: 'api/workorder/deleteRecord.php'
             };
+            
             this.init();
         }
         myService.prototype = baseService;

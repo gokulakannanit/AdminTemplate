@@ -8,10 +8,25 @@
         this.init = function(){            
             this.super('init');
 
-            this.$scope.workOrderList = [{label:"Labour", value:"L"}, {label:"Spare Parts", value:"S"}];
+            this.$scope.vehicle = {
+                vehicleNo:'',
+                selectedItem: '',
+                model:vehicleService.model
+            }
+            vehicleService.get();
+
+            this.$scope.workOrderList = config.workorderList;
             this.$scope.paymentList = config.paymentList;
         }
-        
+        this.defineScope = function(){
+            this.super('defineScope');
+            this.$scope.addSpare = function(){
+                this.$scope.model.dataModel.spareDetail.push(this.getSpareScope());
+            }
+            this.$scope.deleteSpare = function(index){
+                this.$scope.model.dataModel.spareDetail.splice(index, 1);
+            }
+        }
         this.init();
     }
     controller.prototype = baseController;
