@@ -204,7 +204,7 @@
                     scope.opts.type = "text";
                 }
                 scope.form = ctrl;
-
+                
                 if (scope.opts.type === 'date') {
 
                     // New object holder to avoid scope Inheritance.

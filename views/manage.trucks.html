@@ -5,9 +5,16 @@
          <div class="panel-body">
             <ft-form>
 
+              <search-dropdown ng-model="manufacturer.manufacturerName" selecteditem="manufacturer.selecteditem" source="manufacturer.source.dataList" name="manufacturer" labeltext="Manufacturer" required="true" displayname="manufacturerName"></search-dropdown>
+
                <ft-text ng-model="model.dataModel.truckModel" name="truckModel" labeltext="Truck Model" required="true"></ft-text>
 
                <ft-text ng-model="model.dataModel.tonnage" name="tonnage" labeltext="Tonnage" ></ft-text>
+
+              <ft-text type="radio" source="truckType" ng-model="model.dataModel.truckType" name="truckType" labeltext="Type Of Truck" required="true"></ft-text>
+
+              <ft-text type="radio" source="aircondition" ng-model="model.dataModel.aircondition" name="aircondition" labeltext="AC Available" required="true"></ft-text>
+
 
                <ft-text ng-model="model.dataModel.tankCapacity" name="tankCapacity" labeltext="Tank Capacity" ></ft-text>
 

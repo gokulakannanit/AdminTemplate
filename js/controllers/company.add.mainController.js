@@ -18,7 +18,7 @@
 						id_str += item.id+",";
             		})            		
             		self.$scope.model.dataModel.owner = String(id_str).substr(0, id_str.length-2);;
-            		console.log(id_str);
+            		// console.log(id_str);
             	}else{
             		self.$scope.model.dataModel.owner = self.$scope.owner.selecteditem.id;
             	}

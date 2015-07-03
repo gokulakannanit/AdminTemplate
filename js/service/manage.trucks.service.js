@@ -5,10 +5,13 @@
         	this.getScope = function(){
         		return {
     	            truckModel: '',
+                    truckType:'HCV',
+                    aircondition:'No',
                     tonnage: '',
                     tankCapacity: '',
                     tyreSize: '',
-                    engineCapacity: ''
+                    engineCapacity: '',
+                    manufacturerId:'',
 	            };
         	};
             this.$http = $http;
