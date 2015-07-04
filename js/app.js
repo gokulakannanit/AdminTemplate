@@ -626,6 +626,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                                 name: 'MetronicApp',
                                 insertBefore: '#ng_load_plugins_before',
                                 files: [
+                                    'js/service/vendor.service.js',
                                     'js/service/vehicle.service.js',
                                     'js/service/workorder.service.js',
                                     'js/controllers/workorder.mainController.js'

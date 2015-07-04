@@ -17,6 +17,7 @@
                 return {
                     paymentMode: 'Cash',
                     vehicleId: '',
+                    dealerId:'',
                     billNumber: '',
                     billDate: '',
                     workorderType: 'L',

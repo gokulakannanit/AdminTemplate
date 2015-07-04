@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 3.5.2.2
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2015 at 08:30 PM
--- Server version: 5.6.11
--- PHP Version: 5.5.3
+-- Generation Time: Jul 04, 2015 at 02:08 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `logistics`
 --
-CREATE DATABASE IF NOT EXISTS `logistics` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `logistics`;
 
 -- --------------------------------------------------------
 
@@ -108,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `owners` (
   `pan` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `owners`
@@ -116,6 +114,32 @@ CREATE TABLE IF NOT EXISTS `owners` (
 
 INSERT INTO `owners` (`id`, `name`, `phone`, `address`, `email`, `pan`) VALUES
 (5, 'Gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spare`
+--
+
+CREATE TABLE IF NOT EXISTS `spare` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `spare` varchar(255) NOT NULL,
+  `rate` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `tax` varchar(255) NOT NULL,
+  `discount` varchar(255) NOT NULL,
+  `warrenty` varchar(255) NOT NULL,
+  `workorderId` int(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `spare`
+--
+
+INSERT INTO `spare` (`id`, `spare`, `rate`, `quantity`, `tax`, `discount`, `warrenty`, `workorderId`) VALUES
+(1, 'Bolt', '5', '1', '0', '0', '05/06/2015', 1),
+(2, 'Screw', '5', '1', '0', '0', '05/06/2015', 1);
 
 -- --------------------------------------------------------
 
@@ -271,7 +295,7 @@ CREATE TABLE IF NOT EXISTS `vehiclelist` (
   `fuelType` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vehiclelist`
@@ -314,35 +338,6 @@ INSERT INTO `vehicletyre` (`id`, `tyreNo`, `make`, `position`, `dealer`, `date`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vehicle_spare_parts`
---
-
-CREATE TABLE IF NOT EXISTS `vehicle_spare_parts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `purchaseDate` varchar(255) NOT NULL,
-  `paymentMode` varchar(255) NOT NULL,
-  `dealerName` varchar(255) NOT NULL,
-  `spareName` varchar(255) NOT NULL,
-  `spareCode` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `rate` varchar(255) NOT NULL,
-  `amount` varchar(255) NOT NULL,
-  `warrantyPeriod` varchar(255) NOT NULL,
-  `vehicleId` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
-
---
--- Dumping data for table `vehicle_spare_parts`
---
-
-INSERT INTO `vehicle_spare_parts` (`id`, `purchaseDate`, `paymentMode`, `dealerName`, `spareName`, `spareCode`, `quantity`, `rate`, `amount`, `warrantyPeriod`, `vehicleId`) VALUES
-(1, '2015-06-17T17:32:53.587Z', 'Cash', 'Abc', 'Battery', 'BY7089', 1, '2523', '2533', '1 Year', 2),
-(3, '2015-06-23T18:30:00.000Z', 'Cash', 'abc', 'Head Light', 'HL4567', 2, '', '2400', '6 Months', 5);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `vendor`
 --
 
@@ -362,8 +357,34 @@ CREATE TABLE IF NOT EXISTS `vendor` (
 --
 
 INSERT INTO `vendor` (`id`, `companyName`, `typeOfGoods`, `contactPerson`, `phone`, `address`, `email`) VALUES
-(1, 'surya', 'Battery', 'perumal', '1234567890', 'df', ''),
-(2, 'venkateshwara', 'Raj', 'venky', '1234567890', 'velachery', '');
+(1, 'Surya', 'Battery', 'perumal', '1234567890', 'df', ''),
+(2, 'Venkateshwara', 'Raj', 'venky', '1234567890', 'velachery', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workorder`
+--
+
+CREATE TABLE IF NOT EXISTS `workorder` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `vehicleId` int(255) NOT NULL,
+  `billNumber` varchar(255) NOT NULL,
+  `billDate` varchar(255) NOT NULL,
+  `workorderType` varchar(255) NOT NULL,
+  `labour` varchar(255) NOT NULL,
+  `paymentMode` varchar(255) NOT NULL,
+  `dealerId` int(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `workorder`
+--
+
+INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`) VALUES
+(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1),
+(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

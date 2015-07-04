@@ -14,8 +14,27 @@ function getPOSTData(){
 	$data = file_get_contents("php://input");
 	return json_decode($data);
 }
-function getQueryValue($isUpdate, $objData){
+
+function removeValue($objData, $excludeValue = array()){
+	$newArr = array();
+	foreach($objData as $key => $value) {
+		$isExist = false;
+		foreach ($excludeValue as $value1) {
+			if($value1 == $key){
+				$isExist = true;
+			}
+		}
+		if(!$isExist){
+			$newArr[$key] = $value;
+		}
+	}
+	return $newArr;
+}
+function getQueryValue($isUpdate, $objData, $excludeValue = array()){
 	$valuePair = "";
+	if(count($excludeValue)>0){
+		$objData = removeValue($objData, $excludeValue);
+	}
 	if($isUpdate){
 		foreach($objData as $key => $value) {
 			if($key !== 'id'){
@@ -23,7 +42,7 @@ function getQueryValue($isUpdate, $objData){
 					$valuePair .= ", ";
 				}
 				$valuePair .= "$key = '$value'";
-			}    
+			}
 		}
 	}else{
 		$keys = "";

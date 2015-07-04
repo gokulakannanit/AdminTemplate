@@ -29,7 +29,7 @@
                 </td>
                 <td>{{::workOrder.billDate}}</td>
                 <td>{{::vehicle.dataItemById[workOrder.vehicleId].vehicleNo}}</td>
-                <td>{{::workOrder.dealer}}</td>                
+                <td>{{::dealer.dataItemById[workOrder.dealerId].companyName}}</td>                
                 <td>{{::workOrder.billNumber}}</td>
                 <td><i class="fa fa-inr"></i> {{::workOrder.labour}}</td>
                 <td>
