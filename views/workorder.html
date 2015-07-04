@@ -3,9 +3,9 @@
         <thead>
             <tr>
                 <th style="width:40px;"></th>
-                <th>Vechile No</th>
-                <th>Dealer</th>
                 <th>Bill Date</th>
+                <th>Vechile No</th>
+                <th>Dealer</th>                
                 <th>Bill Number</th>
                 <th>Labour Charge</th>
                 <th></th>
@@ -27,9 +27,9 @@
                         <i class="fa fa-minus" ng-if="workOrder.open"></i>
                     </a>
                 </td>
-                <td>{{::workOrder.vehicleId}}</td>
-                <td>{{::workOrder.dealer}}</td>
                 <td>{{::workOrder.billDate}}</td>
+                <td>{{::vehicle.dataItemById[workOrder.vehicleId].vehicleNo}}</td>
+                <td>{{::workOrder.dealer}}</td>                
                 <td>{{::workOrder.billNumber}}</td>
                 <td><i class="fa fa-inr"></i> {{::workOrder.labour}}</td>
                 <td>
@@ -68,6 +68,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="row no-gutter pull-right">Total Amount :<i class="fa fa-inr"></i> {{totalSpareAmount(workOrder)}}</div>
                     </div>
                 </td>
             </tr>

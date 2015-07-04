@@ -36,7 +36,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr ng-repeat="item in model.dataModel.spareDetail">
+                  <tr ng-repeat="item in model.dataModel.spareList">
                     <td><ft-text type="text" ng-model="item.spare" name="date" labeltext="Spare Part" nolabel="true"></ft-text></td>
                     <td><ft-text type="text" ng-model="item.rate" name="rate" labeltext="Rate" nolabel="true"></ft-text></td>
                     <td><ft-text type="text" ng-model="item.quantity" name="quantity" labeltext="Quantity" nolabel="true"></ft-text></td>
@@ -55,6 +55,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="row no-gutter pull-right">Total Amount :<i class="fa fa-inr"></i> {{totalSpareAmount()}}</div>
         </div>
     </ft-form>       
 </ft-panel>

@@ -8,7 +8,7 @@
         this.init = function(){            
             this.super('init');
             vehicleService.get();
-            vendorService.get();
+            vendorService.get()
         }
         this.defineScope = function(){
             var self = this;
@@ -30,10 +30,18 @@
             this.$scope.paymentList = config.paymentList;
 
             this.$scope.addSpare = function(){
-                self.$scope.model.dataModel.spareDetail.push(self.updateService.getSpareScope());
+                self.$scope.model.dataModel.spareList.push(self.updateService.getSpareScope());
             }
             this.$scope.deleteSpare = function(index){
-                self.$scope.model.dataModel.spareDetail.splice(index, 1);
+                self.$scope.model.dataModel.spareList.splice(index, 1);
+            }
+
+            this.$scope.totalSpareAmount = function (){
+                var total = 0;
+                angular.forEach(self.$scope.model.dataModel.spareList, function(item){
+                    total += item.rate*item.quantity;
+                });
+                return total;
             }
         }
         this.init();
