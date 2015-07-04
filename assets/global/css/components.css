@@ -13811,3 +13811,7 @@ tags-input .autocomplete .suggestion-item.selected, tags-input .autocomplete .su
   padding-right: 5px;
   padding-left: 5px;
 }
+
+.table>tbody+tbody{
+  border: none;
+}

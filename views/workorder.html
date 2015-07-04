@@ -31,7 +31,7 @@
                 <td>{{::workOrder.dealer}}</td>
                 <td>{{::workOrder.billDate}}</td>
                 <td>{{::workOrder.billNumber}}</td>
-                <td>INR {{::workOrder.labour}}</td>
+                <td><i class="fa fa-inr"></i> {{::workOrder.labour}}</td>
                 <td>
                     <a ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'update', editId: workOrder.id })" class="btn btn-xs btn-info" data-original-title="">
                         <i class="fa fa-edit"></i> Edit
@@ -59,12 +59,12 @@
                             <tbody>
                                 <tr ng-repeat="itemObj in workOrder.spareList">
                                     <td>{{::itemObj.spare}}</td>
-                                    <td>INR {{::itemObj.rate}}</td>
+                                    <td><i class="fa fa-inr"></i> {{::itemObj.rate}}</td>
                                     <td>{{::itemObj.quantity}}</td>
                                     <td>{{::itemObj.tax}}</td>
                                     <td>{{::itemObj.discount}}</td>
                                     <td>{{::itemObj.warrenty}}</td>
-                                    <td>INR {{::(itemObj.quantity * itemObj.rate)}}</td>
+                                    <td><i class="fa fa-inr"></i> {{::(itemObj.quantity * itemObj.rate)}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -2,6 +2,7 @@
     <ft-form>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
+
             <search-dropdown ng-model="vehicle.vehicleNo" selecteditem="vehicle.selecteditem" source="vehicle.model.dataList" name="vehicleNo" labeltext="vehicle No" required="true" displayname="vehicleNo"></search-dropdown>
 
             <ft-text type="text" ng-model="model.dataModel.labour" name="labour" labeltext="Labour" ng-if="model.dataModel.workorderType !== 'S'"></ft-text>
@@ -12,7 +13,7 @@
             <ft-text type="date" ng-model="model.dataModel.billDate" name="billdate" labeltext="Bill Date"></ft-text>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <ft-text ng-model="model.dataModel.dealerName" name="dealerName" labeltext="Dealer Name"></ft-text>
+            <search-dropdown ng-model="dealer.selectedName" selecteditem="dealer.selecteditem" source="dealer.model.dataList" name="dealer" labeltext="Dealer" required="true" displayname="companyName"></search-dropdown>
 
             <ft-text type="radio" source="workOrderList" ng-model="model.dataModel.workorderType" name="workorderType" labeltext="Work Order Type"></ft-text>
             
@@ -35,7 +36,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr ng-repeat="item in model.dataModel.spareDetail">
                     <td><ft-text type="text" ng-model="item.spare" name="date" labeltext="Spare Part" nolabel="true"></ft-text></td>
                     <td><ft-text type="text" ng-model="item.rate" name="rate" labeltext="Rate" nolabel="true"></ft-text></td>
                     <td><ft-text type="text" ng-model="item.quantity" name="quantity" labeltext="Quantity" nolabel="true"></ft-text></td>
@@ -43,10 +44,10 @@
                     <td><ft-text type="text" ng-model="item.discount" name="discount" labeltext="Discount" nolabel="true"></ft-text></td>
                     <td><ft-text type="date" ng-model="item.warrenty" name="warrenty" labeltext="warrenty" nolabel="true"></ft-text></td>
                     <td>
-                       <a class="btn btn-xs btn-info" ng-click="addSpare()" style="margin-top:7px;" ng-if="$index === $last">
+                       <a class="btn btn-xs btn-info" ng-click="addSpare()" style="margin-top:7px;" ng-if="$last">
                         <i class="fa fa-plus"></i>
                        </a>
-                       <a class="btn btn-xs btn-danger" ng-click="deleteSpare($index);" style="margin-top:7px;" ng-if="$index !== $first">
+                       <a class="btn btn-xs btn-danger" ng-click="deleteSpare($index);" style="margin-top:7px;" ng-if="model.dataModel.spareDetail.length>1">
                         <i class="fa fa-minus"></i>
                        </a>
                     </td>
