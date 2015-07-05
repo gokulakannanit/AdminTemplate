@@ -3,21 +3,23 @@
         <thead>
             <tr>
                 <th style="width:40px;"></th>
+                <th style="width:40px;">ID</th>
                 <th>Bill Date</th>
                 <th>Vechile No</th>
                 <th>Dealer</th>                
                 <th>Bill Number</th>
-                <th>Labour Charge</th>
+                <th>Type</th>
+                <th>Amount</th>
                 <th>Comment</th>
-                <th></th>
+                <th style="width:134px"></th>
             </tr>
         </thead>
         <tbody>
             <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                <td colspan="8">No Records found</td>
+                <td colspan="10">No Records found</td>
             </tr>
             <tr ng-if="!model.isDataLoaded" class="success">
-                <td colspan="8"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+                <td colspan="10"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
         </tbody>
         <tbody ng-repeat="workOrder in list = (model.dataList | filter:search)" ng-if="model.isDataLoaded">
@@ -28,11 +30,13 @@
                         <i class="fa fa-minus" ng-if="workOrder.open"></i>
                     </a>
                 </td>
+                <td>{{::workOrder.id}}</td>
                 <td>{{::workOrder.billDate}}</td>
                 <td>{{::vehicle.dataItemById[workOrder.vehicleId].vehicleNo}}</td>
                 <td>{{::dealer.dataItemById[workOrder.dealerId].companyName}}</td>                
                 <td>{{::workOrder.billNumber}}</td>
-                <td><i class="fa fa-inr"></i> {{::workOrder.labour}}</td>
+                <td>{{::(workOrder.workorderType === 'S')? 'Spare':'Labour'}}</td>
+                <td><i class="fa fa-inr"></i> {{::(workOrder.workorderType === 'L') ? workOrder.labour: totalSpareAmount(workOrder)}}</td>
                 <td>{{::workOrder.comment}}</td>
                 <td>
                     <a ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'update', editId: workOrder.id })" class="btn btn-xs btn-info" data-original-title="">
