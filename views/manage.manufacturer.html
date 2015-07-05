@@ -27,7 +27,7 @@
               <tr ng-repeat="manufacturer in model.dataList | filter:search" ng-if="model.isDataLoaded">
                    <td>{{$index+1}}</td>
                    <td>{{manufacturer.manufacturerName}}</td>
-                   <td>
+                   <td class="action-coloumn">
                        <a class="btn btn-xs btn-info" ng-click="edit(manufacturer.id)">
                            <i class="fa fa-edit"></i> Edit
                        </a>
