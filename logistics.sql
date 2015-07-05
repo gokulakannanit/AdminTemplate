@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2015 at 02:08 PM
+-- Generation Time: Jul 05, 2015 at 02:09 PM
 -- Server version: 5.5.27
 -- PHP Version: 5.4.7
 
@@ -131,15 +131,15 @@ CREATE TABLE IF NOT EXISTS `spare` (
   `warrenty` varchar(255) NOT NULL,
   `workorderId` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Dumping data for table `spare`
 --
 
 INSERT INTO `spare` (`id`, `spare`, `rate`, `quantity`, `tax`, `discount`, `warrenty`, `workorderId`) VALUES
-(1, 'Bolt', '5', '1', '0', '0', '05/06/2015', 1),
-(2, 'Screw', '5', '1', '0', '0', '05/06/2015', 1);
+(27, 'Bolt', '25', '1', '', '', '05/06/2016', 1),
+(30, 'Screw', '10', '2', '', '', '2015-07-04T18:30:00.000Z', 12);
 
 -- --------------------------------------------------------
 
@@ -375,16 +375,18 @@ CREATE TABLE IF NOT EXISTS `workorder` (
   `labour` varchar(255) NOT NULL,
   `paymentMode` varchar(255) NOT NULL,
   `dealerId` int(255) NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `workorder`
 --
 
-INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`) VALUES
-(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1),
-(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2);
+INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`, `comment`) VALUES
+(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1, ''),
+(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2, ''),
+(12, 5, 'B1010', '2015-07-04T18:30:00.000Z', 'S', '', 'Cash', 1, '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
