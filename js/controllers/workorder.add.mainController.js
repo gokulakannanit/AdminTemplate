@@ -54,8 +54,12 @@
                 return total;
             }
             this.$scope.updateDetails = function(){
+                console.log(self.$scope.vehicle.selectedItem);
+                
                 self.$scope.model.dataModel.vehicleId = self.$scope.vehicle.selectedItem.id;
                 self.$scope.model.dataModel.dealerId = self.$scope.dealer.selectedItem.id;
+
+                console.log(self.$scope.model.dataModel);
                 self.updateService.add(self.$scope.model.dataModel);
             }
         }

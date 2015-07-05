@@ -19,8 +19,8 @@ function removeValue($objData, $excludeValue = array()){
 	$newArr = array();
 	foreach($objData as $key => $value) {
 		$isExist = false;
-		foreach ($excludeValue as $value1) {
-			if($value1 == $key){
+		foreach ($excludeValue as $innerKey) {
+			if($innerKey == $key){
 				$isExist = true;
 			}
 		}
@@ -30,24 +30,29 @@ function removeValue($objData, $excludeValue = array()){
 	}
 	return $newArr;
 }
+
 function getQueryValue($isUpdate, $objData, $excludeValue = array()){
 	$valuePair = "";
+	$newArr = array();
+
 	if(count($excludeValue)>0){
-		$objData = removeValue($objData, $excludeValue);
+		$newArr = removeValue($objData, $excludeValue);
+	}else{
+		$newArr = $objData;
 	}
 	if($isUpdate){
-		foreach($objData as $key => $value) {
+		foreach($newArr as $key => $value) {
 			if($key !== 'id'){
 				if($valuePair !== ""){
 					$valuePair .= ", ";
-				}
+				}				
 				$valuePair .= "$key = '$value'";
 			}
 		}
 	}else{
 		$keys = "";
 		$values = "";
-		foreach($objData as $key => $value) {
+		foreach($newArr as $key => $value) {
 			if($key !== 'id'){
 				if($keys !== ""){
 					$keys .= ", ";
@@ -61,7 +66,6 @@ function getQueryValue($isUpdate, $objData, $excludeValue = array()){
 		}
 		$valuePair = "($keys) VALUES ($values)";		
 	}
-	
 	return $valuePair;
 }
 ?>

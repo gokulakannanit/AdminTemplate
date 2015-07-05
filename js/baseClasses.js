@@ -117,6 +117,7 @@ var baseService = {
         httpCall.success(function() {
             self.reloadData();
             self.alertService.add("success", "Record added Successfully..");
+            console.log(self.REDIRECT_STATE);
             if (self.REDIRECT_STATE) {
                 self.$state.go(self.REDIRECT_STATE);
             }else{

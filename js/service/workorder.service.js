@@ -4,8 +4,7 @@
         var myService = function() {            
             this.getSpareScope = function(){
                 return{
-                    spareName:'',
-                    spareCode:'',
+                    spare:'',
                     rate:'',
                     quantity:'',
                     tax:'',
@@ -22,14 +21,15 @@
                     billDate: '',
                     workorderType: 'L',
                     labour:'',
-                    spareDetail:[this.getSpareScope()]
+                    comment:'',
+                    spareList:[this.getSpareScope()]
                 };
             };
             this.$http = $http;
             this.$q = $q;
             this.$state = $state;
             this.alertService = alertService;
-            this.REDIRECT_STATE = 'workorder';
+            this.REDIRECT_STATE = 'workOrder';
             this.SERVICE_URL = {
                 GET_URL: 'api/workorder/getDetails.php',
                 ADD_URL: 'api/workorder/addDetails.php',
