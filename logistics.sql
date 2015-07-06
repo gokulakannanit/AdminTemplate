@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 05, 2015 at 02:09 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Jul 06, 2015 at 07:42 PM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `logistics`
 --
+CREATE DATABASE IF NOT EXISTS `logistics` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `logistics`;
 
 -- --------------------------------------------------------
 
@@ -106,14 +108,17 @@ CREATE TABLE IF NOT EXISTS `owners` (
   `pan` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `owners`
 --
 
 INSERT INTO `owners` (`id`, `name`, `phone`, `address`, `email`, `pan`) VALUES
-(5, 'Gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D');
+(5, 'Gokul', '1236547891', 'chennai', 'gokulakannanit@gmail.com', 'AMSDF1234D'),
+(6, 'A.K', '', 'Williars St', 'williars@akmail.com', ''),
+(7, 'Raj', '', 'Raj street, Welling', 'welling@gmail.com', ''),
+(8, 'Albert', '', 'ABC st', 'albert@gmail.com', '');
 
 -- --------------------------------------------------------
 
@@ -131,15 +136,15 @@ CREATE TABLE IF NOT EXISTS `spare` (
   `warrenty` varchar(255) NOT NULL,
   `workorderId` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `spare`
 --
 
 INSERT INTO `spare` (`id`, `spare`, `rate`, `quantity`, `tax`, `discount`, `warrenty`, `workorderId`) VALUES
-(27, 'Bolt', '25', '1', '', '', '05/06/2016', 1),
-(30, 'Screw', '10', '2', '', '', '2015-07-04T18:30:00.000Z', 12);
+(1, 'Bolt', '5', '1', '0', '0', '05/06/2015', 1),
+(2, 'Screw', '5', '1', '0', '0', '05/06/2015', 1);
 
 -- --------------------------------------------------------
 
@@ -182,17 +187,16 @@ CREATE TABLE IF NOT EXISTS `vehiclebattery` (
   `receiptNo` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `vehicleId` int(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vehicleId` (`vehicleId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `vehiclebattery`
 --
 
 INSERT INTO `vehiclebattery` (`id`, `paymentMode`, `make`, `batteryNo`, `date`, `dealer`, `warrentyDate`, `receiptNo`, `price`, `vehicleId`) VALUES
-(1, 'Cash', 'MRF', '45', '2015-06-14T03:51:06.969Z', 'dealer1', '', '3', '343', 2),
-(2, 'Cash', 'make1', '5464', '2015-06-14T04:31:26.287Z', 'dealer1', '', '12555', '5000', 1);
+(8, 'Cash', 'Make 1', '12345', '2015-07-06T17:39:57.072Z', '2', '2015-06-29T18:30:00.000Z', '567', '1234', 2),
+(9, 'Cheque', 'Make 1', '21212', '2015-07-06T17:41:32.903Z', '1', '2015-06-29T18:30:00.000Z', '45673', '1234', 2);
 
 -- --------------------------------------------------------
 
@@ -324,16 +328,16 @@ CREATE TABLE IF NOT EXISTS `vehicletyre` (
   `price` varchar(255) NOT NULL,
   `vehicleId` int(255) NOT NULL,
   `paymentMode` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vehicleId` (`vehicleId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `vehicletyre`
 --
 
 INSERT INTO `vehicletyre` (`id`, `tyreNo`, `make`, `position`, `dealer`, `date`, `warrentyDate`, `receiptNo`, `price`, `vehicleId`, `paymentMode`) VALUES
-(3, '1524', 'MRF', 'FL', 'dealer1', '2015-06-13T15:38:53.938Z', '', '12', '102', 2, 'Cash');
+(42, 'TY7894', 'MRF', 'Front Left', '4', 'Tue Jun 30 2015 00:00:00 GMT+0530 (India Standard Time)', '2015-06-29T18:30:00.000Z', '7845', '7856', 2, 'Cash'),
+(43, 'xvcxxvc', 'MRF', 'Front Right', '3', '2015-07-06T17:18:09.016Z', '2015-06-30T18:30:00.000Z', '5444', '77777', 2, 'Cheque');
 
 -- --------------------------------------------------------
 
@@ -350,7 +354,7 @@ CREATE TABLE IF NOT EXISTS `vendor` (
   `address` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vendor`
@@ -358,7 +362,10 @@ CREATE TABLE IF NOT EXISTS `vendor` (
 
 INSERT INTO `vendor` (`id`, `companyName`, `typeOfGoods`, `contactPerson`, `phone`, `address`, `email`) VALUES
 (1, 'Surya', 'Battery', 'perumal', '1234567890', 'df', ''),
-(2, 'Venkateshwara', 'Raj', 'venky', '1234567890', 'velachery', '');
+(2, 'Venkateshwara', 'Battery', 'venky', '1234567890', 'velachery', ''),
+(3, 'ABC', 'Tyre', 'ABC Raj', '7485964215', 'ABC', ''),
+(4, 'Karishma Suppliers', 'Tyre', 'Karishma', '4661846546', '', ''),
+(5, 'Susan Traders', 'Electricals', 'Susan', '3216418155', '....', 'susan@trade.one.com');
 
 -- --------------------------------------------------------
 
@@ -375,18 +382,16 @@ CREATE TABLE IF NOT EXISTS `workorder` (
   `labour` varchar(255) NOT NULL,
   `paymentMode` varchar(255) NOT NULL,
   `dealerId` int(255) NOT NULL,
-  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `workorder`
 --
 
-INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`, `comment`) VALUES
-(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1, ''),
-(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2, ''),
-(12, 5, 'B1010', '2015-07-04T18:30:00.000Z', 'S', '', 'Cash', 1, '');
+INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`) VALUES
+(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1),
+(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

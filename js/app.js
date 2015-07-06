@@ -571,6 +571,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                                         name: 'MetronicApp',
                                         insertBefore: '#ng_load_plugins_before',
                                         files: [
+                                            'js/service/vendor.service.js',
                                             'js/service/vehicle.battery.service.js',
                                             'js/controllers/vehicle.battery.mainController.js'
                                         ]
@@ -767,17 +768,5 @@ MetronicApp.filter('titleCase', function() {
         return input.replace(/\w\S*/g, function(txt) {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
-    };
-});
-
-MetronicApp.filter('byKeyAndValue', function() {
-    return function(key, value, source) {
-        var itemObj = [];
-        angular.forEach(source, function(item) {
-            if(item[key] === value) {
-                itemObj.push(item);
-            }
-        });
-        return itemObj;
     };
 });

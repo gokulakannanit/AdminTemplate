@@ -16,6 +16,7 @@
             this.$q = $q;
             this.$state = $state;
             this.alertService = alertService;
+            this.labelCategory = 'typeOfGoods';
             this.REDIRECT_STATE = 'vendor';
             this.SERVICE_URL = {
                 GET_URL: 'api/vendor/getDetails.php',

@@ -1,65 +1,77 @@
 <div class="container-fluid">
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">      
-      <div class="panel panel-default">
-         <div class="panel-title">Add Battery</div>
-         <div class="panel-body">
-            <ft-form>
+    <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-4">
+        <div class="panel panel-default">
+            <div class="panel-title">Add Battery</div>
+            <div class="panel-body">
+                <ft-form>
+                <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-text>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
+                    </div>
+                </div>
+                
+                <ft-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-text>
+                
+                <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-text>
 
-              <ft-text type="radio" source="paymentList" ng-model="model.dataModel.paymentMode" name="paymentMode" labeltext="Payment Mode"></ft-text>
-
-               <ft-text type="date" ng-model="model.dataModel.date" name="date" labeltext="Date"></ft-text>
-
-               <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
-
-               <ft-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-text>
-
-               <search-dropdown ng-model="model.dataModel.dealer" source="vendorList" name="dealer" labeltext="Battery Dealer"></search-dropdown>
-
-               <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-text>
-
-               <ft-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-text>
-
-               <ft-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-text>
-              
-            </ft-form>
-         </div>
-      </div>
-   </div>
-   <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
-         <table class="table table-striped table-bordered table-hover no-margin">
-           <thead>
-               <tr>
-                   <th>#ID</th>
-                   <th class="hidden-phone">Dealer</th>
-                   <th class="hidden-phone">Purchased Date</th>
-                   <th class="hidden-phone">Warrenty Date</th>
-                   <th class="hidden-phone">Price</th>
-                   <th class="hidden-phone"></th>
-               </tr>
-           </thead>
-           <tbody>
-               <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                  <td colspan="6">No Records found</td>
-              </tr>
-              <tr ng-if="!model.isDataLoaded">
-                  <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
-              </tr>
-               <tr ng-repeat="battery in model.dataList | filter:search"  ng-if="model.isDataLoaded">
-                   <td>{{$index+1}}</td>
-                   <td>{{battery.dealer}}</td>
-                   <td>{{battery.date}}</td>
-                   <td>{{battery.warrentyDate}}</td>
-                   <td>{{battery.price}}</td>
-                   <td>
-                       <a class="btn btn-xs btn-info" ng-click="edit(battery.id)">
-                           <i class="fa fa-edit"></i> Edit
-                       </a>
-                       <a class="btn btn-xs btn-danger" ng-click="confirmDelete(battery.id);">
-                           <i class="fa fa-trash-o"></i> Delete
-                       </a>
-                   </td>
-               </tr>
-           </tbody>
-       </table>
-      </div>
+                 <search-dropdown ng-model="vendorList.dealer" selecteditem="vendorList.selecteditem" source="vendorList.source" name="dealer" labeltext="Tyre Dealer" displayname="companyName"></search-dropdown>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ft-text ng-model="model.dataModel.price" name="price" labeltext="Amount"></ft-text>
+                        
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <ft-text ng-model="model.dataModel.receiptNo" name="receiptNo" labeltext="receiptNo"></ft-text>
+                    </div>
+                </div>
+                
+                
+                </ft-form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-sm-12 col-xs-12 col-lg-7 col-lg-offset-1">
+        <table class="table table-striped table-bordered table-hover no-margin">
+            <thead>
+                <tr>
+                    <th>#ID</th>
+                    <th class="hidden-phone">Dealer</th>
+                    <th class="hidden-phone">Purchased Date</th>
+                    <th class="hidden-phone">Warrenty Date</th>
+                    <th class="hidden-phone">Price</th>
+                    <th class="hidden-phone"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
+                    <td colspan="6">No Records found</td>
+                </tr>
+                <tr ng-if="!model.isDataLoaded">
+                    <td colspan="6"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+                </tr>
+                <tr ng-repeat="battery in model.dataList | filter:search"  ng-if="model.isDataLoaded">
+                    <td>{{$index+1}}</td>
+                    <td>{{vendorListById[battery.dealer].companyName}}</td>
+                    <td>{{battery.date}}</td>
+                    <td>{{battery.warrentyDate}}</td>
+                    <td>{{battery.price}}</td>
+                    <td>
+                        <a class="btn btn-xs btn-info" ng-click="edit(battery.id)">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <a class="btn btn-xs btn-danger" ng-click="confirmDelete(battery.id);">
+                            <i class="fa fa-trash-o"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

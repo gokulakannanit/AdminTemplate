@@ -25,6 +25,20 @@ var baseService = {
         });
         return itemObj;
     },
+    getByLabelCategory: function(lblValue) {
+        var self = this,
+            key = self.labelCategory,
+            itemObj = [];
+
+            if(key != undefined) {
+                angular.forEach(self.model.dataList, function(item) {
+                    if(item[key] === lblValue) {
+                        itemObj.push(item);
+                    }
+                });
+            }
+        return itemObj;
+    },
     getByForeignKey: function(defer){
     	var self = this, setting, httpCall;    	
     	if(!this.model.mainList[self.parentId]){
@@ -113,6 +127,8 @@ var baseService = {
                 url: this.SERVICE_URL.ADD_URL,
                 data: data
             }
+
+            console.log(setting)
         var httpCall = this.$http(setting);
         httpCall.success(function() {
             self.reloadData();
