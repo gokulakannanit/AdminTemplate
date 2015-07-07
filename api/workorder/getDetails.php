@@ -12,6 +12,16 @@ function getSpare($con, $id){
 	return $spareList;
 }
 
+function getLabour($con, $id){
+	$inner_query  = "SELECT * FROM labour WHERE workorderId=".$id;
+	$inner_result = mysqli_query($con, $inner_query) or die(mysql_errno()."error in query execution");
+	$labourList = array();
+	while ($inner_row = mysqli_fetch_assoc($inner_result)){
+		array_push($labourList, $inner_row);
+	}
+	return $labourList;
+}
+
 $query  = "SELECT * FROM $tableName";
 $result = mysqli_query($con, $query) or die(mysql_errno()."error in query execution");
 
@@ -21,6 +31,7 @@ $json_response  = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
 	$row['spareList'] = getSpare($con, $row['id']);
+	$row['labourList'] = getLabour($con, $row['id']);
     array_push($json_response, $row);
 }
 

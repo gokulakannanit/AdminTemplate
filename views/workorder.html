@@ -8,7 +8,6 @@
                 <th>Vechile No</th>
                 <th>Dealer</th>                
                 <th>Bill Number</th>
-                <th>Type</th>
                 <th>Amount</th>
                 <th>Comment</th>
                 <th style="width:134px"></th>
@@ -16,16 +15,16 @@
         </thead>
         <tbody>
             <tr class="danger" ng-if="(model.dataList.length === 0 && model.isDataLoaded)">
-                <td colspan="10">No Records found</td>
+                <td colspan="9">No Records found</td>
             </tr>
             <tr ng-if="!model.isDataLoaded" class="success">
-                <td colspan="10"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
+                <td colspan="9"><i class="fa fa-spinner fa-pulse"></i>Loading Data...</td>
             </tr>
         </tbody>
         <tbody ng-repeat="workOrder in list = (model.dataList | filter:search)" ng-if="model.isDataLoaded">
             <tr>
                 <td>
-                    <a class="btn btn-xs btn-info" ng-click="workOrder.open = !workOrder.open" style="margin-left:5px;" ng-if="workOrder.spareList.length>0">
+                    <a class="btn btn-xs btn-info" ng-click="workOrder.open = !workOrder.open" style="margin-left:5px;">
                         <i class="fa fa-plus" ng-if="!workOrder.open"></i>
                         <i class="fa fa-minus" ng-if="workOrder.open"></i>
                     </a>
@@ -35,22 +34,21 @@
                 <td>{{::vehicle.dataItemById[workOrder.vehicleId].vehicleNo}}</td>
                 <td>{{::dealer.dataItemById[workOrder.dealerId].companyName}}</td>                
                 <td>{{::workOrder.billNumber}}</td>
-                <td>{{::(workOrder.workorderType === 'S')? 'Spare':'Labour'}}</td>
                 <td><i class="fa fa-inr"></i> {{::(workOrder.workorderType === 'L') ? workOrder.labour: totalSpareAmount(workOrder)}}</td>
                 <td>{{::workOrder.comment}}</td>
                 <td>
                     <a ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'update', editId: workOrder.id })" class="btn btn-xs btn-info" data-original-title="">
                         <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a class="btn btn-xs btn-danger" ng-click="confirmDelete(owner.id);">
+                    <a class="btn btn-xs btn-danger" ng-click="confirmDelete(workOrder.id);">
                         <i class="fa fa-trash-o"></i> Delete
                     </a>
                 </td>
             </tr>
-            <tr ng-if="workOrder.spareList.length>0 && workOrder.open">
-                <td colspan="10">
+            <tr ng-if="workOrder.open">
+                <td colspan="9">
                     <div class="col-md-10 col-md-offset-1">
-                        <table class="table table-striped table-bordered table-hover">
+                        <table class="table table-striped table-bordered table-hover" ng-if="workOrder.spareList.length>0">
                             <thead>
                                 <tr>
                                     <th>Spare</th>
@@ -74,10 +72,26 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="row no-gutter pull-right">Total Amount :<i class="fa fa-inr"></i> {{totalSpareAmount(workOrder)}}</div>
+                        <table class="table table-striped table-bordered table-hover" ng-if="workOrder.labourList.length>0">
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Technician</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="itemObj in workOrder.labourList">
+                                    <td>{{::itemObj.task}}</td>
+                                    <td>{{::itemObj.technician}}</td>
+                                    <td><i class="fa fa-inr"></i> {{::(itemObj.amount)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row no-gutter pull-right">Total Amount :<i class="fa fa-inr"></i> {{totalAmount(workOrder)}}</div>
                     </div>
                 </td>
-            </tr>
+            </tr>            
         </tbody>
     </table>
 </ft-panel>

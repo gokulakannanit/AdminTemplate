@@ -13,5 +13,7 @@ $result = mysqli_query($con,"DELETE FROM $tableName".$connQuery1) or die(mysql_e
 
 $result1 = mysqli_query($con,"DELETE FROM spare".$connQuery2) or die(mysql_errno()."error in query execution");
 
+$result2 = mysqli_query($con,"DELETE FROM labour".$connQuery2) or die(mysql_errno()."error in query execution");
+
 mysqli_close($con);
 ?>

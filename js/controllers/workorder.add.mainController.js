@@ -11,6 +11,8 @@
             vendorService.get().then(this.onDataLoaded);
         }
         this.onDataLoaded = function(){
+            self.$scope.isLabour = (self.$scope.model.dataModel.labourList.length>0);
+            self.$scope.isSpare = (self.$scope.model.dataModel.spareList.length>0);
             if(self.$scope.model.dataModel.vehicleId && self.$scope.vehicle.model.dataItemById.length>0){
                 self.$scope.vehicle.selectedItem = self.$scope.vehicle.model.dataItemById[self.$scope.model.dataModel.vehicleId];
                 self.$scope.vehicle.vehicleNo = self.$scope.vehicle.selectedItem.vehicleNo;
@@ -37,6 +39,9 @@
                 model:vendorService.model
             };
 
+            this.$scope.isLabour = false;
+            this.$scope.isSpare = false;
+
             this.$scope.workOrderList = config.workorderList;
             this.$scope.paymentList = config.paymentList;
 
@@ -46,6 +51,12 @@
             this.$scope.deleteSpare = function(index){
                 self.$scope.model.dataModel.spareList.splice(index, 1);
             }
+            this.$scope.addLabour = function(){
+                self.$scope.model.dataModel.labourList.push(self.updateService.getLabourScope());
+            }
+            this.$scope.deleteLabour = function(index){
+                self.$scope.model.dataModel.labourList.splice(index, 1);
+            }
             this.$scope.totalSpareAmount = function (){
                 var total = 0;
                 angular.forEach(self.$scope.model.dataModel.spareList, function(item){
@@ -53,14 +64,28 @@
                 });
                 return total;
             }
-            this.$scope.updateDetails = function(){
-                console.log(self.$scope.vehicle.selectedItem);
-                
+            this.$scope.updateDetails = function(){                
                 self.$scope.model.dataModel.vehicleId = self.$scope.vehicle.selectedItem.id;
                 self.$scope.model.dataModel.dealerId = self.$scope.dealer.selectedItem.id;
-
-                console.log(self.$scope.model.dataModel);
                 self.updateService.add(self.$scope.model.dataModel);
+            }
+
+            this.$scope.swapLabour = function(){
+                if(self.$scope.model.dataModel.labourList.length>0){
+                    self.$scope.model.dataModel.labourList = [];
+                }else{
+                    self.$scope.model.dataModel.labourList.push(updateService.getLabourScope());
+                }
+                self.$scope.isLabour = (self.$scope.model.dataModel.labourList.length>0);
+            }
+
+            this.$scope.swapSpare = function(){
+                if(self.$scope.model.dataModel.spareList.length>0){
+                    self.$scope.model.dataModel.spareList = [];
+                }else{
+                    self.$scope.model.dataModel.spareList.push(updateService.getSpareScope());
+                }
+                self.$scope.isSpare = (self.$scope.model.dataModel.spareList.length>0);
             }
         }
         this.init();

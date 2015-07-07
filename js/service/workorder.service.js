@@ -12,6 +12,13 @@
                     warrenty:''
                 };
             }
+            this.getLabourScope = function(){
+                return{
+                    task:'',
+                    technician:'',
+                    amount:''
+                };
+            }
             this.getScope = function(){
                 return {
                     paymentMode: 'Cash',
@@ -19,10 +26,9 @@
                     dealerId:'',
                     billNumber: '',
                     billDate: '',
-                    workorderType: 'L',
-                    labour:'',
                     comment:'',
-                    spareList:[this.getSpareScope()]
+                    spareList:[],
+                    labourList:[]
                 };
             };
             this.$http = $http;

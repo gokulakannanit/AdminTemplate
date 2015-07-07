@@ -1,0 +1,36 @@
+<div class="row no-gutter">
+  <h4>Add Spare Details</h4>
+</div>
+<div class="row no-gutter">
+  <table class="table table-striped table-bordered table-hover no-margin">
+    <thead>
+      <tr>
+        <th>Spare part</th>
+        <th>Rate</th>
+        <th>Quantity</th>
+        <th>Tax</th>
+        <th>Discount</th>
+        <th class="hidden-phone" style="width:190px;">Warrenty</th>
+        <th style="min-width:70px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in model.dataModel.spareList">
+        <td><ft-text type="text" ng-model="item.spare" name="date" labeltext="Spare Part" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.rate" name="rate" labeltext="Rate" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.quantity" name="quantity" labeltext="Quantity" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.tax" name="tax" labeltext="Tax" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.discount" name="discount" labeltext="Discount" nolabel="true"></ft-text></td>
+        <td><ft-text type="date" ng-model="item.warrenty" name="warrenty" labeltext="warrenty" nolabel="true"></ft-text></td>
+        <td>
+          <a class="btn btn-xs btn-info" ng-click="addSpare()" style="margin-top:7px;" ng-if="$last">
+            <i class="fa fa-plus"></i>
+          </a>
+          <a class="btn btn-xs btn-danger" ng-click="deleteSpare($index);" style="margin-top:7px;" ng-if="$index !== $last">
+            <i class="fa fa-minus"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

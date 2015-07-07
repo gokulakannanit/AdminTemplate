@@ -1,10 +1,10 @@
 (function(){
     'use strict';
-    function controller($scope, updateService, $stateParams, ownerService){
+    function controller($scope, updateService, modalService, ownerService){
         var self = this;
         this.$scope = $scope;
-        this.$stateParams = $stateParams;
         this.updateService = updateService;
+        this.modalService = modalService;
         this.ownerService = ownerService;
         this.init = function(){
         	this.super('init'); 	

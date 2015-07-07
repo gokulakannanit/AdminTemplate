@@ -1,0 +1,30 @@
+<div class="row no-gutter">
+  <h4>Add Labour Details</h4>
+</div>
+<div class="row no-gutter">
+  <table class="table table-striped table-bordered table-hover no-margin">
+    <thead>
+      <tr>
+        <th>Task</th>
+        <th>Technician</th>
+        <th>Amount</th>
+        <th style="min-width:70px;"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in model.dataModel.labourList">
+        <td><ft-text type="text" ng-model="item.task" name="date" labeltext="Task" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.technician" name="rate" labeltext="Technician" nolabel="true"></ft-text></td>
+        <td><ft-text type="text" ng-model="item.amount" name="quantity" labeltext="Amount" nolabel="true"></ft-text></td>
+        <td>
+          <a class="btn btn-xs btn-info" ng-click="addLabour()" style="margin-top:7px;" ng-if="$last">
+            <i class="fa fa-plus"></i>
+          </a>
+          <a class="btn btn-xs btn-danger" ng-click="deleteLabour($index);" style="margin-top:7px;" ng-if="$index !== $last">
+            <i class="fa fa-minus"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
