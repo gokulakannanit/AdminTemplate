@@ -209,11 +209,10 @@
 
                     // New object holder to avoid scope Inheritance.
                     var datePickerObj = {
-                        maxDate: new Date(),
                         format: 'dd/MM/yyyy',
                         dateOptions: {
                             formatYear: 'yy',
-                            startingDay: 1
+                            startingDay: 1,
                         },
                         opened:false,
                         open: function($event) {
@@ -222,6 +221,14 @@
                             this.opened = true;
                         }
                     };
+
+                    if(scope.opts.showDate === "past") {
+                        datePickerObj.maxDate = new Date();
+                    } else if(scope.opts.showDate === "future") {
+                        datePickerObj.minDate = new Date();
+                    }
+
+
                     scope.datePickerObj = datePickerObj;
                 }
                 $compile(elem.contents())(scope);

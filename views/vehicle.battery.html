@@ -14,12 +14,12 @@
                         <search-dropdown ng-model="model.dataModel.make" source="makeList" name="make" labeltext="Make"></search-dropdown>
                     </div>
                 </div>
-                
+
                 <ft-text ng-model="model.dataModel.batteryNo" name="batteryNo" labeltext="Battery No"></ft-text>
                 
-                <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date"></ft-text>
+                <ft-text type="date" ng-model="model.dataModel.warrentyDate" name="warrentyDate" labeltext="Warrenty Expiry Date" show-date="future"></ft-text>
 
-                 <search-dropdown ng-model="vendorList.dealer" selecteditem="vendorList.selecteditem" source="vendorList.source" name="dealer" labeltext="Tyre Dealer" displayname="companyName"></search-dropdown>
+                 <search-dropdown ng-model="vendorList.dealer" selecteditem="vendorList.selecteditem" source="vendorList.source" name="dealer" labeltext="Battery Dealer" displayname="companyName"></search-dropdown>
                 
                 <div class="row">
                     <div class="col-lg-6">

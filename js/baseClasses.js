@@ -6,6 +6,7 @@ var baseService = {
             dataList:[],
             dataModel:this.getScope(),
             dataItemById:[],
+            dataItemByCategory:{},
             isDataLoaded:false
         }
     },
@@ -25,16 +26,18 @@ var baseService = {
         });
         return itemObj;
     },
-    getByLabelCategory: function(lblValue) {
-        var self = this,
+    getByCategory: function() {
+         var self = this,
             key = self.labelCategory,
-            itemObj = [];
-
+            itemObj = {},
+            category;
             if(key != undefined) {
                 angular.forEach(self.model.dataList, function(item) {
-                    if(item[key] === lblValue) {
-                        itemObj.push(item);
+                    if (itemObj[item[key]] === undefined) {
+                        itemObj[item[key]] = [];
                     }
+
+                    itemObj[item[key]].push(item);
                 });
             }
         return itemObj;
@@ -85,7 +88,8 @@ var baseService = {
 	                self.model.isDataLoaded = true;
                     console.log('isDataLoaded: ',self.model.isDataLoaded);
 	                self.model.dataList = data;	                
-	                self.model.dataItemById = self.getArrayById();
+                    self.model.dataItemById = self.getArrayById();
+	                self.model.dataItemByCategory = self.getByCategory();
                     if(self.editId){
                         self.model.dataModel = self.getById(self.editId);
                     }

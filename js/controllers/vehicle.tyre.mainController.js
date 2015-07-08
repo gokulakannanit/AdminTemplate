@@ -37,8 +37,9 @@
             self.$scope.vendorList = {
                 dealer:'', 
                 selecteditem:{}, 
-                source: vendorService.getByLabelCategory('Tyre') 
+                source: vendorService.model.dataItemByCategory['Tyre'] 
             };
+
         }
 
         this.init();
