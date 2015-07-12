@@ -142,9 +142,6 @@ CREATE TABLE IF NOT EXISTS `spare` (
 -- Dumping data for table `spare`
 --
 
-INSERT INTO `spare` (`id`, `spare`, `rate`, `quantity`, `tax`, `discount`, `warrenty`, `workorderId`) VALUES
-(1, 'Bolt', '5', '1', '0', '0', '05/06/2015', 1),
-(2, 'Screw', '5', '1', '0', '0', '05/06/2015', 1);
 
 -- --------------------------------------------------------
 
@@ -389,9 +386,6 @@ CREATE TABLE IF NOT EXISTS `workorder` (
 -- Dumping data for table `workorder`
 --
 
-INSERT INTO `workorder` (`id`, `vehicleId`, `billNumber`, `billDate`, `workorderType`, `labour`, `paymentMode`, `dealerId`) VALUES
-(1, 2, 'B1001', '05/05/2015', 'S', '0', 'Cash', 1),
-(2, 2, 'B1002', '06/07/2015', 'L', '750', 'Cash', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

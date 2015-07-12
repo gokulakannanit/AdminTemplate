@@ -9,7 +9,7 @@
                 <th>Dealer</th>                
                 <th>Bill Number</th>
                 <th>Amount</th>
-                <th>Comment</th>
+                <th>odometer</th>
                 <th style="width:134px"></th>
             </tr>
         </thead>
@@ -34,8 +34,8 @@
                 <td>{{::vehicle.dataItemById[workOrder.vehicleId].vehicleNo}}</td>
                 <td>{{::dealer.dataItemById[workOrder.dealerId].companyName}}</td>                
                 <td>{{::workOrder.billNumber}}</td>
-                <td><i class="fa fa-inr"></i> {{::(workOrder.workorderType === 'L') ? workOrder.labour: totalSpareAmount(workOrder)}}</td>
-                <td>{{::workOrder.comment}}</td>
+                <td><i class="fa fa-inr"></i> {{totalAmount(workOrder)}}</td>
+                <td>{{::workOrder.odometer}}</td>
                 <td>
                     <a ui-sref="{{$state.current.data.addUri}}Detail({ isEdit: 'update', editId: workOrder.id })" class="btn btn-xs btn-info" data-original-title="">
                         <i class="fa fa-edit"></i> Edit
