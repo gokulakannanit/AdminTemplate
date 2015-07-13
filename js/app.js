@@ -29,6 +29,11 @@ MetronicApp.config(['$controllerProvider',
     }
 ]);
 
+//Http API Interceptor
+MetronicApp.config(['$httpProvider', function($httpProvider) {  
+    $httpProvider.interceptors.push('serviceInterceptor');
+}]);
+
 /********************************************
  END: BREAKING CHANGE in AngularJS v1.3.x:
 *********************************************/
