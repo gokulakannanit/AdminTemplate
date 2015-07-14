@@ -26,20 +26,27 @@ MetronicApp.factory('modalService', function($rootScope, $q, $timeout) {
 
 MetronicApp.factory('serviceInterceptor', ['$q', function($q) {  
     var responseInterceptor = {
+        request: function(request) {
+
+            // console.log(request);
+            return request;
+        },
+        requestError: function(request) {
+            return request;
+        },
         response: function(response) {
+            console.log(response);
+            return response;
+        },
+        responseError: function(response) {
             var deferred = $q.defer();
             
-           /* if(response.data.status == 200) {
-                deferred.resolve(response.data.data)
-            } else if(response.data.status == 500) {
-                deferred.resolve('');
-            } else if(response.data.status == 401) {
-                deferred.resolve('');
+            if(response.status == 500) {
+                deferred.reject('');
+            } else if(response.status == 401) {
+                deferred.reject('');
             }
-
-            console.log(response);
-            return deferred.promise;*/
-            return response;
+            return deferred.promise;
         }
     };
 

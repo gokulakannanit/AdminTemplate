@@ -13,7 +13,11 @@ if(property_exists($objData, "id")){
 	$sql = "INSERT INTO $tableName $values";
 }
 /*echo $sql;*/
-$result = mysqli_query($con, $sql) or die(mysql_errno()."error in query execution") ;
+$result = mysqli_query($con, $sql);
+
+if(!$result) {
+	header_status(500);
+}
 
 mysqli_close($con);
 ?>
