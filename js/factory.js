@@ -35,7 +35,7 @@ MetronicApp.factory('serviceInterceptor', ['$q', function($q) {
             return request;
         },
         response: function(response) {
-            console.log(response);
+            // console.log(response);
             return response;
         },
         responseError: function(response) {

@@ -1,0 +1,26 @@
+<ft-panel>
+    <ft-form>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <ft-text ng-model="model.dataModel.driverName" name="driverName" labeltext="Driver Name" required="true"></ft-text>
+            
+            <search-dropdown ng-model="vehicle.vehicleNo" selecteditem="vehicle.selectedItem" source="vehicle.model.dataList" name="vehicleNo" labeltext="vehicle No" required="true" displayname="vehicleNo"></search-dropdown>
+
+            <ft-text type="text" ng-model="model.dataModel.lastOdometerReading" name="lastOdometerReading" labeltext="Last Odometer Reading"></ft-text>
+
+            <ft-text type="text" ng-model="model.dataModel.currentOdometerReading" name="currentOdometerReading" labeltext="Current Odometer Reading"></ft-text>
+
+            <ft-text type="text" ng-model="model.dataModel.kmDifference" name="kmDifference" labeltext="Kilometer Difference"></ft-text>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <search-dropdown ng-model="dealer.selectedName" selecteditem="dealer.selectedItem" source="dealer.model.dataList" name="dealer" labeltext="Dealer" required="true" displayname="companyName"></search-dropdown>
+
+             <ft-text type="date" ng-model="model.dataModel.entrieDate" name="entrieDate" labeltext="Entrie Date"></ft-text>
+
+            <ft-text ng-model="model.dataModel.litres" name="litres" labeltext="Fuel Qunatity in Litres"></ft-text>
+
+            <ft-text type="text" ng-model="model.dataModel.totalCost" name="totalCost" labeltext="Total Cost"></ft-text>
+
+            <ft-text ng-model="model.dataModel.comments" name="comments" labeltext="Comments"></ft-text>
+        </div>
+    </ft-form>        
+</ft-panel>

@@ -755,6 +755,77 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                     }
                 }
             })
+            .state('fuelEntrie', {
+                url: '/fuelEntrie.html',
+                templateUrl: 'views/fuelEntrie.html',
+                data: {
+                    pageTitle: 'Vehicle Fuel Entrie',
+                    panelTitle: 'Fuel Entrie List',
+                    addUri: 'fuelEntrie',
+                    breadScrum: [{
+                        label: 'home',
+                        url: '#/dashboard.html'
+                    }, {
+                        label: 'Fuel Entries',
+                        url: '#/fuelEntrie.html'
+                    }]
+                },
+                controller: 'fuelEntrie.mainController',
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vendor.service.js',
+                                    'js/service/vehicle.service.js',
+                                    'js/service/fuelEntrie.service.js',
+                                    'js/controllers/fuelEntrie.mainController.js'
+                                ]
+                            });
+                        }
+                    ]
+                }
+            })
+            .state('fuelEntrieDetail', {
+                url: '/fuelEntrie/:isEdit/:editId',
+                templateUrl: 'views/fuelEntrie.add.html',
+                data: {
+                    pageTitle: 'Add Fuel Entrie',
+                    panelTitle: 'Fuel Entrie Details',
+                    form: true,
+                    back: 'fuelEntrie',
+                    isEdit: false,
+                    breadScrum: [{
+                        label: 'home',
+                        url: '#/dashboard.html'
+                    }, {
+                        label: 'Fuel Entries',
+                        url: '#/fuelEntrie.html'
+                    }, {
+                        label: 'Add Fuel Entrie',
+                        url: '#/'
+                    }]
+                },
+                controller: 'fuelEntrie.add.mainController',
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'MetronicApp',
+                                insertBefore: '#ng_load_plugins_before',
+                                files: [
+                                    'js/service/vendor.service.js',
+                                    'js/service/vehicle.service.js',
+                                    'js/service/fuelEntrie.service.js',
+                                    'js/controllers/fuelEntrie.add.mainController.js'
+                                ]
+                            });
+                        }
+                    ]
+                }
+            })
 
 
     }

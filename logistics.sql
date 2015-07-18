@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2015 at 07:42 PM
+-- Generation Time: Jul 18, 2015 at 11:39 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -76,6 +76,35 @@ INSERT INTO `companylist` (`id`, `companyName`, `tan`, `serviceTax`, `ssi`, `pan
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `fuel_entrie`
+--
+
+CREATE TABLE IF NOT EXISTS `fuel_entrie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `driverName` varchar(255) NOT NULL,
+  `lastOdometerReading` varchar(255) NOT NULL,
+  `currentOdometerReading` varchar(255) NOT NULL,
+  `kmDifference` varchar(255) NOT NULL,
+  `litres` varchar(255) NOT NULL,
+  `totalCost` varchar(255) NOT NULL,
+  `comments` varchar(512) NOT NULL,
+  `entrieDate` varchar(255) NOT NULL,
+  `vehicleId` int(11) NOT NULL,
+  `dealerId` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `fuel_entrie`
+--
+
+INSERT INTO `fuel_entrie` (`id`, `driverName`, `lastOdometerReading`, `currentOdometerReading`, `kmDifference`, `litres`, `totalCost`, `comments`, `entrieDate`, `vehicleId`, `dealerId`) VALUES
+(2, 'Pachai', '1024', '2000', '976', '100', '6000', 'Test', '2015-07-17T18:30:00.000Z', 5, 1),
+(3, 'Rafin', '1000', '1500', '500', '25', '4000', 'Test comments lsj;flkjsdf;lk jasdfjjl;fsjfl sdlf;jsd;lkfj ;lsdf;lksjf;ljsd;lkfjasd;lfj ;sdkfsl;jsd;lfj l;m;fljsda;lfj;vodfjlasjdfozxchvoasdjfsiomsdaoif;sdamx[iodsoij', '2015-07-17T18:30:00.000Z', 5, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `manufacturer`
 --
 
@@ -136,12 +165,7 @@ CREATE TABLE IF NOT EXISTS `spare` (
   `warrenty` varchar(255) NOT NULL,
   `workorderId` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `spare`
---
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -380,12 +404,7 @@ CREATE TABLE IF NOT EXISTS `workorder` (
   `paymentMode` varchar(255) NOT NULL,
   `dealerId` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `workorder`
---
-
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
