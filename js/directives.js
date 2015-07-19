@@ -142,6 +142,7 @@
                     })
                     scope.model = scope.selecteditem[scope.opts.displayname];
                     scope.opened = false;
+                    scope.onChange('hi');
                 }
 
                 function checkValidity() {
@@ -159,7 +160,8 @@
                     }else{
                         scope.$apply();
                     }                    
-                });                
+                }); 
+
                 input.on("click", function() {
                     if(!scope.selecteditem){
                         angular.forEach(scope.source, function(item){
@@ -171,6 +173,7 @@
                     scope.opened = true;
                     scope.$apply();
                 });
+
                 input.on("blur", function() {
                     scope.search = '';
                     //scope.opened = false;
@@ -191,7 +194,8 @@
                 scope: {
                     model: '=ngModel',
                     selecteditem: '=?',
-                    source: '='
+                    source: '=',
+                    onChange:'&'
                 },
                 link: link,
                 templateUrl: 'tpl/component/searchSelect.html'

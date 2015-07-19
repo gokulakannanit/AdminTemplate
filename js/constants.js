@@ -30,6 +30,9 @@
             }, {
                 id: 'Tyre',
                 label: 'Tyre'
+            }, {
+                id: 'Fuel',
+                label: 'Fuel'
             }],
      	workorderList:[{label:"Labour", value:"L"}, {label:"Spare Parts", value:"S"}]
 	}

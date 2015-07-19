@@ -8,13 +8,10 @@
         	this.super('init');
         	vehicleService.get();
             vendorService.get();
+        	this.$scope.vehicle = vehicleService.model;
+        	this.$scope.dealer = vendorService.model;
         }
 
-        this.defineScope = function(){
-            this.super('defineScope');
-            this.$scope.vehicle = vehicleService.model;
-            this.$scope.dealer = vendorService.model;
-        }
         this.init();
 	}
 	controller.prototype = baseController;

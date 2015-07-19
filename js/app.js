@@ -819,6 +819,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider',
                                     'js/service/vendor.service.js',
                                     'js/service/vehicle.service.js',
                                     'js/service/fuelEntrie.service.js',
+                                    'js/service/fuelEntrie.odoMeter.service.js',
                                     'js/controllers/fuelEntrie.add.mainController.js'
                                 ]
                             });
