@@ -14,17 +14,25 @@
             this.$scope.updateDetails = function() {
                self.$scope.model.dataModel.vehicleId = self.$scope.vehicle.selectedItem.id;
                self.$scope.model.dataModel.dealerId = self.$scope.vendorList.selecteditem.id;
+
+               // Remove the temporary reading.
+               delete self.$scope.model.dataModel.lastOdometerReading;
+
                self.updateService.add(self.$scope.model.dataModel);
             }
         }
 
-        function onVehicleNoChange(a){
-            console.log(a);
-            var vehicleId = self.$scope.vehicle.selectedItem.id;
+        function onVehicleNoChange(vehicleId){
+            var vehicleId = vehicleId || self.$scope.vehicle.selectedItem.id;
             console.log(vehicleId);
-            odoMeterService.get(vehicleId)/*.then(function(){
-                console.log(arguments);
-            });*/
+
+            odoMeterService.get(vehicleId).then(function(data){
+                if(data.length && data[0].currentOdometerReading) {
+                    self.$scope.model.dataModel.lastOdometerReading = data[0].currentOdometerReading;
+                } else if(data.length && data[0].odometer) {
+                    self.$scope.model.dataModel.lastOdometerReading = data[0].odometer;
+                }
+            });
         }
 
         function onVehicleModelReady() {
@@ -39,6 +47,8 @@
             if(self.$scope.model.dataModel.vehicleId && self.$scope.vehicle.model.dataItemById.length>0){
                 self.$scope.vehicle.selectedItem = self.$scope.vehicle.model.dataItemById[self.$scope.model.dataModel.vehicleId];
                 self.$scope.vehicle.vehicleNo = self.$scope.vehicle.selectedItem.vehicleNo;
+
+                onVehicleNoChange(self.$scope.model.dataModel.vehicleId);
             }
         }
 

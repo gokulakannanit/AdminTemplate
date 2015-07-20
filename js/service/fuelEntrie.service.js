@@ -6,7 +6,6 @@
                 return {
                     entrieDate:'',
                     vehicleId:'',
-                    lastOdometerReading:'',
                     currentOdometerReading:'',           
                     kmDifference:'', 
                     litres:'',

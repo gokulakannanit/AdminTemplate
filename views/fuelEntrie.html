@@ -6,7 +6,6 @@
                 <th class="hidden-phone">Driver Name</th>
                 <th>Vechile No</th>
                 <th>Dealer</th>
-                <th class="hidden-phone">Last Odometer Reading</th>
                 <th class="hidden-phone">Current Odometer Reading</th>
                 <th class="hidden-phone">Fuel Quantity(Liters)</th>
                 <th class="hidden-phone">Total Cost</th>
@@ -22,7 +21,6 @@
                 <td>{{::fuelEntrie.driverName | titleCase}}</td>
                 <td>{{::vehicle.dataItemById[fuelEntrie.vehicleId].vehicleNo}}</td>
                 <td>{{::dealer.dataItemById[fuelEntrie.dealerId].companyName}}</td>
-                <td>{{::fuelEntrie.lastOdometerReading}}</td>
                 <td>{{::fuelEntrie.currentOdometerReading}}</td>
                 <td>{{::fuelEntrie.litres}}</td>
                 <td><i class="fa fa-inr"></i>  {{::fuelEntrie.totalCost}}</td>

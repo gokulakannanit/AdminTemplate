@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2015 at 11:39 AM
+-- Generation Time: Jul 20, 2015 at 07:28 PM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.3
 
@@ -82,7 +82,6 @@ INSERT INTO `companylist` (`id`, `companyName`, `tan`, `serviceTax`, `ssi`, `pan
 CREATE TABLE IF NOT EXISTS `fuel_entrie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `driverName` varchar(255) NOT NULL,
-  `lastOdometerReading` varchar(255) NOT NULL,
   `currentOdometerReading` varchar(255) NOT NULL,
   `kmDifference` varchar(255) NOT NULL,
   `litres` varchar(255) NOT NULL,
@@ -92,15 +91,16 @@ CREATE TABLE IF NOT EXISTS `fuel_entrie` (
   `vehicleId` int(11) NOT NULL,
   `dealerId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `fuel_entrie`
 --
 
-INSERT INTO `fuel_entrie` (`id`, `driverName`, `lastOdometerReading`, `currentOdometerReading`, `kmDifference`, `litres`, `totalCost`, `comments`, `entrieDate`, `vehicleId`, `dealerId`) VALUES
-(2, 'Pachai', '1024', '2000', '976', '100', '6000', 'Test', '2015-07-17T18:30:00.000Z', 5, 1),
-(3, 'Rafin', '1000', '1500', '500', '25', '4000', 'Test comments lsj;flkjsdf;lk jasdfjjl;fsjfl sdlf;jsd;lkfj ;lsdf;lksjf;ljsd;lkfjasd;lfj ;sdkfsl;jsd;lfj l;m;fljsda;lfj;vodfjlasjdfozxchvoasdjfsiomsdaoif;sdamx[iodsoij', '2015-07-17T18:30:00.000Z', 5, 3);
+INSERT INTO `fuel_entrie` (`id`, `driverName`, `currentOdometerReading`, `kmDifference`, `litres`, `totalCost`, `comments`, `entrieDate`, `vehicleId`, `dealerId`) VALUES
+(2, 'Pachai', '2000', '500', '50', '2500', 'Test', '2015-07-10T18:30:00.000Z', 5, 6),
+(3, 'Rafin', '2500', '500', '50', '2500', 'Test comments lsj;flkjsdf;lk jasdfjjl;fsjfl sdlf;jsd;lkfj ;lsdf;lksjf;ljsd;lkfjasd;lfj ;sdkfsl;jsd;lfj l;m;fljsda;lfj;vodfjlasjdfozxchvoasdjfsiomsdaoif;sdamx[iodsoij', '2015-07-17T15:30:00.000Z', 5, 6),
+(4, 'Manja', '1800', '300', '30', '1800', 'Test Comments', '2015-07-17T18:30:00.000Z', 4, 6);
 
 -- --------------------------------------------------------
 
@@ -327,9 +327,9 @@ CREATE TABLE IF NOT EXISTS `vehiclelist` (
 --
 
 INSERT INTO `vehiclelist` (`id`, `vehicleNo`, `date`, `amtPurchased`, `modelYear`, `make`, `ownershipType`, `chasisNo`, `engineNo`, `ownership`, `owner`, `odometer`, `fuelType`, `type`) VALUES
-(2, 'TN 22 AF 1234', '2015-06-09T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '12121212', '121212', '', 'RAJ', '121212', 'Diesel', 'LCV'),
-(4, 'TN 22 AF 1234', '2015-06-12T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '7567876', '76876876', '', 'RAJ', '65756756', 'TATA', 'TATA'),
-(5, 'TN 99k 8546', '2015-06-29T17:47:20.350Z', '', '', 'Tata', 'own', '', '', '', 'ASED', '', 'Diesel', 'LCV');
+(2, 'TN 22 AF 7845', '2015-06-09T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '12121212', '121212', '', 'RAJ', '1000', 'Diesel', 'LCV'),
+(4, 'TN 21 AZ 1234', '2015-06-12T15:37:02.949Z', '500000', '2009', 'Tata', 'own', '7567876', '76876876', '', 'RAJ', '1500', 'TATA', 'TATA'),
+(5, 'TN 99k 8546', '2015-06-29T17:47:20.350Z', '', '', 'Tata', 'own', '', '', '', 'ASED', '1500', 'Diesel', 'LCV');
 
 -- --------------------------------------------------------
 
@@ -375,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `vendor` (
   `address` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `vendor`
@@ -386,7 +386,8 @@ INSERT INTO `vendor` (`id`, `companyName`, `typeOfGoods`, `contactPerson`, `phon
 (2, 'Venkateshwara', 'Battery', 'venky', '1234567890', 'velachery', ''),
 (3, 'ABC', 'Tyre', 'ABC Raj', '7485964215', 'ABC', ''),
 (4, 'Karishma Suppliers', 'Tyre', 'Karishma', '4661846546', '', ''),
-(5, 'Susan Traders', 'Electricals', 'Susan', '3216418155', '....', 'susan@trade.one.com');
+(5, 'Susan Traders', 'Electricals', 'Susan', '3216418155', '....', 'susan@trade.one.com'),
+(6, 'Bharath Petroleum', 'Fuel', 'RTYU', '7894561235', 'Abc street', 'abc@fgc.com');
 
 -- --------------------------------------------------------
 

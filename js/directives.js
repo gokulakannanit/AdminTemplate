@@ -142,7 +142,7 @@
                     })
                     scope.model = scope.selecteditem[scope.opts.displayname];
                     scope.opened = false;
-                    scope.onChange('hi');
+                    scope.onChange();
                 }
 
                 function checkValidity() {
@@ -204,6 +204,7 @@
         ftFormText: function($compile) {
             function link(scope, elem, attr, ctrl) {
                 scope.opts = attr;
+
                 if (!scope.opts.type) {
                     scope.opts.type = "text";
                 }
@@ -239,6 +240,9 @@
 
                 var input = $(elem).find("input");
 
+                if(scope.opts.readonly == 'true') {
+                    input.attr('readonly', true);
+                }
                 ctrl.$validators = new validators(scope);
 
                 if(scope.opts.required && input.val() === ''){

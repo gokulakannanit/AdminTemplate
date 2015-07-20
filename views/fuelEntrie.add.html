@@ -3,9 +3,9 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <ft-text ng-model="model.dataModel.driverName" name="driverName" labeltext="Driver Name" required="true"></ft-text>
             
-            <search-dropdown ng-model="vehicle.vehicleNo" selecteditem="vehicle.selectedItem" source="vehicle.model.dataList" name="vehicleNo" labeltext="vehicle No" required="true" displayname="vehicleNo" on-change="vehicle.onChange(msg)"></search-dropdown>
+            <search-dropdown ng-model="vehicle.vehicleNo" selecteditem="vehicle.selectedItem" source="vehicle.model.dataList" name="vehicleNo" labeltext="vehicle No" required="true" displayname="vehicleNo" on-change="vehicle.onChange()"></search-dropdown>
 
-            <ft-text type="text" ng-model="model.dataModel.lastOdometerReading" name="lastOdometerReading" labeltext="Last Odometer Reading"></ft-text>
+            <ft-text type="text" ng-model="model.dataModel.lastOdometerReading" name="lastOdometerReading" labeltext="Last Odometer Reading" readonly="true"></ft-text>
 
             <ft-text type="text" ng-model="model.dataModel.currentOdometerReading" name="currentOdometerReading" labeltext="Current Odometer Reading"></ft-text>
 
